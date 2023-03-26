@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "871921398399",
+    "project_id": "saber-y-beber-7426b",
+    "storage_bucket": "saber-y-beber-7426b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871921398399:android:2b05cbfbc2e6fdf67b054a",
+        "android_client_info": {
+          "package_name": "com.endcodev.saber_y_beber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871921398399-p21i4ocitr7mq9sq3bl35b8no01cl1op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbhprdPUYMcvmRyKxePotHG07yZreti4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871921398399-0ob1itqk0qr8fnbtbggdi59c5ifu5ogn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

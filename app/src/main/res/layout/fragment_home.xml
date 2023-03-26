@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presenter.ui.home.HomeFragment"
+    android:background="@drawable/gradient_background">
+
+    <ImageView
+        android:id="@+id/home_logo"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/home_app_logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/saber_y_beber_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/light_black"
+        android:background="@color/transparent"/>
+
+    <Button
+        android:id="@+id/home_login_bt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/login_bt"
+        android:backgroundTint="@color/light_black"
+        android:contentDescription="@string/home_login_button_desc"
+        android:textColor="@color/orange_1"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

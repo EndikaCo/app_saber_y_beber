@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+
+    tools:context=".presenter.ui.register.RegisterFragment">
+
+    <ImageButton
+        android:id="@+id/register_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:contentDescription="@string/register_back_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/back_bt"
+        app:layout_constraintBottom_toBottomOf="@+id/register_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/register_title"
+        app:tint="@color/light_black" />
+
+    <TextView
+        android:id="@+id/register_title"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="@string/register_account_title"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/register_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="casual"
+        android:text="@string/register_subtitle"
+        android:textAlignment="center"
+        android:textColor="@color/blue1"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_back" />
+
+    <EditText
+        android:id="@+id/register_mail_et"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/et_stroke"
+        android:hint="@string/register_email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_text"
+        android:drawableStart="@drawable/ic_mail"/>
+
+    <EditText
+        android:id="@+id/register_pass_et"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="password"
+        android:background="@drawable/et_stroke"
+        android:ems="10"
+        android:hint="@string/register_pass"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_mail_et"
+        android:drawableStart="@drawable/ic_lock"/>
+
+    <EditText
+        android:id="@+id/repeat_pass_et"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="password"
+        android:background="@drawable/et_stroke"
+        android:ems="10"
+        android:hint="@string/register_repeat_pass"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableStart="@drawable/ic_lock"
+        app:layout_constraintTop_toBottomOf="@+id/register_pass_et" />
+
+    <EditText
+        android:id="@+id/register_user_et"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="username"
+        android:background="@drawable/et_stroke"
+        android:ems="10"
+        android:hint="@string/register_username"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeat_pass_et"
+        android:drawableStart="@drawable/login_bt"/>
+
+    <Button
+        android:id="@+id/register_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/et_stroke"
+        android:fontFamily="casual"
+        android:minHeight="50dp"
+        android:text="@string/register_bt"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/register_user_et"
+        app:layout_constraintStart_toStartOf="@+id/register_user_et"
+        app:layout_constraintTop_toBottomOf="@+id/register_user_et" />
+
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_alternative_tv"
+        app:layout_constraintBottom_toTopOf="@+id/register_facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/register_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:src="@drawable/facebook"
+        app:layout_constraintBottom_toBottomOf="@+id/register_google"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/register_google"
+        android:contentDescription="@string/register_facebook" />
+
+    <ImageButton
+        android:id="@+id/register_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/register_google"
+        android:src="@drawable/googleg_standard_color_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/register_facebook"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
