@@ -8,8 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_black">#191919</color>
+    <color name="light_grey">#DA191919</color>
+
     <color name="orange_1">#FFC875</color>
     <color name="orange_2">#F4AF5B</color>
     <color name="transparent">#00000000</color>
-    <color name="blue1">#3264C8</color>
+    <color name="blue1">#0979F1</color>
+
+    <color name="button_default_start">@color/blue_t1</color>
+    <color name="button_default_end">@color/blue_t2</color>
+    <color name="blue2">#1967D1</color>
+
+    <color name="blue_t1">#B41A73E7</color>
+    <color name="blue_t2">#941967D1</color>
 </resources>

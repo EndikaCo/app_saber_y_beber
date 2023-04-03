@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color -->
+
+    <!-- The corners of the shape -->
+    <corners android:radius="10dp"/>
+
+    <!-- Stroke around the background, width and color -->
+    <stroke android:width="2dp" android:color="@color/light_black"/>
+
+    <!-- Padding for the background, e.g the Text inside a TextView will be
+    located differently -->
+    <padding android:left="3dp" android:right="3dp"
+        android:bottom="3dp" android:top="3dp" />
+
+</shape>

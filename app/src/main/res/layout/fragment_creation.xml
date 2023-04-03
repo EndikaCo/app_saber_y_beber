@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presenter.ui.creation.CreateFragment"
+    android:background="@drawable/gradient_background">
+
+    <ImageView
+        android:id="@+id/correct_info2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/tutorial_button"
+        android:src="@drawable/ic_info"
+        app:layout_constraintBottom_toBottomOf="@+id/create_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/create_title" />
+
+    <TextView
+        android:id="@+id/create_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/create_title"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/create_back"
+        app:layout_constraintEnd_toStartOf="@+id/correct_info2"
+        app:layout_constraintStart_toEndOf="@+id/create_back"
+        app:layout_constraintTop_toTopOf="@+id/create_back"
+        app:layout_constraintVertical_bias="0.571" />
+
+    <ImageButton
+        android:id="@+id/create_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/light_black"
+        android:contentDescription="@string/back_button" />
+
+    <TextView
+        android:id="@+id/create_tv_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/create_difficulty"
+        android:textColor="@color/light_black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_back" />
+
+    <ImageView
+        android:id="@+id/create_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/difficulty_0"
+        app:layout_constraintBottom_toTopOf="@+id/create_quest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty"
+        android:contentDescription="@string/create_difficulty" />
+
+    <EditText
+        android:id="@+id/create_quest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:hint="@string/create_question"
+        android:textColorHint="@color/light_black"
+        android:textColor="@color/light_black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_difficulty"
+        android:inputType="text"
+        android:importantForAutofill="no" />
+
+    <LinearLayout
+        android:id="@+id/options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:paddingStart="40dp"
+
+        android:paddingEnd="40dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_quest">
+
+        <EditText
+            android:id="@+id/create_correct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option_correct"
+            android:fontFamily="casual"
+            android:hint="@string/create_correct_option"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColorHint="#EDE7F6"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/create_option2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:hint="@string/create_option_wrong"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColorHint="@color/light_black"
+            android:textColor="@color/light_black"
+            android:inputType="text"
+            android:importantForAutofill="no" />
+
+
+        <EditText
+            android:id="@+id/create_option3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:hint="@string/create_option_wrong2"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:inputType="text"
+            android:textColorHint="@color/light_black"
+            android:textColor="@color/light_black"
+            android:importantForAutofill="no" />
+
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/rectangle_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_tv_feedback">
+
+        <EditText
+            android:id="@+id/create_alternative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:hint="@string/or_do_a_flip"
+            android:inputType="text"
+            android:textColor="@color/light_black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_drinks"
+            android:importantForAutofill="no" />
+
+        <TextView
+
+            android:id="@+id/create_drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:hint="@string/drink_0"
+            android:textColorHint="@color/light_black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/create_alternative"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_feedback" />
+
+        <EditText
+            android:id="@+id/create_feedback"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:hint="@string/create_fail_feedback"
+            android:inputType="text"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAutofill="no" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/create_confirm_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/answer_option"
+        android:text="@string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/create_tv_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/create_feedback_on_fail"
+        android:textColor="@color/light_black"
+        android:textColorHint="@color/light_black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/options" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

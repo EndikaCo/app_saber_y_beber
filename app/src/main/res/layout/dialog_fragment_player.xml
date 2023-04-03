@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".presenter.ui.ErrorDialogFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/id_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue1"
+            android:text="@string/player_title"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/id_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/player_genre_selector"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:src="@drawable/player_boy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_title" />
+
+        <TextView
+            android:id="@+id/id_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/player_1"
+            app:layout_constraintStart_toEndOf="@+id/id_picture"
+            app:layout_constraintTop_toBottomOf="@+id/id_title" />
+
+        <EditText
+            android:id="@+id/id_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:autofillHints=""
+            android:background="@null"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/player_name"
+            android:inputType="textPersonName"
+            android:maxLength="15"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/id_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/id_1"
+            app:layout_constraintTop_toTopOf="@+id/id_1" />
+
+        <TextView
+            android:id="@+id/id_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/player_2"
+            app:layout_constraintStart_toEndOf="@+id/id_picture"
+            app:layout_constraintTop_toBottomOf="@+id/id_1" />
+
+        <TextView
+            android:id="@+id/id_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/player_genre"
+            app:layout_constraintBottom_toBottomOf="@+id/id_2"
+            app:layout_constraintEnd_toEndOf="@+id/id_date"
+            app:layout_constraintStart_toEndOf="@+id/id_2"
+            app:layout_constraintTop_toTopOf="@+id/id_2" />
+
+        <TextView
+            android:id="@+id/id_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/player_3"
+            app:layout_constraintStart_toEndOf="@+id/id_picture"
+            app:layout_constraintTop_toBottomOf="@+id/id_2" />
+
+
+        <TextView
+            android:id="@+id/id_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/player_date"
+            app:layout_constraintBottom_toBottomOf="@+id/id_3"
+            app:layout_constraintStart_toEndOf="@+id/id_3"
+            app:layout_constraintTop_toTopOf="@+id/id_3" />
+
+        <TextView
+            android:id="@+id/id_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/player_id_num"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_picture" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/error_cancel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/player_cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/id_continue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_card" />
+
+    <Button
+        android:id="@+id/id_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/player_accept"
+        app:layout_constraintBottom_toBottomOf="@+id/error_cancel2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/error_cancel2"
+        app:layout_constraintTop_toTopOf="@+id/error_cancel2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

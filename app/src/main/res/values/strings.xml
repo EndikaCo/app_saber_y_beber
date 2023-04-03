@@ -1,10 +1,18 @@
 <resources>
-    <string name="app_name">saber_y_beber</string>
+
+    <!--GENERAL PURPOSE-->
+    <string name="ok">OK</string>
+    <string name="app_name">Saber y beber</string>
     <string name="action_settings">Settings</string>
 
     <!-- home fragment-->
     <string name="home_login_button_desc">botón de inicio de sesión</string>
     <string name="home_app_logo">logo de la app</string>
+    <string name="home_creation_description">Pulsa para crear una pregunta</string>
+    <string name="home_player_add_button"> Añadir\njugador</string>
+    <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
+    <string name="home_start_game_button">Iniciar juego</string>
+
 
     <!-- login fragment-->
     <string name="login_back_button">botón atras</string>
@@ -14,7 +22,7 @@
     <string name="login_password">Contraseña</string>
     <string name="login_forgot_pass">He olvidado la contraseña</string>
     <string name="login_bt">Iniciar sesión</string>
-    <string name="login_create_account">¿No tienes una cuenta?<b> <u>Crear cuenta</u></b></string>
+    <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/blue1">Crear cuenta</font></u></b></string>
     <string name="login_facebook">Login with facebook</string>
     <string name="login_google">Iniciar sesión con Google</string>
     <string name="login_not_verified">El Email no ha sido verificado aún. Accede a tu cuenta de correo electronico y pincha en el enlace de verificación. (Mira tambien en la bandeja de SPAM)</string>
@@ -25,7 +33,6 @@
     <string name="facebook_app_id">1234</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">56789</string>
-
 
     <!-- register fragment-->
     <string name="register_account_title">Crear cuenta</string>
@@ -56,5 +63,50 @@
     <string name="forgot_text">Que sea la última vez que se te olvida</string>
     <string name="forgot_change">Enviar</string>
     <string name="forgot_back_button">Botón atrás</string>
+    <string name="forgot_mail_sent">Enviado correctamente, revisa tu Email (revisa tambien la carpeta de SPAM)</string>
+    <string name="forgot_error_send">Error en el Envio</string>
+    <string name="login_google_sucess">Sesión iniciada como ${auth.currentUser.toString()</string>
+
+    <!-- Add player ID dialog-->
+    <string name="player_title">ALCOHÓLICOS ANÓNIMOS</string>
+    <string name="player_genre">M</string>
+    <string name="player_date">27/01/2025</string>
+    <string name="player_id_num">HKF21FG675OP</string>
+    <string name="player_1">1.</string>
+    <string name="player_2">2.</string>
+    <string name="player_name">Escribe aquí tu nombre</string>
+    <string name="player_accept">ACEPTAR</string>
+    <string name="player_cancelar">CANCELAR</string>
+    <string name="player_3">3.</string>
+    <string name="player_genre_selector">Genre selector</string>
+
+    <!--CREATE FRAGMENT-->
+    <string name="create_question">Escribe aquí tu pregunta</string>
+    <string name="create_correct_option">Escribe aquí la respuesta correcta</string>
+    <string name="create_fail_feedback">Respuesta incorrecta.</string>
+    <string name="create_option_wrong">Escribe aquí la respuesta incorrecta</string>
+    <string name="create_option_wrong2">Escribe aquí otra respuesta incorrecta</string>
+    <string name="create_difficulty">Dificultad</string>
+    <string name="create_title">Crear Pregunta</string>
+    <string name="create_feedback_on_fail">Comentario al fallar:</string>
+    <string name="create_alternative_to_drink">Alternativa a beber</string>
+    <string name="or_do_a_flip">o haz una voltereta</string>
+    <string name="drink_0">Bebe 0 tragos</string>
+    <string name="tutorial_button">Botón tutorial</string>
+    <string name="back_button">Botón atras</string>
+
+    <!--CORRECT FRAGMENT-->
+    <string name="correction_question">Marcar la casilla si la pregunta tiene sentido y está bien redactada</string>
+    <string name="correction_answer">Marcar la casilla si responde correctamente la pregunta anterior</string>
+    <string name="correction_wrong_option_2">Marcar la casilla si la respuesta es incorrecta y está bien redactada </string>
+    <string name="correction_fail_reply">Marcar la casilla si humilla correctamente a la persona que ha fallado la respuesta</string>
+    <string name="correction_title">Pregunta de %s Corregidas %d/2 </string>
+    <string name="correction_title_default">Correción de preguntas </string>
+    <string name="correction_back_button">Botón atrás</string>
+    <string name="todo">TODO</string>
+    <string name="correct_info_bt">Botón info</string>
+    <string name="correct_difficulty">Marcar la casilla si la dificultad es adecuada a la pregunta</string>
+    <string name="correct_no_correction_available">No hay correciones disponibles en este momento</string>
+
 
 </resources>

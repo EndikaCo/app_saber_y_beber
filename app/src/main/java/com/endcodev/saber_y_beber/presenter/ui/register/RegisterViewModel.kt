@@ -19,6 +19,10 @@ class RegisterViewModel @Inject constructor(
     private val resources: ResourcesProvider,
 ) : ViewModel() {
 
+    companion object {
+        private const val TAG = "Register Log:"
+    }
+
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> get() = _email
 
@@ -36,7 +40,6 @@ class RegisterViewModel @Inject constructor(
 
     private var auth: FirebaseAuth = Firebase.auth
 
-    private val TAG = "Register Log:"
 
     fun createAccount(email: String, pass: String, repeat: String, userName: String) {
 
@@ -49,7 +52,7 @@ class RegisterViewModel @Inject constructor(
     }
 
     private fun createUser(email: String, pass: String, userName: String) {
-        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
+        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
                 putUserName(userName)
                 sendMailVerification()

@@ -25,7 +25,6 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
             inflater, container,
             false
         ).apply { _binding = this }.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,12 +37,12 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
                 .addOnSuccessListener {
                     Toast.makeText(
                         requireContext(),
-                        "Enviado correctamente, revisa tu Email (revisa tambien la carpeta de SPAM)",
+                        resources.getString(R.string.forgot_mail_sent),
                         Toast.LENGTH_SHORT
                     ).show()
                     findNavController().navigate(R.id.action_forgotPassFragment_to_loginFragment)
                 }.addOnFailureListener {
-                    Toast.makeText(requireContext(), "Error en el Envio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), resources.getString(R.string.forgot_error_send), Toast.LENGTH_SHORT).show()
                 }
         }
     }

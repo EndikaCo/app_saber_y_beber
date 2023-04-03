@@ -19,8 +19,6 @@ import com.google.firebase.ktx.Firebase
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onStart() {
@@ -40,14 +38,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initListeners()
+    }
+
+    private fun initListeners() {
+
         //Login imageButton click
         binding.homeLoginBt.setOnClickListener {
             toLoginFragment()
         }
     }
-
-
-
 
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
@@ -62,7 +62,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val alertDialog = AlertDialog.Builder(requireContext()).create()
         alertDialog.setTitle("You are currently logged as ${Firebase.auth.currentUser?.displayName.toString()}")
         alertDialog.setMessage("Do you want to logout?")
-        alertDialog.setIcon(getDrawable(requireContext(), R.drawable.login_bt))
+        alertDialog.setIcon(getDrawable(requireContext(), R.drawable.ic_login))
         alertDialog.setButton(
             AlertDialog.BUTTON_POSITIVE, "Continue logged in"
         ) { dialog, _ -> dialog.dismiss() }
@@ -86,6 +86,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btnNegative.layoutParams = layoutParams
     }
 
+    /*
+    private fun errorDialog() {
+        ErrorDialogFragment(
+            onAcceptClickLister = {
+                Toast.makeText(requireContext(), "button: $it", Toast.LENGTH_SHORT).show()
+            },
+            "title",
+            "description",
+            "acceptButton",
+            "cancelButton",
+            AppCompatResources.getDrawable(requireContext(), R.drawable.ic_error)!!
+        ).show(parentFragmentManager,"dialog")
+    }
+*/
     /** checks if user is logged*/
     private fun checkLogin() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified) {
@@ -93,7 +107,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.homeLoginBt.text = Firebase.auth.currentUser!!.displayName?.first().toString()
             //binding.homeCreateBt.alpha = 1f
         } else {
-            binding.homeLoginBt.setBackgroundResource(R.drawable.login_bt)
+            binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
             //binding.homeCreateBt.alpha = 0.3f
             binding.homeLoginBt.text = ""
         }

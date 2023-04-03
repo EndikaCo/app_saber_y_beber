@@ -1,11 +1,13 @@
 package com.endcodev.saber_y_beber.presenter.ui.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
@@ -25,14 +27,47 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    val GOOGLE_SIGN_INT = 42
+    private val previewRequest =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    if (account != null) {
+                        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                        val auth = FirebaseAuth.getInstance()
+                        auth.signInWithCredential(credential)
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    //todo falta meter el nombre si es la primera  vez y no tiene nombre de usuario,
+                                    // como en register con un dialogo tal vez o coger el nombre que tiene en el mail
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Sesión iniciada como ${auth.currentUser}",//todo aqui poner el name una vez exista
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                } else
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "fail google",//todo a strings
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                            }
+                    }
+                } catch (e: ApiException) {
+                    Toast.makeText(requireContext(), "error:$e", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
     private val callbackManager = CallbackManager.Factory.create()
-
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -50,18 +85,22 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initListeners()
+    }
+
+    private fun initListeners() {
         //Mail + pass login button
-        binding.homeLoginBt.setOnClickListener {
+        binding.viewSignIn.btnLogin.setOnClickListener {
             mailPassLogin()
         }
 
         //Facebook login Button
-        binding.loginFacebook.setOnClickListener {
+        binding.viewSignIn.registerFacebook.setOnClickListener {
             faceBookLogin()
         }
 
         //Google login button
-        binding.loginGoogle.setOnClickListener {
+        binding.viewSignIn.registerGoogle.setOnClickListener {
             googleLogin()
         }
 
@@ -79,16 +118,6 @@ class LoginFragment : Fragment() {
         binding.loginBack.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
-    }
-
-    private fun googleLogin() {
-        val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        val googleClient = GoogleSignIn.getClient(requireContext(), googleConf)
-        startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_INT)
     }
 
     private fun mailPassLogin() {
@@ -119,6 +148,17 @@ class LoginFragment : Fragment() {
         else
             Toast.makeText(context, resources.getString(R.string.login_error), Toast.LENGTH_SHORT)
                 .show()
+    }
+
+    private fun googleLogin() {
+        val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleClient = GoogleSignIn.getClient(requireContext(), googleConf)
+        val signInIntent = Intent(googleClient.signInIntent)
+        previewRequest.launch(signInIntent)
     }
 
     private fun faceBookLogin() {
@@ -152,37 +192,8 @@ class LoginFragment : Fragment() {
                 override fun onError(error: FacebookException?) {
                     TODO("Not yet implemented")
                 }
-
             }
         )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == GOOGLE_SIGN_INT) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                val account = task.getResult(ApiException::class.java)
-                if (account != null) {
-                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    FirebaseAuth.getInstance().signInWithCredential(credential)
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                Toast.makeText(requireContext(), "ok google", Toast.LENGTH_SHORT).show()
-                                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                            } else
-                                Toast.makeText(requireContext(), "fail google", Toast.LENGTH_SHORT).show()
-                        }
-                }
-            } catch (e: ApiException) {
-                Toast.makeText(requireContext(), "error:$e", Toast.LENGTH_SHORT).show()
-            }
-
-
-        }
     }
 
     override fun onDestroyView() {
