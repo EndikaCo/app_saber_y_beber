@@ -9,9 +9,14 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentHomeBinding
+import com.endcodev.saber_y_beber.presenter.adapter.PlayerAdapter
+import com.endcodev.saber_y_beber.presenter.ui.dialogs.PlayerDialogFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -20,6 +25,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var adapter: PlayerAdapter
 
     override fun onStart() {
         super.onStart()
@@ -43,63 +50,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initListeners() {
 
+        //button add player Onclick
+        binding.homeAddBt.setOnClickListener {
+            //add todo
+        }
+
         //Login imageButton click
         binding.homeLoginBt.setOnClickListener {
             toLoginFragment()
         }
+
+        //button add player Onclick
+        binding.homeAddBt.setOnClickListener {
+            addPlayerDialog()
+        }
+    }
+
+
+    /** show dialog [PlayerDialogFragment] to create new player*/
+    private fun addPlayerDialog() {
+        PlayerDialogFragment(
+            onSubmitClickListener = { player ->
+                //homeViewModel.addNewPlayer(player)
+               // adapter.notifyItemInserted(homeViewModel.playerList.value!!.size)
+            }
+        ).show(parentFragmentManager, "dialog")
     }
 
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified)
-            loginAlertDialog()
+           // loginAlertDialog() todo
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
-    /** show AlertDialog when already logged*/
-    private fun loginAlertDialog() {
-        val alertDialog = AlertDialog.Builder(requireContext()).create()
-        alertDialog.setTitle("You are currently logged as ${Firebase.auth.currentUser?.displayName.toString()}")
-        alertDialog.setMessage("Do you want to logout?")
-        alertDialog.setIcon(getDrawable(requireContext(), R.drawable.ic_login))
-        alertDialog.setButton(
-            AlertDialog.BUTTON_POSITIVE, "Continue logged in"
-        ) { dialog, _ -> dialog.dismiss() }
-
-        alertDialog.setButton(
-            AlertDialog.BUTTON_NEGATIVE, "Logout"
-        ) { dialog, _ ->
-            dialog.dismiss()
-            Firebase.auth.signOut()
-            checkLogin()
-        }
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.setCancelable(false)
-        alertDialog.show()
-        val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-        val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-        btnNegative.setTextColor(Color.RED)
-        val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-        layoutParams.weight = 10f
-        btnPositive.layoutParams = layoutParams
-        btnNegative.layoutParams = layoutParams
-    }
-
-    /*
-    private fun errorDialog() {
-        ErrorDialogFragment(
-            onAcceptClickLister = {
-                Toast.makeText(requireContext(), "button: $it", Toast.LENGTH_SHORT).show()
-            },
-            "title",
-            "description",
-            "acceptButton",
-            "cancelButton",
-            AppCompatResources.getDrawable(requireContext(), R.drawable.ic_error)!!
-        ).show(parentFragmentManager,"dialog")
-    }
-*/
     /** checks if user is logged*/
     private fun checkLogin() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified) {
@@ -117,6 +102,4 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

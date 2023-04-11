@@ -24,4 +24,14 @@
 
     <style name="Theme.Saber_y_beber.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:gravity">center</item>
+        <item name="backgroundTint">@color/light_grey</item>
+    </style>
+
 </resources>

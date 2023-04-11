@@ -1,27 +1,20 @@
 package com.endcodev.saber_y_beber.presenter.ui.register
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.ResourcesProvider
 import com.endcodev.saber_y_beber.data.model.DialogMessage
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.ktx.Firebase
+import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val resources: ResourcesProvider,
+    private val authenticationService: AuthenticationService
 ) : ViewModel() {
-
-    companion object {
-        private const val TAG = "Register Log:"
-    }
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> get() = _email
@@ -38,9 +31,6 @@ class RegisterViewModel @Inject constructor(
     private val _dialog = MutableLiveData<DialogMessage>()
     val dialog: LiveData<DialogMessage> get() = _dialog
 
-    private var auth: FirebaseAuth = Firebase.auth
-
-
     fun createAccount(email: String, pass: String, repeat: String, userName: String) {
 
         val emailOk: Boolean = isValidMail(email)
@@ -48,53 +38,7 @@ class RegisterViewModel @Inject constructor(
         val repeatOk: Boolean = isEqualPass(pass, repeat)
         val userOk: Boolean = isValidUser(userName)
         if (emailOk && passOk && repeatOk && userOk)
-            createUser(email, pass, userName)
-    }
-
-    private fun createUser(email: String, pass: String, userName: String) {
-        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-            if (it.isSuccessful) {
-                putUserName(userName)
-                sendMailVerification()
-                Log.v(TAG, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
-            }
-            if (it.isCanceled) {
-                _dialog.value = DialogMessage("Error", "Error occurred creating account")
-                Log.e(TAG, "Error: createUserWithEmail:canceled -->${it.exception}")
-            }
-            if (it.isComplete) {
-                Log.v(TAG, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
-            } else {
-                Log.e(TAG, "Error: createUserWithEmail:failure")
-                _dialog.value = DialogMessage("Error", "Error occurred creating account")
-            }
-        }
-    }
-
-    private fun sendMailVerification() {
-        Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.v(TAG, "OK: sendEmailVerification:Success")
-                _dialog.value = DialogMessage(
-                    resources.getString(R.string.register_success),
-                    resources.getString(R.string.register_check_mail)
-                )
-            } else {
-                Log.e(TAG, "Error: sendEmailVerification:fail")
-                _dialog.value = DialogMessage("Server Error", "Unable to send verification email")
-            }
-        }
-    }
-
-    private fun putUserName(name: String) {
-        val profileUpdates = userProfileChangeRequest { displayName = name }
-
-        Firebase.auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
-            if (task.isSuccessful)
-                Log.v(TAG, "OK: User profile updated correctly.")
-            else
-                Log.e(TAG, "Error: User profile update error")
-        }
+            _dialog.value = authenticationService.createUser(email, pass, userName)
     }
 
     private fun isValidPass(pass: String): Boolean {

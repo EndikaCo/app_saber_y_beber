@@ -1,4 +1,4 @@
-package com.endcodev.saber_y_beber.presenter.ui
+package com.endcodev.saber_y_beber.presenter.ui.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentLoginBinding
@@ -23,12 +24,16 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
+    private val callbackManager = CallbackManager.Factory.create()
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
+    private val loginViewModel: LoginViewModel by viewModels()
 
     private val previewRequest =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -65,13 +70,6 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
-
-    private val callbackManager = CallbackManager.Factory.create()
-    private var _binding: FragmentLoginBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -118,36 +116,17 @@ class LoginFragment : Fragment() {
         binding.loginBack.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
+
+        loginViewModel.toast.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun mailPassLogin() {
-
-        val auth: FirebaseAuth = Firebase.auth
-
-        if (binding.loginMailEt.text.isNotEmpty() && binding.loginPassEt.text.isNotEmpty())
-            auth.signInWithEmailAndPassword(
-                binding.loginMailEt.text.toString(),
-                binding.loginPassEt.text.toString()
-            ).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    if (!auth.currentUser?.isEmailVerified!!)
-                        Toast.makeText(
-                            context,
-                            resources.getString(R.string.login_not_verified),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    if (auth.currentUser?.isEmailVerified!!)
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                } else
-                    Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.login_failed),
-                        Toast.LENGTH_SHORT
-                    ).show()
-            }
-        else
-            Toast.makeText(context, resources.getString(R.string.login_error), Toast.LENGTH_SHORT)
-                .show()
+        loginViewModel.login(
+            binding.loginMailEt.text.toString(),
+            binding.loginPassEt.text.toString()
+        )
     }
 
     private fun googleLogin() {

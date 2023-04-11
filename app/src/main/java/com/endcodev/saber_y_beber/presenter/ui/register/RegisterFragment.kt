@@ -1,10 +1,10 @@
 package com.endcodev.saber_y_beber.presenter.ui.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
@@ -15,9 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private var _binding: FragmentRegisterBinding? = null
-    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-
     private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
@@ -31,7 +29,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListeners()
+    }
 
+    private fun initListeners() {
         binding.viewSignIn.btnLogin.setOnClickListener {
             getData()
         }
@@ -54,7 +55,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
         registerViewModel.dialog.observe(viewLifecycleOwner)
         {
-            //Utils.showErrorDialog(it.title, it.error, requireContext(), "OK", null)
             findNavController().navigate(R.id.loginFragment)
         }
 
