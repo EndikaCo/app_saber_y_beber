@@ -1,13 +1,9 @@
 package com.endcodev.saber_y_beber.presenter.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -64,15 +60,29 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.homeAddBt.setOnClickListener {
             addPlayerDialog()
         }
+
+        homeViewModel.playerList.observe(viewLifecycleOwner) {
+            initAdapter(it)
+        }
     }
 
+    /**Initialize recycler view [PlayerAdapter] */
+    private fun initAdapter(list: MutableList<PlayersModel>) {
+        adapter = PlayerAdapter(list, onDeleteClickListener = {
+            homeViewModel.deletePlayer(list[it].name)
+            homeViewModel.playerList.value!!.removeAt(it)
+            adapter.notifyItemRemoved(it)
+        })
+        binding.homeRv.layoutManager = LinearLayoutManager(this.activity)
+        binding.homeRv.adapter = adapter
+    }
 
     /** show dialog [PlayerDialogFragment] to create new player*/
     private fun addPlayerDialog() {
         PlayerDialogFragment(
             onSubmitClickListener = { player ->
-                //homeViewModel.addNewPlayer(player)
-               // adapter.notifyItemInserted(homeViewModel.playerList.value!!.size)
+                homeViewModel.addNewPlayer(player)
+                adapter.notifyItemInserted(homeViewModel.playerList.value!!.size)
             }
         ).show(parentFragmentManager, "dialog")
     }
@@ -80,7 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified)
-           // loginAlertDialog() todo
+        // loginAlertDialog() todo
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
