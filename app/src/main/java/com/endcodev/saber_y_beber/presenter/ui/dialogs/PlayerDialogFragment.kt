@@ -21,7 +21,7 @@ open class PlayerDialogFragment(
     var image: Int = 0
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogFragmentPlayerBinding.inflate(LayoutInflater.from(context))
+        binding = DialogFragmentPlayerBinding.inflate(layoutInflater)
 
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)

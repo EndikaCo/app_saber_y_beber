@@ -3,7 +3,7 @@ package com.endcodev.saber_y_beber.domain
 import android.widget.ImageView
 import com.endcodev.saber_y_beber.R
 
-class DifficultyShot(private val ShotsImage: ImageView) {
+class SetDifficultyUseCase(private val ShotsImage: ImageView) {
 
     fun setDifficulty(difficulty: Int) {
         when (difficulty) {

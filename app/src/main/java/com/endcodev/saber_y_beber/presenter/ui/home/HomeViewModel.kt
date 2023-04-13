@@ -23,6 +23,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun checkPlayerUsername() {
+        playersUseCase.getAllPlayers()
+    }
+
     fun addNewPlayer(player: PlayersModel) {
         _playerList.value?.add(player)
         viewModelScope.launch(Dispatchers.IO) {

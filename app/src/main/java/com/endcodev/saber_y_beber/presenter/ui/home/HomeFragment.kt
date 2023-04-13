@@ -15,8 +15,9 @@ import com.endcodev.saber_y_beber.presenter.adapter.PlayerAdapter
 import com.endcodev.saber_y_beber.presenter.ui.dialogs.PlayerDialogFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null

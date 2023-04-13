@@ -3,13 +3,12 @@ package com.endcodev.saber_y_beber.data.network
 import android.util.Log
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.ResourcesProvider
-import com.endcodev.saber_y_beber.data.model.DialogMessage
+import com.endcodev.saber_y_beber.data.model.DialogModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 import javax.inject.Singleton
-
 
 @Singleton
 class AuthenticationService @Inject constructor(
@@ -24,9 +23,9 @@ class AuthenticationService @Inject constructor(
         const val ERROR_MAIL_OR_PASS = 101
     }
 
-    fun createUser(email: String, pass: String, userName: String): DialogMessage {
+    fun createUser(email: String, pass: String, userName: String): DialogModel {
         val auth = firebase.auth
-        lateinit var error: DialogMessage
+        lateinit var error: DialogModel
 
         auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
@@ -35,10 +34,10 @@ class AuthenticationService @Inject constructor(
                 Log.v(TAG, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
             } else if (it.isCanceled) {
                 Log.e(TAG, "Error: createUserWithEmail:canceled -->${it.exception}")
-                error = DialogMessage("Error", "Error occurred creating account")
+                error = DialogModel("Error", "Error occurred creating account")
             } else {
                 Log.e(TAG, "Error: createUserWithEmail:failure")
-                error = DialogMessage("Error", "Error occurred creating account")
+                error = DialogModel("Error", "Error occurred creating account")
             }
         }
         return error
@@ -55,19 +54,19 @@ class AuthenticationService @Inject constructor(
         }
     }
 
-    private fun sendMailVerification(): DialogMessage {
-        lateinit var error: DialogMessage
+    private fun sendMailVerification(): DialogModel {
+        lateinit var error: DialogModel
 
         Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             error = if (it.isSuccessful) {
                 Log.v(TAG, "OK: sendEmailVerification:Success")
-                DialogMessage(
+                DialogModel(
                     resources.getString(R.string.register_success),
                     resources.getString(R.string.register_check_mail)
                 )
             } else {
                 Log.e(TAG, "Error: sendEmailVerification:fail")
-                DialogMessage("Server Error", "Unable to send verification email")
+                DialogModel("Server Error", "Unable to send verification email")
             }
         }
         return error

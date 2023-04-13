@@ -29,4 +29,8 @@ class PlayerRepository @Inject constructor(
     suspend fun clearAllPlayers() {
         playerDao.deleteAllPlayers()
     }
+
+    fun checkUserName(name : String){
+        playerDao.checkUserName(name)
+    }
 }

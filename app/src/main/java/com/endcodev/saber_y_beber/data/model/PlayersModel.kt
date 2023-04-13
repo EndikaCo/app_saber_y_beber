@@ -8,5 +8,4 @@ data class PlayersModel(
     var points: Int
 )
 
-fun PlayerEntity.toDomain() =
-    PlayersModel(genre, name, points)
+fun PlayerEntity.toDomain() = PlayersModel(genre, name, points)

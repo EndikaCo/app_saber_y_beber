@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.ResourcesProvider
-import com.endcodev.saber_y_beber.data.model.DialogMessage
+import com.endcodev.saber_y_beber.data.model.DialogModel
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -28,8 +28,8 @@ class RegisterViewModel @Inject constructor(
     private val _repeat = MutableLiveData<String>()
     val repeat: LiveData<String> get() = _repeat
 
-    private val _dialog = MutableLiveData<DialogMessage>()
-    val dialog: LiveData<DialogMessage> get() = _dialog
+    private val _dialog = MutableLiveData<DialogModel>()
+    val dialog: LiveData<DialogModel> get() = _dialog
 
     fun createAccount(email: String, pass: String, repeat: String, userName: String) {
 

@@ -3,17 +3,19 @@ package com.endcodev.saber_y_beber
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.endcodev.saber_y_beber.databinding.ActivityMainBinding
+import com.endcodev.saber_y_beber.databinding.FragmentCorrectBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //FacebookSdk.sdkInitialize(applicationContext);
