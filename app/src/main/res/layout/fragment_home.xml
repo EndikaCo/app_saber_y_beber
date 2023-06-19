@@ -7,7 +7,7 @@
     android:id="@+id/home_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.ui.home.HomeFragment"
+    tools:context=".presenter.home.HomeFragment"
     android:background="@drawable/gradient_background">
 
     <ImageView

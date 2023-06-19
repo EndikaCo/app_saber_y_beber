@@ -6,9 +6,7 @@ import com.endcodev.saber_y_beber.data.database.entities.PlayerEntity
 
 
 @Database(
-    entities = [
-        PlayerEntity::class
-    ],
+    entities = [PlayerEntity::class],
     version = 2
 )
 abstract class RoomDB : RoomDatabase() {

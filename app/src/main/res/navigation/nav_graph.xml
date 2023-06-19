@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.ui.home.HomeFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.ui.login.LoginFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.ui.register.RegisterFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPassFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.ui.login.ForgotPassFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.login.ForgotPassFragment"
         android:label="fragment_forgot_pass"
         tools:layout="@layout/fragment_forgot_pass" >
         <action

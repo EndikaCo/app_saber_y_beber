@@ -30,7 +30,4 @@ class PlayerRepository @Inject constructor(
         playerDao.deleteAllPlayers()
     }
 
-    fun checkUserName(name : String){
-        playerDao.checkUserName(name)
-    }
 }

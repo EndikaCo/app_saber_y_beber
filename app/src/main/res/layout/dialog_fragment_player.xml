@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presenter.ui.dialogs.ErrorDialogFragment">
+    tools:context=".presenter.dialogs.ErrorDialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/id_card"

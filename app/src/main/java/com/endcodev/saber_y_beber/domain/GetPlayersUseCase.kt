@@ -65,10 +65,4 @@ class GetPlayersUseCase @Inject constructor(
         repository.deletePlayer(name)
         Log.e(TAG, "player deleted $name")
     }
-
-    fun checkUsername(){
-        //todo
-    }
-
-
 }

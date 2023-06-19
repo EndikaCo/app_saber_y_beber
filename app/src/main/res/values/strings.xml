@@ -108,5 +108,9 @@
     <string name="correct_difficulty">Marcar la casilla si la dificultad es adecuada a la pregunta</string>
     <string name="correct_no_correction_available">No hay correciones disponibles en este momento</string>
 
-
+    <!--UPDATE DIALOG-->
+    <string name="require_update">Update required</string>
+    <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
 </resources>

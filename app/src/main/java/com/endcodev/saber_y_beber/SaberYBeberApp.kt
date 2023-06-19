@@ -4,4 +4,10 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class SaberYBeberApp : Application()
+class SaberYBeberApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        //MobileAds.initialize(this)
+    }
+}

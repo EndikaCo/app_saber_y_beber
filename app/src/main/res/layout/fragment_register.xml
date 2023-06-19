@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
 
-    tools:context=".presenter.ui.register.RegisterFragment">
+    tools:context=".presenter.register.RegisterFragment">
 
     <ImageButton
         android:id="@+id/register_back"
