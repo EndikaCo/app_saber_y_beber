@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,7 +20,9 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor() : ViewModel() {
+class MainActivityViewModel @Inject constructor(
+    private val firebase : FirebaseClient
+) : ViewModel() {
 
     var isReady: Boolean = false
     private val _version = MutableLiveData<String?>()
@@ -38,7 +41,7 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
      * Checks if the app is connected to Firebase
      */
     fun isConnected() {
-        val connectedRef = Firebase.database.getReference(".info/connected")
+        val connectedRef = firebase.db.getReference(".info/connected")
         connectedRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val connected = snapshot.getValue(Boolean::class.java) ?: false
@@ -61,8 +64,7 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
      */
     private fun checkVersion() {
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("/version")
+        val myRef = firebase.data.getReference("/version")
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
 
@@ -72,9 +74,10 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
                 val needVersion = snapshot.getValue<String>()
 
                 if (needVersion == null) {
-                    Log.e(MainActivity.TAG, "versions is null")
+                    Log.e(MainActivity.TAG, "need versions is null")
                 } else {
                     _version.value = needVersion
+                    Log.v(MainActivity.TAG, "versions updated")
                 }
             }
 

@@ -53,6 +53,5 @@ class HomeViewModel @Inject constructor(
     /** checks if user is logged*/
     private fun checkLogin() {
         _isConnected.value = firebase.auth.currentUser != null && firebase.auth.currentUser!!.isEmailVerified
-    Log.v(TAG, "LOGIN checked ${_isConnected.value}")
     }
 }

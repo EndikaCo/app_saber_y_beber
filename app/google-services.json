@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "871921398399",
+    "firebase_url": "https://saber-y-beber-7426b-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "saber-y-beber-7426b",
     "storage_bucket": "saber-y-beber-7426b.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "871921398399-31dodgcbgqklejp9qj3dffck1hu9e4nq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.endcodev.saber_y_beber",
+            "certificate_hash": "49c865ed84c5ad2080267cf26e8f0cce4d417056"
+          }
+        },
         {
           "client_id": "871921398399-p21i4ocitr7mq9sq3bl35b8no01cl1op.apps.googleusercontent.com",
           "client_type": 3

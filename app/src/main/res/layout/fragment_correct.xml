@@ -50,8 +50,8 @@
 
         <CheckBox
             android:id="@+id/correct_quest_check"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_question_info"
@@ -88,8 +88,8 @@
 
         <CheckBox
             android:id="@+id/correct_option2_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_option2_info"
@@ -138,8 +138,8 @@
 
         <CheckBox
             android:id="@+id/correct_feedback_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
 
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
@@ -180,8 +180,8 @@
 
         <CheckBox
             android:id="@+id/correct_difficulty_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_difficulty_info"
@@ -252,8 +252,8 @@
 
         <CheckBox
             android:id="@+id/correct_option3_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_option3_info"
@@ -277,8 +277,8 @@
 
         <CheckBox
             android:id="@+id/correct_answer_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_answer_info"
