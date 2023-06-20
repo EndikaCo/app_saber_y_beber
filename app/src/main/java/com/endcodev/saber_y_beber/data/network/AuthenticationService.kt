@@ -17,7 +17,7 @@ class AuthenticationService @Inject constructor(
 ) {
 
     companion object {
-        const val TAG = "Register Log:"
+        const val TAG = "AuthenticationService **"
         const val NO_ERROR = 0
         const val MAIL_NO_VERIFICATION = 100
         const val ERROR_MAIL_OR_PASS = 101
@@ -25,7 +25,7 @@ class AuthenticationService @Inject constructor(
 
     fun createUser(email: String, pass: String, userName: String): DialogModel {
         val auth = firebase.auth
-        lateinit var error: DialogModel
+        var error = DialogModel("null", "null")
 
         auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
@@ -55,7 +55,8 @@ class AuthenticationService @Inject constructor(
     }
 
     private fun sendMailVerification(): DialogModel {
-        lateinit var error: DialogModel
+
+        var error = DialogModel("null", "null")
 
         Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             error = if (it.isSuccessful) {

@@ -1,6 +1,7 @@
 package com.endcodev.saber_y_beber.presenter.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
+
+    companion object {
+        const val TAG = "RegisterFragment **"
+    }
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -29,14 +34,16 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+        initObservers()
         initListeners()
     }
 
-    private fun initListeners() {
-        binding.viewSignIn.btnLogin.setOnClickListener {
-            getData()
-        }
+    private fun initViews() {
+        binding.viewSignIn.btnLogin.text = resources.getString(R.string.register_bt)
+    }
 
+    private fun initObservers() {
         registerViewModel.pass.observe(viewLifecycleOwner) {
             binding.registerPassEt.error = it
         }
@@ -53,9 +60,14 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             binding.registerUserEt.error = it
         }
 
-        registerViewModel.dialog.observe(viewLifecycleOwner)
-        {
+        registerViewModel.dialog.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.loginFragment)
+        }
+    }
+
+    private fun initListeners() {
+        binding.viewSignIn.btnLogin.setOnClickListener {
+            getData()
         }
 
         binding.registerBack.setOnClickListener {
@@ -68,7 +80,11 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val pass: String = binding.registerPassEt.text.toString()
         val repeat: String = binding.repeatPassEt.text.toString()
         val userName: String = binding.registerUserEt.text.toString()
+        try {
         registerViewModel.createAccount(email, pass, repeat, userName)
+        }catch ( e : Exception){
+            Log.e(TAG, "$e")
+        }
     }
 
     override fun onDestroyView() {

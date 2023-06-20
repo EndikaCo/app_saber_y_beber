@@ -9,6 +9,10 @@ import javax.inject.Singleton
 @Singleton
 class FirebaseClient @Inject constructor() {
 
+    companion object {
+        const val TAG = "FirebaseClient **"
+    }
+
     val auth: FirebaseAuth get() = FirebaseAuth.getInstance()
     val db = Firebase.firestore
 }

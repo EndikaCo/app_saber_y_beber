@@ -52,7 +52,7 @@
         android:fontFamily="casual"
         android:text="@string/login_welcome"
         android:textAlignment="center"
-        android:textColor="@color/blue1"
+        android:textColor="@color/mid_grey"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

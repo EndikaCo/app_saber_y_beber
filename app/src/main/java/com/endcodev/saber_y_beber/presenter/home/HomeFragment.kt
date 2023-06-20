@@ -20,15 +20,14 @@ import kotlin.system.exitProcess
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
+    companion object {
+        const val TAG = "HomeFragment **"
+    }
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var adapter: PlayerAdapter
-
-    override fun onStart() {
-        super.onStart()
-        //checkLogin()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,14 +42,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+        initObservers()
         onBackPressed()
+    }
+
+    private fun initObservers() {
+        homeViewModel.playerList.observe(viewLifecycleOwner) {
+            initAdapter(it)
+        }
+
+        homeViewModel.isConnected.observe(viewLifecycleOwner){
+            if (it) {
+                binding.homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
+                binding.homeLoginBt.text = Firebase.auth.currentUser!!.displayName?.first().toString()
+                binding.homeCreateBt.alpha = 1f
+            } else {
+                binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
+                binding.homeCreateBt.alpha = 0.3f
+                binding.homeLoginBt.text = ""
+            }
+        }
     }
 
     private fun initListeners() {
 
-        //button add player Onclick
-        binding.homeAddBt.setOnClickListener {
-            //add todo
+        binding.homeCreateBt.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_correctFragment)
         }
 
         //Login imageButton click
@@ -63,9 +80,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             addPlayerDialog()
         }
 
-        homeViewModel.playerList.observe(viewLifecycleOwner) {
-            initAdapter(it)
-        }
+
     }
 
     /**Initialize recycler view [PlayerAdapter] */
@@ -92,22 +107,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified)
-        // loginAlertDialog() todo
+         //loginAlertDialog()
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-    }
-
-    /** checks if user is logged*/
-    private fun checkLogin() {
-        if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified) {
-            binding.homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
-            binding.homeLoginBt.text = Firebase.auth.currentUser!!.displayName?.first().toString()
-            //binding.homeCreateBt.alpha = 1f
-        } else {
-            binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
-            //binding.homeCreateBt.alpha = 0.3f
-            binding.homeLoginBt.text = ""
-        }
     }
 
     /**On BACK button pressed */

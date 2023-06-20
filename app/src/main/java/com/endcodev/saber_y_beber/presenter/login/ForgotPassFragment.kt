@@ -42,7 +42,11 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
                     ).show()
                     findNavController().navigate(R.id.action_forgotPassFragment_to_loginFragment)
                 }.addOnFailureListener {
-                    Toast.makeText(requireContext(), resources.getString(R.string.forgot_error_send), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.forgot_error_send),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         }
     }

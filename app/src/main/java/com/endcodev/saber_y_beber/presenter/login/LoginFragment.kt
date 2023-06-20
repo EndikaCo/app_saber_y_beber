@@ -31,6 +31,10 @@ import kotlin.system.exitProcess
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
+    companion object {
+        const val TAG = "LoginFragment **"
+    }
+
     private val callbackManager = CallbackManager.Factory.create()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -175,8 +179,6 @@ class LoginFragment : Fragment() {
             }
         )
     }
-
-
 
 
     override fun onDestroyView() {

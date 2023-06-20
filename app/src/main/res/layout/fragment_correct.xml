@@ -50,8 +50,8 @@
 
         <CheckBox
             android:id="@+id/correct_quest_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="24dp"
             android:background="@drawable/checkbox_layout"
             app:layout_constraintBottom_toBottomOf="@+id/correct_question_info"

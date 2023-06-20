@@ -17,7 +17,7 @@
     <!-- login fragment-->
     <string name="login_back_button">botón atras</string>
     <string name="login_title">Iniciar sesión</string>
-    <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico.  🍷</string>
+    <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico</string>
     <string name="login_mail">Email</string>
     <string name="login_password">Contraseña</string>
     <string name="login_forgot_pass">He olvidado la contraseña</string>
@@ -37,7 +37,7 @@
     <!-- register fragment-->
     <string name="register_account_title">Crear cuenta</string>
     <string name="register_back_button">Botón atrás</string>
-    <string name="register_subtitle">Necesitamos tus datos para poder crear tu perfil alcohólico.🍺</string>
+    <string name="register_subtitle">Necesitamos tus datos para poder crear tu perfil alcohólico</string>
     <string name="register_email">Email</string>
     <string name="register_username">Nombre de usuario</string>
     <string name="register_pass">Contraseña</string>
@@ -47,6 +47,7 @@
     <string name="register_facebook">Crear cuenta con facebook</string>
     <string name="register_google">Crear cuenta con Google</string>
     <string name="login_alternative">o inicia sesión con</string>
+
     <!-- register fragment errors-->
     <string name="register_error_pass">La contraseña necesita al menos 6 caracteres</string>
     <string name="register_error_pass2">La contraseña debe tener al menos 1 número</string>

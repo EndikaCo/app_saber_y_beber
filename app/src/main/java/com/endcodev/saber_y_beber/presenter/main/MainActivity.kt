@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.ActivityMainBinding
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //installSplashScreen()
+        installSplashScreen()
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

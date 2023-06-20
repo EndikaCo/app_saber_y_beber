@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_correctFragment"
+            app:destination="@id/correctFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -46,4 +49,18 @@
             android:id="@+id/action_forgotPassFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/correctFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.correction.CorrectFragment"
+        android:label="fragment_correct"
+        tools:layout="@layout/fragment_correct" >
+        <action
+            android:id="@+id/action_correctFragment_to_createFragment"
+            app:destination="@id/createFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.creation.CreateFragment"
+        android:label="fragment_creation"
+        tools:layout="@layout/fragment_creation" />
 </navigation>
