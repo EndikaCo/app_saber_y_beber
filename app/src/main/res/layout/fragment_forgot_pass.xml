@@ -7,23 +7,32 @@
     android:background="@drawable/gradient_background"
     tools:context=".presenter.login.ForgotPassFragment">
 
+    <include
+        android:id="@+id/view_header"
+        layout="@layout/view_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="casual"
         android:text="@string/forgot_text"
         android:textAlignment="center"
         android:textColor="@color/blue1"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_title" />
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
 
     <Button
         android:id="@+id/forgot_accept_bt"
@@ -65,33 +74,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <TextView
-        android:id="@+id/forgot_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/register_username"
-        android:textAlignment="center"
-        android:textColor="@color/light_black"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/forgot_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forgot_back" />
-
-    <ImageButton
-        android:id="@+id/forgot_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:background="@null"
-        android:contentDescription="@string/forgot_back_button"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/light_black" />
 </androidx.constraintlayout.widget.ConstraintLayout>

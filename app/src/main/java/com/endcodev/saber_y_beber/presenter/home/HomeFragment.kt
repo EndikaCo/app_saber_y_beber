@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentHomeBinding
+import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,10 +106,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ).show(parentFragmentManager, "dialog")
     }
 
+
+
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
         if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified)
-         //loginAlertDialog()
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }

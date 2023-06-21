@@ -27,4 +27,14 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         ).apply { _binding = this }.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+
+    }
+
 }

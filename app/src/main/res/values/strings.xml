@@ -61,7 +61,8 @@
     <string name="register_check_mail">Compruebe el correo electrónico para la verificación de la cuenta. Compruebe también su carpeta de spam.</string>
 
     <!-- forgot pass fragment-->
-    <string name="forgot_text">Que sea la última vez que se te olvida</string>
+    <string name="forgot_title">Recuperar contraseña</string>
+    <string name="forgot_text">Te enviaremos un mail para que puedas cambiar la contraseña </string>
     <string name="forgot_change">Enviar</string>
     <string name="forgot_back_button">Botón atrás</string>
     <string name="forgot_mail_sent">Enviado correctamente, revisa tu Email (revisa tambien la carpeta de SPAM)</string>
@@ -114,4 +115,7 @@
     <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_title">Log in as</string>
 </resources>

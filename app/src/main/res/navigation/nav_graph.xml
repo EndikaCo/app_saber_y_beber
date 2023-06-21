@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_correctFragment"
             app:destination="@id/correctFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -63,4 +66,9 @@
         android:name="com.endcodev.saber_y_beber.presenter.creation.CreateFragment"
         android:label="fragment_creation"
         tools:layout="@layout/fragment_creation" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.login.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

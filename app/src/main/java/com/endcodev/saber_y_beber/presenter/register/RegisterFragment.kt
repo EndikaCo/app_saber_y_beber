@@ -40,6 +40,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun initViews() {
+        binding.viewHeader.headerTitle.text = resources.getString(R.string.register_account_title)
         binding.viewSignIn.btnLogin.text = resources.getString(R.string.register_bt)
     }
 
@@ -70,7 +71,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             getData()
         }
 
-        binding.registerBack.setOnClickListener {
+        //Back Button
+        binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
@@ -81,8 +83,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val repeat: String = binding.repeatPassEt.text.toString()
         val userName: String = binding.registerUserEt.text.toString()
         try {
-        registerViewModel.createAccount(email, pass, repeat, userName)
-        }catch ( e : Exception){
+            registerViewModel.createAccount(email, pass, repeat, userName)
+        } catch (e: Exception) {
             Log.e(TAG, "$e")
         }
     }

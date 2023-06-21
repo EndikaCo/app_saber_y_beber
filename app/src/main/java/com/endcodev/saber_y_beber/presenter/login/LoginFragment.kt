@@ -88,7 +88,12 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
         initListeners()
+    }
+
+    private fun initViews() {
+        binding.viewHeader.headerTitle.text = resources.getString(R.string.login_title)
     }
 
     private fun initListeners() {
@@ -118,7 +123,7 @@ class LoginFragment : Fragment() {
         }
 
         //Back Button
-        binding.loginBack.setOnClickListener {
+        binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
 

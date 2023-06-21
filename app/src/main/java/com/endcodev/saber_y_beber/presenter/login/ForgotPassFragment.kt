@@ -30,6 +30,20 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
+        initListeners()
+    }
+
+    private fun initViews() {
+        binding.viewHeader.headerTitle.text = resources.getString(R.string.forgot_title)
+    }
+
+    private fun initListeners() {
+
+        binding.viewHeader.headerBack.setOnClickListener {
+            findNavController().navigate(R.id.loginFragment)
+        }
+
         binding.forgotAcceptBt.setOnClickListener {
             val email = binding.forgotMail.text
             auth = FirebaseAuth.getInstance()
@@ -50,4 +64,6 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
                 }
         }
     }
+
+
 }
