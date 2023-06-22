@@ -1,4 +1,4 @@
-package com.endcodev.saber_y_beber.presenter.login
+package com.endcodev.saber_y_beber.presenter.forgot_pass
 
 import android.os.Bundle
 import android.view.LayoutInflater

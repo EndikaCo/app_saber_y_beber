@@ -24,28 +24,45 @@ class LoginViewModel @Inject constructor(
     private var _toast = MutableLiveData<String>()
     val toast get() = _toast
 
+    private var _inConnected = MutableLiveData<Boolean>()
+    val isConnected get() = _inConnected
+
     fun login(loginMail: String, loginPass: String) {
 
         if (loginMail.isNotEmpty() && loginPass.isNotEmpty()) {
+            val error = authenticationService.mailPassLogin(loginMail, loginPass)
 
-            when (authenticationService.mailPassLogin(loginMail, loginPass)) {
-                NO_ERROR -> Log.v(TAG,"NO_ERROR").toString()
+            Log.v(TAG, authenticationService.isUserConnected().toString())
+            if (authenticationService.isUserConnected()) {//todo
+                Log.v(TAG, "user connected = true")
+                isConnected.value = true
+            }
+
+            when (error) {
+                NO_ERROR -> {
+                    Log.v(TAG, "NO_ERROR").toString()
+                    _toast.value = "no error"
+                }
+
                 MAIL_NO_VERIFICATION -> {
                     _toast.value =
                         resources.getString(R.string.login_not_verified)
-                    Log.v(TAG,"MAIL_NO_VERIFICATION").toString()
+                    Log.v(TAG, "MAIL_NO_VERIFICATION").toString()
                 }
 
                 ERROR_MAIL_OR_PASS -> {
                     _toast.value = resources.getString(R.string.login_failed)
-                    Log.v(TAG,"ERROR_MAIL_OR_PASS").toString()
+                    Log.v(TAG, "ERROR_MAIL_OR_PASS").toString()
                 }
+
                 else -> {
-                    Log.v(TAG, "OTRO ERROR").toString()
-                    _toast.value = resources.getString(R.string.login_failed)
+
                 }
+
             }
         } else
             _toast.value = resources.getString(R.string.login_error)
     }
+
+
 }

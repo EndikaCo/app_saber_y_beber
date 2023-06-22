@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPassFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.login.ForgotPassFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.forgot_pass.ForgotPassFragment"
         android:label="fragment_forgot_pass"
         tools:layout="@layout/fragment_forgot_pass" >
         <action
@@ -68,7 +68,7 @@
         tools:layout="@layout/fragment_creation" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.login.ProfileFragment"
+        android:name="com.endcodev.saber_y_beber.presenter.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

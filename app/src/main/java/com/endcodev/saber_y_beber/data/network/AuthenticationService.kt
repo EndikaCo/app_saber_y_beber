@@ -1,14 +1,19 @@
 package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
+import androidx.annotation.NonNull
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.ResourcesProvider
 import com.endcodev.saber_y_beber.data.model.DialogModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class AuthenticationService @Inject constructor(
@@ -78,14 +83,21 @@ class AuthenticationService @Inject constructor(
 
         Firebase.auth.signInWithEmailAndPassword(loginMail, loginPass)
             .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    if (Firebase.auth.currentUser?.isEmailVerified!!)// if mail not verified
-                        error = MAIL_NO_VERIFICATION
-                    if (Firebase.auth.currentUser?.isEmailVerified!!)// if mail verified
-                        error = NO_ERROR
-                } else
-                    error = ERROR_MAIL_OR_PASS //if pass or user not correct
+                error = if (it.isSuccessful) {
+                    if (!Firebase.auth.currentUser?.isEmailVerified!!) {
+                        MAIL_NO_VERIFICATION
+                    } else {
+                        NO_ERROR
+                    }
+                } else {
+                    ERROR_MAIL_OR_PASS
+                }
             }
         return error
+    }
+
+    fun isUserConnected(): Boolean {
+        val currentUser = firebase.auth.currentUser
+        return currentUser != null
     }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,7 +25,6 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -90,6 +88,18 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initListeners()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        loginViewModel.toast.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+        loginViewModel.isConnected.observe(viewLifecycleOwner){
+            if (it)
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
     }
 
     private fun initViews() {
@@ -125,10 +135,6 @@ class LoginFragment : Fragment() {
         //Back Button
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-        }
-
-        loginViewModel.toast.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
 

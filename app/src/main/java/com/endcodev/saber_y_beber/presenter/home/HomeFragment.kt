@@ -14,6 +14,7 @@ import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentHomeBinding
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,10 +54,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             initAdapter(it)
         }
 
-        homeViewModel.isConnected.observe(viewLifecycleOwner){
+        homeViewModel.isConnected.observe(viewLifecycleOwner) {
             if (it) {
                 binding.homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
-                binding.homeLoginBt.text = Firebase.auth.currentUser!!.displayName?.first().toString()
+                binding.homeLoginBt.text =
+                    Firebase.auth.currentUser!!.displayName?.first().toString()
                 binding.homeCreateBt.alpha = 1f
             } else {
                 binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
@@ -81,8 +83,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.homeAddBt.setOnClickListener {
             addPlayerDialog()
         }
-
-
     }
 
     /**Initialize recycler view [PlayerAdapter] */
@@ -106,14 +106,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ).show(parentFragmentManager, "dialog")
     }
 
-
-
     /** change fragment to LoginFragment*/
     private fun toLoginFragment() {
-        if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified)
+
+        val user: FirebaseUser? = Firebase.auth.currentUser
+
+        if (user != null && Firebase.auth.currentUser!!.isEmailVerified)
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+
     }
 
     /**On BACK button pressed */
@@ -127,6 +129,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.checkLogin()
     }
 
     override fun onDestroyView() {
