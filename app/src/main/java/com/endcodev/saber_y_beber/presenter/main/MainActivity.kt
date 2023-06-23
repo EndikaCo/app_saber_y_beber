@@ -171,5 +171,4 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         mainViewModel.isConnected()
     }
-
 }

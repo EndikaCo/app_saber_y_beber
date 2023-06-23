@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
-import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.ERROR_MAIL_OR_PASS
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_NO_VERIFICATION
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.NO_ERROR
 import com.endcodev.saber_y_beber.presenter.login.LoginFragment.Companion.TAG
@@ -30,39 +29,33 @@ class LoginViewModel @Inject constructor(
     fun login(loginMail: String, loginPass: String) {
 
         if (loginMail.isNotEmpty() && loginPass.isNotEmpty()) {
-            val error = authenticationService.mailPassLogin(loginMail, loginPass)
 
-            Log.v(TAG, authenticationService.isUserConnected().toString())
-            if (authenticationService.isUserConnected()) {//todo
-                Log.v(TAG, "user connected = true")
-                isConnected.value = true
+            authenticationService.mailPassLogin(loginMail, loginPass) { error ->
+                when (error) {
+                    NO_ERROR -> {
+                        // Login success
+                        Log.v(TAG, "Login Success")
+                        _toast.value = "Login Success"//todo strings
+                        _inConnected.value = true
+                    }
+
+                    MAIL_NO_VERIFICATION -> {
+                        // Email not verified
+                        _toast.value =
+                            resources.getString(R.string.login_not_verified)
+                        Log.v(TAG, "MAIL_NO_VERIFICATION")
+                    }
+
+                    else -> {
+                        // Login failed or other error
+                        _toast.value = resources.getString(R.string.login_failed)
+                        Log.v(TAG, "ERROR_MAIL_OR_PASS")
+                    }
+                }
             }
-
-            when (error) {
-                NO_ERROR -> {
-                    Log.v(TAG, "NO_ERROR").toString()
-                    _toast.value = "no error"
-                }
-
-                MAIL_NO_VERIFICATION -> {
-                    _toast.value =
-                        resources.getString(R.string.login_not_verified)
-                    Log.v(TAG, "MAIL_NO_VERIFICATION").toString()
-                }
-
-                ERROR_MAIL_OR_PASS -> {
-                    _toast.value = resources.getString(R.string.login_failed)
-                    Log.v(TAG, "ERROR_MAIL_OR_PASS").toString()
-                }
-
-                else -> {
-
-                }
-
-            }
-        } else
-            _toast.value = resources.getString(R.string.login_error)
+        } else {
+            _toast.value = "empty mail or pass" //todo set error, y strings
+            Log.v(TAG, "empty mail or pass")
+        }
     }
-
-
 }

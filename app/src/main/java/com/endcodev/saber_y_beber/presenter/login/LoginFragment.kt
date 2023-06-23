@@ -36,42 +36,12 @@ class LoginFragment : Fragment() {
     private val callbackManager = CallbackManager.Factory.create()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
     private val loginViewModel: LoginViewModel by viewModels()
 
     private val previewRequest =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
             if (result.resultCode == Activity.RESULT_OK) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-
-                try {
-                    val account = task.getResult(ApiException::class.java)
-                    if (account != null) {
-                        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                        val auth = FirebaseAuth.getInstance()
-                        auth.signInWithCredential(credential)
-                            .addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    //todo falta meter el nombre si es la primera  vez y no tiene nombre de usuario,
-                                    // como en register con un dialogo tal vez o coger el nombre que tiene en el mail
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Sesión iniciada como ${auth.currentUser}",//todo aqui poner el name una vez exista
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                                } else
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "fail google",//todo a strings
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                            }
-                    }
-                } catch (e: ApiException) {
-                    Toast.makeText(requireContext(), "error:$e", Toast.LENGTH_SHORT).show()
-                }
             }
         }
 
@@ -87,8 +57,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        initListeners()
         initObservers()
+        initListeners()
+    }
+
+    private fun initViews() {
+        binding.viewHeader.headerTitle.text = resources.getString(R.string.login_title)
     }
 
     private fun initObservers() {
@@ -96,14 +70,10 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
-        loginViewModel.isConnected.observe(viewLifecycleOwner){
+        loginViewModel.isConnected.observe(viewLifecycleOwner) {
             if (it)
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
-    }
-
-    private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.login_title)
     }
 
     private fun initListeners() {
@@ -191,10 +161,8 @@ class LoginFragment : Fragment() {
         )
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

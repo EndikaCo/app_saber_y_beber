@@ -48,14 +48,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun initViews() {
-
         profileViewModel.user()
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.profile_title)
     }
 
     private fun initListeners() {
         //Back Button
-        binding.viewHeader.headerBack.setOnClickListener {
+        binding.profileBack.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
         binding.profileLogout.setOnClickListener {

@@ -58,7 +58,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             if (it) {
                 binding.homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
                 binding.homeLoginBt.text =
-                    Firebase.auth.currentUser!!.displayName?.first().toString()
+                    Firebase.auth.currentUser!!.displayName?.first().toString() // todo
                 binding.homeCreateBt.alpha = 1f
             } else {
                 binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
@@ -106,7 +106,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ).show(parentFragmentManager, "dialog")
     }
 
-    /** change fragment to LoginFragment*/
+    /** change fragment to LoginFragment or ProfileFragment if already logged*/
     private fun toLoginFragment() {
 
         val user: FirebaseUser? = Firebase.auth.currentUser
@@ -118,7 +118,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    /**On BACK button pressed */
+    /**On back button pressed exit app*/
     private fun onBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
