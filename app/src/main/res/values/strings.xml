@@ -108,7 +108,9 @@
     <string name="todo">TODO</string>
     <string name="correct_info_bt">Botón info</string>
     <string name="correct_difficulty">Marcar la casilla si la dificultad es adecuada a la pregunta</string>
-    <string name="correct_no_correction_available">No hay correciones disponibles en este momento</string>
+    <string name="correct_no_correction_available">Puedes crear una pregunta directamente</string>
+    <string name="correct_no_correction_available_title">No hay correciones disponibles en este momento</string>
+
 
     <!--UPDATE DIALOG-->
     <string name="require_update">Update required</string>

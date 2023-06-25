@@ -15,8 +15,6 @@
     tools:context=".presenter.correction.CorrectFragment">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -44,19 +42,16 @@
 
         <TextView
             android:id="@+id/correct_option3_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+
             android:layout_marginEnd="32dp"
-            android:gravity="center|start"
-            android:minHeight="32sp"
             android:text="@string/correction_wrong_option_2"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/correct_option3_check"
-            app:layout_constraintTop_toBottomOf="@+id/correct_option2"
-            app:tint="@color/light_black" />
+            app:layout_constraintTop_toBottomOf="@+id/correct_option2" />
 
         <CheckBox
             android:id="@+id/correct_option2_check"
@@ -70,15 +65,13 @@
 
         <TextView
             android:id="@+id/correct_option2_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center|start"
-            android:minHeight="32sp"
             android:text="@string/correction_wrong_option_2"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/correct_option2_check"
             app:layout_constraintTop_toBottomOf="@+id/correct_answer" />
@@ -137,15 +130,12 @@
 
         <TextView
             android:id="@+id/correct_answer_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center|start"
-            android:minHeight="32sp"
             android:text="@string/correction_answer"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/correct_answer_check"
             app:layout_constraintTop_toBottomOf="@+id/correct_question" />
@@ -164,7 +154,6 @@
             android:id="@+id/correct_option3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
@@ -178,15 +167,12 @@
 
         <TextView
             android:id="@+id/correct_question_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center|start"
-            android:minHeight="32sp"
             android:text="@string/correction_question"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/correct_quest_check"
             app:layout_constraintTop_toBottomOf="@+id/view_header" />
@@ -209,15 +195,12 @@
 
         <TextView
             android:id="@+id/correct_feedback_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center|start"
-            android:minHeight="32sp"
             android:text="@string/correction_fail_reply"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/correct_feedback_check"
             app:layout_constraintTop_toBottomOf="@+id/correct_option3" />
@@ -259,15 +242,13 @@
 
         <TextView
             android:id="@+id/correct_difficulty_info"
+            style="@style/correctTextViews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:text="@string/correct_difficulty"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/correct_difficulty_check"
             app:layout_constraintTop_toBottomOf="@+id/correct_fail" />
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentCreationBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,9 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
     }
 
     private fun initListeners() {
-
+        binding.viewHeader.headerBack.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
     }
 
 }

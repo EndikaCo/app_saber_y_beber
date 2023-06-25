@@ -10,9 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.CorrectionModel
+import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.FragmentCorrectBinding
+import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 
 @AndroidEntryPoint
@@ -34,7 +35,7 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //correctViewModel.onCreate()
+        correctViewModel.onCreate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,16 +56,58 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
+
+        binding.correctOkBt.setOnClickListener {
+            acceptCorrection()
+        }
     }
 
     private fun initObservers() {
 
-       // correctViewModel.correctModel.observe(viewLifecycleOwner) {
-            //if (it != null)
-            //showerror
-            //else
-            //    showCorrection(it)
-        //}
+        correctViewModel.correctModel.observe(viewLifecycleOwner) { correction ->
+            if (correction == null) {
+                val dialog = ErrorDialogFragment(
+                    onAcceptClickLister = {
+                        if (it) {
+                            findNavController().navigate(R.id.createFragment)
+                        }
+                    }, ErrorModel(
+                        getString(R.string.correct_no_correction_available_title),
+                        getString(R.string.correct_no_correction_available),
+                        getString(R.string.ok),
+                        ""
+                    )
+                )
+                dialog.isCancelable = false
+                dialog.show(childFragmentManager, "dialog")
+            } else
+                showCorrection(correction)
+        }
+
+        correctViewModel.toCreate.observe(viewLifecycleOwner) {
+
+            findNavController().navigate(R.id.createFragment)
+        }
+    }
+
+    private fun acceptCorrection() {
+
+        if (allChecked())
+            correctViewModel.acceptCorrection(true) // if all ok +1 to rating
+        else
+            correctViewModel.acceptCorrection(false) // if some wrong directly -1 to rating
+
+        uncheckAll()
+        correctViewModel.postAvailableCorrection() //else, correct another question
+    }
+
+    private fun allChecked(): Boolean {
+        return (binding.correctDifficultyCheck.isChecked
+                && binding.correctQuestCheck.isChecked
+                && binding.correctAnswerCheck.isChecked
+                && binding.correctOption2Check.isChecked
+                && binding.correctOption3Check.isChecked
+                && binding.correctFeedbackCheck.isChecked)
     }
 
     /**
@@ -97,4 +140,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.correctOption3Check.isChecked = false
         binding.correctFeedbackCheck.isChecked = false
     }
+
+
 }

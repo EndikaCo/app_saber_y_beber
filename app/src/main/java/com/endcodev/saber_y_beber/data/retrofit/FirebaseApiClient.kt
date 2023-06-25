@@ -7,5 +7,4 @@ interface FirebaseApiClient {
 
     @GET("corrections/.json")
     suspend fun getAllCorrections(): retrofit2.Response<List<CorrectionModel>>
-
 }

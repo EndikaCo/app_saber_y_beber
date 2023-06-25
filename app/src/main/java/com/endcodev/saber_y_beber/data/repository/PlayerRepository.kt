@@ -29,5 +29,4 @@ class PlayerRepository @Inject constructor(
     suspend fun clearAllPlayers() {
         playerDao.deleteAllPlayers()
     }
-
 }
