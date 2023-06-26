@@ -1,9 +1,11 @@
 package com.endcodev.saber_y_beber.presenter.home
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -83,6 +85,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.homeAddBt.setOnClickListener {
             addPlayerDialog()
         }
+
+        binding.homeStartBt.setOnClickListener { startGame() }
     }
 
     /**Initialize recycler view [PlayerAdapter] */
@@ -118,7 +122,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    /**On back button pressed exit app*/
     private fun onBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
@@ -129,6 +132,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         )
+    }
+
+    /** change to [HomeFragment]*/
+    private fun startGame() {
+        if (homeViewModel.playerList.value?.size!! > 2) {
+            //MediaPlayer.create(context, R.raw.opening_bottle).start() //opening bottle sound
+            findNavController().navigate(R.id.gameFragment)
+        } else
+            Toast.makeText(
+                context,
+                requireContext().getText(R.string.error_no_players),
+                Toast.LENGTH_SHORT
+            ).show()
     }
 
     override fun onResume() {

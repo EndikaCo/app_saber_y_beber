@@ -8,11 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -64,7 +61,7 @@ class MainActivityViewModel @Inject constructor(
      */
     private fun checkVersion() {
 
-        val myRef = firebase.data.getReference("/version")
+        val myRef = firebase.dataBase.getReference("/version")
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
 

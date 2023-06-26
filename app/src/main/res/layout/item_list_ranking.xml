@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/tv_rank_trophy"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="start|center"
+        />
+
+    <TextView
+        android:id="@+id/tv_points"
+        android:minWidth="20dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/tv_rank_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="80dp"
+        />
+</LinearLayout>

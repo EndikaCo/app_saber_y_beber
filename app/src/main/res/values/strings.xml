@@ -13,6 +13,16 @@
     <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
     <string name="home_start_game_button">Iniciar juego</string>
 
+    <!-- game fragment-->
+    <string name="game_start_round_title">Primera ronda</string>
+    <string name="game_start_round_text">\"El juego comienza, todos bebeis 1 trago\"</string>
+    <string name="game_start_round_author">Developer</string>
+    <string name="fin_ronda">Fin de la ronda %d</string>
+    <string name="round_n">Ronda %d</string>
+    <string name="final_ranking_lead">%s va en cabeza y reparte 3 tragos</string>
+    <string name="need_login">Tienes que iniciar sesión para poder reportar</string>
+    <string name="game_feedback_correct">Correcto, reparte %x tragos</string>
+
 
     <!-- login fragment-->
     <string name="login_back_button">botón atras</string>
@@ -120,4 +130,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_title">Log in as</string>
+    <string name="game_difficulty">Difficulty</string>
+    <string name="error_no_players">Error: No hay suficientes jugadores para comenzar la partida</string>
+    <string name="report">Reportar</string>
 </resources>

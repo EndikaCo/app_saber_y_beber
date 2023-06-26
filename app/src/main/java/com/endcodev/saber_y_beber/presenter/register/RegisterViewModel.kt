@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.ResourcesProvider
+import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.model.DialogModel
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import dagger.hilt.android.lifecycle.HiltViewModel

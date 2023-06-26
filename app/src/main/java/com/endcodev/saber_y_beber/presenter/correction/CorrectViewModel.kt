@@ -85,11 +85,16 @@ class CorrectViewModel @Inject constructor(
         return false
     }
 
+
+    private fun getUid(): String {
+        val uid = firebase.auth.uid
+        uid?.let { return it}
+        return "00"
+    }
+
     fun acceptCorrection(i: Boolean) {
 
-        val uid = firebase.auth.currentUser!!.uid // todo not null
-
-        val correctionModel = CorrectorModel(uid, true, 0)
+        val correctionModel = CorrectorModel(getUid(), true, 0)
         allCorrectionList?.get(position)?.correctors?.add(correctionModel)
 
         val validCorrection = allCorrectionList?.get(position)
@@ -100,7 +105,7 @@ class CorrectViewModel @Inject constructor(
 
         validCorrection.correctors.add(correctionModel)
         val database: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("corrections").child("$position")
+            firebase.dataBase.reference.child("corrections").child("$position")
 
         if (i)
             database.child("rating").setValue(validCorrection.rating + 1)

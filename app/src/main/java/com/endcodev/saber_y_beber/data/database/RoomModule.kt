@@ -22,6 +22,13 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providePlayerDao(pd: RoomDB) = pd.getPlayerDao()
+    fun provideQuestDao(db: RoomDB) = db.getQuestDao()
 
+    @Singleton
+    @Provides
+    fun provideChallengeDao(ab: RoomDB) = ab.getChallengeDao()
+
+    @Singleton
+    @Provides
+    fun providePlayerDao(pd: RoomDB) = pd.getPlayerDao()
 }

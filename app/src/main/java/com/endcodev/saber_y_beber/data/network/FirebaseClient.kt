@@ -16,5 +16,5 @@ class FirebaseClient @Inject constructor() {
 
     val auth: FirebaseAuth get() = FirebaseAuth.getInstance()
     val db = Firebase.database
-    val data = FirebaseDatabase.getInstance()
+    val dataBase = FirebaseDatabase.getInstance()
 }

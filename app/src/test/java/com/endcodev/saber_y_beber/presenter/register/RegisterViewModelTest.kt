@@ -1,6 +1,6 @@
 package com.endcodev.saber_y_beber.presenter.register
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.endcodev.saber_y_beber.ResourcesProvider
+import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import org.junit.Assert.assertEquals
 import org.junit.Before

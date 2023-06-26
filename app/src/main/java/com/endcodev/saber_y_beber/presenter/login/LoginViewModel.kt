@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.ResourcesProvider
+import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_NO_VERIFICATION
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.NO_ERROR
