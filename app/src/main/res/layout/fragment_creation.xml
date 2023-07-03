@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.creation.CreateFragment"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    tools:context=".presenter.creation.CreateFragment">
 
     <include
         android:id="@+id/view_header"
@@ -38,11 +38,11 @@
 
         android:layout_marginBottom="2dp"
         android:background="@drawable/difficulty_0"
+        android:contentDescription="@string/create_difficulty"
         app:layout_constraintBottom_toTopOf="@+id/create_quest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty"
-        android:contentDescription="@string/create_difficulty" />
+        app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty" />
 
     <EditText
         android:id="@+id/create_quest"
@@ -51,15 +51,14 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:gravity="center"
+        style="@style/circledEditText"
         android:hint="@string/create_question"
-        android:textColorHint="@color/light_black"
-        android:textColor="@color/light_black"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_difficulty"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
 
     <LinearLayout
         android:id="@+id/options"
@@ -83,11 +82,11 @@
             android:background="@drawable/answer_option_correct"
             android:fontFamily="casual"
             android:hint="@string/create_correct_option"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColorHint="#EDE7F6"
-            android:importantForAutofill="no" />
+            android:textColorHint="#EDE7F6" />
 
         <EditText
             android:id="@+id/create_option2"
@@ -97,12 +96,13 @@
             android:background="@drawable/answer_option"
             android:fontFamily="casual"
             android:hint="@string/create_option_wrong"
+            android:importantForAutofill="no"
+            style="@style/circledEditText"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColorHint="@color/light_black"
             android:textColor="@color/light_black"
-            android:inputType="text"
-            android:importantForAutofill="no" />
+            android:textColorHint="@color/light_black" />
 
 
         <EditText
@@ -113,12 +113,13 @@
             android:background="@drawable/answer_option"
             android:fontFamily="casual"
             android:hint="@string/create_option_wrong2"
+            android:importantForAutofill="no"
+            style="@style/circledEditText"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:inputType="text"
-            android:textColorHint="@color/light_black"
             android:textColor="@color/light_black"
-            android:importantForAutofill="no" />
+            android:textColorHint="@color/light_black" />
 
 
     </LinearLayout>
@@ -138,6 +139,7 @@
 
         <EditText
             android:id="@+id/create_alternative"
+            style="@style/circledEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -146,14 +148,14 @@
             android:fontFamily="casual"
             android:gravity="center"
             android:hint="@string/or_do_a_flip"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:textColor="@color/light_black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_drinks"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/create_drinks" />
 
         <TextView
 
@@ -165,7 +167,7 @@
             android:fontFamily="casual"
             android:gravity="center"
             android:hint="@string/drink_0"
-            android:textColorHint="@color/light_black"
+            android:textColorHint="@color/dark_grey"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/create_alternative"
             app:layout_constraintEnd_toEndOf="parent"
@@ -174,6 +176,7 @@
 
         <EditText
             android:id="@+id/create_feedback"
+            style="@style/circledEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -181,12 +184,12 @@
             android:fontFamily="casual"
             android:gravity="center"
             android:hint="@string/create_fail_feedback"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

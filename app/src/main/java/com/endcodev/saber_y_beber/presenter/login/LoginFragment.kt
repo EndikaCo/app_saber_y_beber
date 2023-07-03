@@ -42,8 +42,49 @@ class LoginFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
             if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    if (account != null) {
+                        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                        val auth = FirebaseAuth.getInstance()
+                        auth.signInWithCredential(credential)
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    //todo falta meter el nombre si es la primera  vez y no tiene nombre de usuario,
+                                    // como en register con un dialogo tal vez o coger el nombre que tiene en el mail
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Sesión iniciada como ${auth.currentUser}",//todo aqui poner el name una vez exista
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                } else
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "fail google",//todo a strings
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                            }
+                    }
+                } catch (e: ApiException) {
+                    Toast.makeText(requireContext(), "error:$e", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
+
+    private fun googleLogin() {
+        val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleClient = GoogleSignIn.getClient(requireContext(), googleConf)
+        val signInIntent = Intent(googleClient.signInIntent)
+        previewRequest.launch(signInIntent)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -113,17 +154,6 @@ class LoginFragment : Fragment() {
             binding.loginMailEt.text.toString(),
             binding.loginPassEt.text.toString()
         )
-    }
-
-    private fun googleLogin() {
-        val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        val googleClient = GoogleSignIn.getClient(requireContext(), googleConf)
-        val signInIntent = Intent(googleClient.signInIntent)
-        previewRequest.launch(signInIntent)
     }
 
     private fun faceBookLogin() {

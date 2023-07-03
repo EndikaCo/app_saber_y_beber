@@ -80,6 +80,7 @@
     <string name="login_google_sucess">Sesión iniciada como ${auth.currentUser.toString()</string>
 
     <!-- Add player ID dialog-->
+    <string name="delete_player">Delete player</string>
     <string name="player_title">ALCOHÓLICOS ANÓNIMOS</string>
     <string name="player_genre">M</string>
     <string name="player_date">27/01/2025</string>
@@ -133,4 +134,7 @@
     <string name="game_difficulty">Difficulty</string>
     <string name="error_no_players">Error: No hay suficientes jugadores para comenzar la partida</string>
     <string name="report">Reportar</string>
+    <string name="login_success">Login success</string>
+
+
 </resources>

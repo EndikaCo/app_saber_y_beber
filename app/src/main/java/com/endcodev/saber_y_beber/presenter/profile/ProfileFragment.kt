@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.model.ActivityModel
+import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentProfileBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.endcodev.saber_y_beber.presenter.game.GameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -23,7 +25,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var adapter: ProfileAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,17 +42,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         initListeners()
         initObservers()
         initViews()
+        initAdapter(viewModel.activityList.value!!)
     }
 
     private fun initObservers() {
-        profileViewModel.currentUser.observe(viewLifecycleOwner){
+        viewModel.currentUser.observe(viewLifecycleOwner){
             binding.profileUsername.text = it.displayName
             binding.profileMail.text = it.email
         }
     }
 
     private fun initViews() {
-        profileViewModel.user()
+        viewModel.user()
     }
 
     private fun initListeners() {
@@ -57,8 +62,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController().navigate(R.id.homeFragment)
         }
         binding.profileLogout.setOnClickListener {
-            profileViewModel.disconnect()
+            viewModel.disconnect()
             findNavController().navigate(R.id.homeFragment)
+        }
+    }
+
+
+    //Recycler adapter
+    private fun initAdapter(list: List<ActivityModel>?) {
+        list?.let {
+            adapter = ProfileAdapter(it)
+            binding.profileRv.layoutManager = LinearLayoutManager(this.activity)
+            binding.profileRv.adapter = adapter
         }
     }
 }

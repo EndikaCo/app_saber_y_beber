@@ -1,6 +1,5 @@
 package com.endcodev.saber_y_beber.presenter.home
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentHomeBinding
-import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.system.exitProcess
 
@@ -38,7 +33,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -57,15 +51,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         homeViewModel.isConnected.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
-                binding.homeLoginBt.text =
-                    Firebase.auth.currentUser!!.displayName?.first().toString() // todo
-                binding.homeCreateBt.alpha = 1f
-            } else {
-                binding.homeLoginBt.setBackgroundResource(R.drawable.ic_login)
-                binding.homeCreateBt.alpha = 0.3f
-                binding.homeLoginBt.text = ""
+            with(binding) {
+                if (it != null) {
+                    homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
+                    homeLoginBt.text = it.toString()
+                    homeCreateBt.alpha = 1f
+                } else {
+                    homeLoginBt.setBackgroundResource(R.drawable.ic_login)
+                    homeLoginBt.text = ""
+                    homeCreateBt.alpha = 0.3f
+                }
             }
         }
     }
@@ -78,7 +73,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         //Login imageButton click
         binding.homeLoginBt.setOnClickListener {
-            toLoginFragment()
+            toLoginOrProfileFragment()
         }
 
         //button add player Onclick
@@ -86,7 +81,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             addPlayerDialog()
         }
 
-        binding.homeStartBt.setOnClickListener { startGame() }
+        binding.homeStartBt.setOnClickListener {
+            startGame()
+        }
     }
 
     /**Initialize recycler view [PlayerAdapter] */
@@ -111,15 +108,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     /** change fragment to LoginFragment or ProfileFragment if already logged*/
-    private fun toLoginFragment() {
-
-        val user: FirebaseUser? = Firebase.auth.currentUser
-
-        if (user != null && Firebase.auth.currentUser!!.isEmailVerified)
+    private fun toLoginOrProfileFragment() {
+        if (homeViewModel.isConnected())
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         else
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-
     }
 
     private fun onBackPressed() {

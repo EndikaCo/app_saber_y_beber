@@ -12,6 +12,12 @@ interface QuestDao {
     @Query("SELECT * FROM quest_table")
     suspend fun getAllQuest(): List<QuestEntity>
 
+    @Query("SELECT * FROM quest_table WHERE author = :author")
+    suspend fun getAllQuestFromAuthor(author : String): List<QuestEntity>
+
+    @Query("SELECT * FROM quest_table WHERE author = :author")
+    suspend fun getAllCorrectionsFromAuthor(author : String): List<QuestEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllQuest(quest: List<QuestEntity>)
 

@@ -11,31 +11,46 @@
         android:background="@drawable/round_corners"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/player_genre"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="start|center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingStart="1dp"
-            android:paddingEnd="10dp"
-            android:src="@drawable/player_girl" />
 
         <TextView
-            android:id="@+id/player_name"
+            android:id="@+id/profile_date"
             android:textColor="@color/dark_grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-            android:layout_weight="8"
+            android:layout_weight="1"
             android:gravity="center"
             android:minHeight="50dp"
             android:textAlignment="center"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/profile_user"
+            android:textColor="@color/dark_grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/profile_quest"
+            android:textColor="@color/dark_grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+
         <ImageButton
-            android:id="@+id/player_delete"
+            android:id="@+id/profile_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"

@@ -65,5 +65,8 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
         }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

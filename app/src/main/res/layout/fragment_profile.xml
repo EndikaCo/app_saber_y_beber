@@ -47,6 +47,7 @@
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/dark_grey"
         app:layout_constraintBottom_toTopOf="@+id/profile_mail"
         app:layout_constraintEnd_toStartOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_back"
@@ -58,6 +59,7 @@
         android:layout_height="0dp"
         android:textAlignment="textEnd"
         android:textSize="18sp"
+        android:textColor="@color/dark_grey"
         app:layout_constraintBottom_toBottomOf="@+id/profile_back"
         app:layout_constraintEnd_toStartOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_back"
@@ -80,6 +82,8 @@
         android:layout_marginTop="104dp"
         android:text="List of created questions"
         android:textSize="20sp"
+        android:textColor="@color/dark_grey"
+
         app:layout_constraintEnd_toEndOf="@+id/profile_rv"
         app:layout_constraintStart_toStartOf="@+id/profile_rv"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />

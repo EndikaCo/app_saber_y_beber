@@ -15,7 +15,6 @@ import com.endcodev.saber_y_beber.databinding.FragmentCorrectBinding
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class CorrectFragment : Fragment(R.layout.fragment_correct) {
 
@@ -85,7 +84,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         }
 
         correctViewModel.toCreate.observe(viewLifecycleOwner) {
-
             findNavController().navigate(R.id.createFragment)
         }
     }
@@ -111,14 +109,14 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     }
 
     /**
-     * @param it is the correction model to show in Ui.
+     * @param correction is the correction model to show in Ui.
      */
-    private fun showCorrection(it: CorrectionModel) {
-        binding.correctFail.text = it.fail
-        binding.correctAnswer.text = it.option1
-        binding.correctOption2.text = it.option2
-        binding.correctOption3.text = it.option3
-        binding.correctQuestion.text = it.correction
+    private fun showCorrection(correction: CorrectionModel) {
+        binding.correctFail.text = correction.fail
+        binding.correctAnswer.text = correction.option1
+        binding.correctOption2.text = correction.option2
+        binding.correctOption3.text = correction.option3
+        binding.correctQuestion.text = correction.correction
     }
 
     private fun onBackPressed() {
@@ -141,5 +139,8 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.correctFeedbackCheck.isChecked = false
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

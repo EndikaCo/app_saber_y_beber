@@ -95,6 +95,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="casual"
+
+            android:textColor="@color/dark_grey"
             android:gravity="center"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -122,6 +124,8 @@
             android:background="@drawable/answer_option_correct"
             android:fontFamily="casual"
             android:textAlignment="center"
+
+            android:textColor="@color/dark_grey"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -157,6 +161,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            android:textColor="@color/dark_grey"
+
             android:background="@drawable/answer_option"
             android:fontFamily="casual"
             android:textAlignment="center"
@@ -181,6 +187,7 @@
             android:id="@+id/correct_option2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/dark_grey"
 
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
@@ -219,7 +226,7 @@
             android:id="@+id/correct_question"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
+            android:textColor="@color/dark_grey"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"

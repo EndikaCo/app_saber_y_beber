@@ -16,6 +16,7 @@ import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import com.endcodev.saber_y_beber.data.model.GameModel
+import com.endcodev.saber_y_beber.data.model.PlayersModel
 
 @AndroidEntryPoint
 class GameFragment : Fragment(R.layout.fragment_game) {
@@ -43,9 +44,30 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         initOptions()
     }
 
+    private fun initListeners() {
+        with(binding) {
+
+            //OnClick background
+            background.setOnClickListener {
+                if (gameVM.gameModel.value != null)
+                    nextQuestion(gameVM.gameModel.value!!)
+            }
+
+            //OnClick report button
+            binding.report.setOnClickListener {
+                //reportQuest(gameVM.gameModel.value!!)
+            }
+
+            //OnClick any option button in Radio group
+            options.setOnCheckedChangeListener { _, checkedId ->
+                gameVM.optionClick(checkedId)
+            }
+        }
+    }
+
     private fun initObservers() {
         gameVM.rankingReady.observe(viewLifecycleOwner) {
-            initAdapter()
+            initAdapter(gameVM.playerList.value)
         }
 
         //ProgressBar visibility
@@ -56,27 +78,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         //normal round questModel
         gameVM.gameModel.observe(viewLifecycleOwner) {
             normalRound(it)
-        }
-    }
-
-    /**On BACK button pressed*/
-    private fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().navigate(R.id.homeFragment)
-                }
-            }
-        )
-    }
-
-    private fun setDifficulty(difficulty: Int) {
-        when (difficulty) {
-            0 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_0)
-            1 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_1)
-            2 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_2)
-            3 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_3)
         }
     }
 
@@ -123,27 +124,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    private fun initListeners() {
-        with(binding) {
-
-            //OnClick background
-            background.setOnClickListener {
-                if (gameVM.gameModel.value != null)
-                    nextQuestion(gameVM.gameModel.value!!)
-            }
-
-            //OnClick report button
-            binding.report.setOnClickListener {
-                //reportQuest(gameVM.gameModel.value!!)
-            }
-
-            //OnClick any option button in Radio group
-            options.setOnCheckedChangeListener { _, checkedId ->
-                gameVM.optionClick(checkedId)
-            }
-        }
-    }
-
     private fun initOptions() {
         optionButtons = OptionButtons(
             binding.options,
@@ -166,22 +146,15 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    /**
-    private fun reportQuest(gameModel: GameModel) {
-    if (Firebase.auth.currentUser != null && Firebase.auth.currentUser!!.isEmailVerified) {
-    if (gameModel.answered == CORRECT_ANSWER || gameModel.answered == INCORRECT_ANSWER) {
-    val bundle = Bundle()
-    bundle.putParcelable("report", gameModel)
-    findNavController().navigate(R.id.reportDialogFragment, bundle)
+    private fun setDifficulty(difficulty: Int) {
+        when (difficulty) {
+            0 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_0)
+            1 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_1)
+            2 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_2)
+            3 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_3)
+        }
     }
-    } else
-    Toast.makeText(
-    requireContext(),
-    resources.getText(R.string.need_login),
-    Toast.LENGTH_SHORT
-    ).show()
-    }
-     **/
+
     private fun openDialogRanking() {
         //val bundle = Bundle()
         //bundle.putParcelableArrayList("ranking", gameVM.playerList.value!!)
@@ -189,12 +162,27 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     //Recycler adapter
-    private fun initAdapter() {
-        adapter = GameAdapter(gameVM.playerList.value!!, onClickListener = {
-            openDialogRanking()
-        })
-        binding.gameRank.layoutManager = LinearLayoutManager(this.activity)
-        binding.gameRank.adapter = adapter
+    private fun initAdapter(value: List<PlayersModel>?) {
+        value?.let {
+            adapter = GameAdapter(it, onClickListener = {
+                openDialogRanking()
+            })
+            binding.gameRank.layoutManager = LinearLayoutManager(this.activity)
+            binding.gameRank.adapter = adapter
+        }
+    }
+
+
+    /**On BACK button pressed*/
+    private fun onBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().navigate(R.id.homeFragment)
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {

@@ -21,14 +21,14 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val playersUseCase: GetPlayersUseCase,
-    private val firebase : FirebaseClient
+    private val firebase: FirebaseClient
 
 ) : ViewModel() {
     private val _playerList = MutableLiveData<MutableList<PlayersModel>>()
     val playerList: LiveData<MutableList<PlayersModel>> get() = _playerList
 
-    private val _isConnected = MutableLiveData<Boolean>()
-    val isConnected: LiveData<Boolean> get() = _isConnected
+    private val _isConnected = MutableLiveData<Char>(null)
+    val isConnected: LiveData<Char> get() = _isConnected
 
     init {
         viewModelScope.launch {
@@ -51,7 +51,14 @@ class HomeViewModel @Inject constructor(
     }
 
     /** checks if user is logged*/
-     fun checkLogin() {
-        _isConnected.value = firebase.auth.currentUser != null && firebase.auth.currentUser!!.isEmailVerified
+    fun checkLogin() {
+        val auth = firebase.auth.currentUser
+        if (auth != null && auth.isEmailVerified)
+            _isConnected.value = auth.displayName?.first()
+    }
+
+    fun isConnected(): Boolean {
+        val auth = firebase.auth.currentUser
+        return auth != null && auth.isEmailVerified
     }
 }

@@ -47,7 +47,7 @@
 
         <EditText
             android:id="@+id/register_mail_et"
-            android:layout_width="347dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
@@ -56,8 +56,8 @@
             android:drawableStart="@drawable/ic_mail"
             android:hint="@string/register_email"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textAlignment="center"
+            style="@style/circledEditText"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,8 @@
 
         <EditText
             android:id="@+id/register_pass_et"
-            android:layout_width="347dp"
+            style="@style/circledEditText"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -73,18 +74,15 @@
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
-            android:ems="10"
             android:hint="@string/register_pass"
             android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_mail_et" />
 
         <EditText
             android:id="@+id/repeat_pass_et"
-            android:layout_width="347dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -92,11 +90,9 @@
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
-            android:ems="10"
             android:hint="@string/register_repeat_pass"
             android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textAlignment="center"
+            style="@style/circledEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +100,7 @@
 
         <EditText
             android:id="@+id/register_user_et"
-            android:layout_width="347dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -112,11 +108,9 @@
             android:autofillHints="username"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_login"
-            android:ems="10"
             android:hint="@string/register_username"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textAlignment="center"
+            style="@style/circledEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

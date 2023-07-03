@@ -75,20 +75,12 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
             optionC, feedback, alternative )
     }
 
-    fun setDifficulty(difficulty: Int) {
+    private fun setDifficulty(difficulty: Int) {
         when (difficulty) {
             0 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_0)
             1 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_1)
             2 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_2)
             3 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_3)
-        }
-    }
-
-    private fun drinkInverter(drinkNum: Int): Int {
-        return when (drinkNum) {
-            3 -> 1
-            2 -> 2
-            else -> 3
         }
     }
 
@@ -104,4 +96,8 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         )
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
