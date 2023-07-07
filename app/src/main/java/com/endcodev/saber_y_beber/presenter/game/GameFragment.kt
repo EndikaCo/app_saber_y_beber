@@ -84,7 +84,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     private fun normalRound(it: GameModel?) {
         with(binding) {
             optionButtons.optionColor(it!!.optionsColor, it.optionSelected)
-            tvTitle.text = it.title
+            tvRound.text = it.title
             btOption1.text = it.option1
             btOption2.text = it.option2
             btOption3.text = it.option3

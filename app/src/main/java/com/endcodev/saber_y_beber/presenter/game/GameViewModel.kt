@@ -86,7 +86,7 @@ class GameViewModel @Inject constructor(
             val randomNum = (_playerList.value!!.indices).random(Random(System.currentTimeMillis()))
             val player = _playerList.value!![randomNum]
             val aux = getRandomChallengeUseCase.nextChallenge()
-            aux!!.challenge = aux.challenge.replace("#player", player.name)
+            aux!!.challenge = aux.challenge.replace("#player", player.name)//todo add player to model and dont replace here
             _gameModel.value = challengeToGame(aux, 0)
         }
     }

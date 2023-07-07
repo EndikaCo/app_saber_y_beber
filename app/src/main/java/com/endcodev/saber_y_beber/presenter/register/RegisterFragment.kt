@@ -75,6 +75,11 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+
+        //Back Button
+        binding.loginCreateLink2.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 
     private fun getData() {

@@ -14,7 +14,7 @@
     <string name="home_start_game_button">Iniciar juego</string>
 
     <!-- game fragment-->
-    <string name="game_start_round_title">Primera ronda</string>
+    <string name="game_start_round_title"><b>Ronda 1</b></string>
     <string name="game_start_round_text">\"El juego comienza, todos bebeis 1 trago\"</string>
     <string name="game_start_round_author">Developer</string>
     <string name="fin_ronda">Fin de la ronda %d</string>
