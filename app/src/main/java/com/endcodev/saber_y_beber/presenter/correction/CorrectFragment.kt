@@ -55,7 +55,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
-
         binding.correctOkBt.setOnClickListener {
             acceptCorrection()
         }
@@ -105,14 +104,13 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
                 && binding.correctAnswerCheck.isChecked
                 && binding.correctOption2Check.isChecked
                 && binding.correctOption3Check.isChecked
-                && binding.correctFeedbackCheck.isChecked)
+                )
     }
 
     /**
      * @param correction is the correction model to show in Ui.
      */
     private fun showCorrection(correction: CorrectionModel) {
-        binding.correctFail.text = correction.fail
         binding.correctAnswer.text = correction.option1
         binding.correctOption2.text = correction.option2
         binding.correctOption3.text = correction.option3
@@ -136,7 +134,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.correctAnswerCheck.isChecked = false
         binding.correctOption2Check.isChecked = false
         binding.correctOption3Check.isChecked = false
-        binding.correctFeedbackCheck.isChecked = false
     }
 
     override fun onDestroyView() {

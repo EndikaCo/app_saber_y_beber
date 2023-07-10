@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.endcodev.saber_y_beber.data.model.GameModel
+import com.endcodev.saber_y_beber.data.model.GameUiModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 
 @AndroidEntryPoint
@@ -81,7 +81,8 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    private fun normalRound(it: GameModel?) {
+    private fun normalRound(it: GameUiModel?) {
+
         with(binding) {
             optionButtons.optionColor(it!!.optionsColor, it.optionSelected)
             tvRound.text = it.title
@@ -92,10 +93,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             report.visibility = View.VISIBLE
             report.alpha = it.report
             setDifficulty(it.difficulty)
-
             when (it.answered) {
-                FINAL -> tvChallenge.text = it.challenge
-                NO_ANSWER -> tvChallenge.text = it.challenge
+                FINAL -> tvChallenge.text = it.quest
+                NO_ANSWER -> tvChallenge.text = it.quest
                 CORRECT_ANSWER -> {
                     tvChallenge.text =
                         resources.getString(R.string.game_feedback_correct, it.difficulty)
@@ -104,7 +104,11 @@ class GameFragment : Fragment(R.layout.fragment_game) {
                 }
 
                 INCORRECT_ANSWER -> {
-                    tvChallenge.text = it.fail
+                    val drinks = drinkInverter(it.difficulty)
+                    if (drinks > 1) {
+                        tvChallenge.text = resources.getString(R.string.drinks, drinks)
+                    } else
+                        tvChallenge.text = resources.getString(R.string.drink)
                     report.alpha = 1F
                 }
             }
@@ -112,8 +116,16 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         animateOptions(it)
     }
 
+    private fun drinkInverter(drinkNum: Int): Int {
+        return when (drinkNum) {
+            3 -> 1
+            2 -> 2
+            else -> 3
+        }
+    }
+
     /** animates answer options pop up*/
-    private fun animateOptions(it: GameModel?) {
+    private fun animateOptions(it: GameUiModel?) {
         val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.animation1)
         if (binding.options.visibility == View.VISIBLE && it!!.answered == NO_ANSWER) {
             binding.options.startAnimation(anim)
@@ -135,7 +147,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     /** resets answered option [gameVM] and calls to next random quest*/
-    private fun nextQuestion(gameModel: GameModel) {
+    private fun nextQuestion(gameModel: GameUiModel) {
         if (gameVM.gameModel.value != null) {
             if (binding.options.checkedRadioButtonId != -1) {
                 binding.options.clearCheck()

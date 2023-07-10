@@ -3,16 +3,14 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Background color -->
-    <gradient
-        android:angle="90"
-        android:endColor="@color/button_default_end"
-        android:startColor="@color/button_default_start" />
+    <solid
+        android:color="#B1CFD8" />
     <!-- The corners of the shape -->
     <corners android:radius="10dp" />
 
     <!-- Stroke around the background, width and color -->
     <stroke
-        android:width="2dp"
+        android:width="1dp"
         android:color="@color/light_black" />
 
     <!-- Padding for the background, e.g the Text inside a TextView will be

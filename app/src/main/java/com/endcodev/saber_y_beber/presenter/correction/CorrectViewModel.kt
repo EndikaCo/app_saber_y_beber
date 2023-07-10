@@ -26,8 +26,6 @@ class CorrectViewModel @Inject constructor(
         const val TAG = "getCorrectionsUseCase **"
     }
 
-    private var correctionsDone = 0
-
     private var allCorrectionList: List<CorrectionModel>? = null
     private var position: Int = 0
 
@@ -113,9 +111,7 @@ class CorrectViewModel @Inject constructor(
             database.child("rating").setValue(-1)
 
         database.child("correctors").setValue(validCorrection.correctors)
-        correctionsDone += 1
 
-        if (correctionsDone == 2)
-            _toCreate.value = true
+        _toCreate.value = true
     }
 }

@@ -135,6 +135,8 @@
     <string name="error_no_players">Error: No hay suficientes jugadores para comenzar la partida</string>
     <string name="report">Reportar</string>
     <string name="login_success">Login success</string>
+    <string name="drinks">bebes %d tragos</string>
+    <string name="drink">bebes 1 trago</string>
 
 
 </resources>

@@ -15,7 +15,7 @@ import com.endcodev.saber_y_beber.domain.GetRandomChallengeUseCase
 import com.endcodev.saber_y_beber.domain.GetRandomQuestUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.GameModel
+import com.endcodev.saber_y_beber.data.model.GameUiModel
 import com.endcodev.saber_y_beber.data.model.QuestModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,8 +39,8 @@ class GameViewModel @Inject constructor(
 ) : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
 
-    private val _gameModel = MutableLiveData<GameModel?>()
-    val gameModel: LiveData<GameModel?> get() = _gameModel
+    private val _gameModel = MutableLiveData<GameUiModel?>()
+    val gameModel: LiveData<GameUiModel?> get() = _gameModel
 
     private val _playerList = MutableLiveData<MutableList<PlayersModel>>()
     val playerList: LiveData<MutableList<PlayersModel>> get() = _playerList
@@ -78,7 +78,6 @@ class GameViewModel @Inject constructor(
             ),
             1
         )
-        _gameModel.postValue(_gameModel.value)
     }
 
     private fun middleRoundChallenge() {
@@ -110,17 +109,18 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    private fun questToGame(questModel: QuestModel): GameModel {
+    private fun questToGame(questModel: QuestModel): GameUiModel {
         with(questModel) {
             val optionList = arrayListOf(option1, option2, option3)
             val randInts = generateSequence { Random.nextInt(0..2) }.distinct().take(3).toSet()
 
-            answer = when (option1) {
+            val answer = when (option1) {
                 optionList[randInts.elementAt(0)] -> 1
                 optionList[randInts.elementAt(1)] -> 2
                 else -> 3
             }
-            return GameModel(
+
+            return GameUiModel(
                 "${playerList.value!![_actualPlayer].name}, $challenge",
                 author,
                 answer,
@@ -128,7 +128,6 @@ class GameViewModel @Inject constructor(
                 optionList[randInts.elementAt(1)],
                 optionList[randInts.elementAt(2)],
                 difficulty,
-                fail,
                 resources.getString(R.string.round_n, _round),
                 _round,
                 -1,
@@ -141,9 +140,9 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    private fun challengeToGame(challengeModel: ChallengeModel, difficulty: Int): GameModel {
+    private fun challengeToGame(challengeModel: ChallengeModel, difficulty: Int): GameUiModel {
         with(challengeModel) {
-            return GameModel(
+            return GameUiModel(
                 challenge,
                 author,
                 -1,
@@ -151,7 +150,6 @@ class GameViewModel @Inject constructor(
                 null,
                 null,
                 difficulty,
-                null,
                 title,
                 _round,
                 -2,

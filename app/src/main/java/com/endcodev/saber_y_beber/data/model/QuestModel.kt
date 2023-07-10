@@ -5,16 +5,16 @@ import com.endcodev.saber_y_beber.data.database.entities.QuestEntity
 data class QuestModel(
     var challenge: String,
     var author: String,
-    var answer: Int,
     var option1: String,
     var option2: String,
     var option3: String,
     val difficulty: Int,
-    val fail: String
+    //val correctors: ArrayList<CorrectorModel>,
+    val post: Boolean
 )
 
 fun QuestModel.toDomain() =
-    QuestModel(challenge, author, answer, option1, option2, option3, difficulty, fail)
+    QuestModel(challenge, author, option1, option2, option3, difficulty, post)
 
 fun QuestEntity.toDomain() =
-    QuestModel(challenge, author, answer, option1, option2, option3, difficulty, fail)
+    QuestModel(challenge, author, option1, option2, option3, difficulty, post)

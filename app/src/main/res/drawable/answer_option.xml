@@ -3,16 +3,14 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Background color -->
-    <gradient
-        android:angle="90"
-        android:endColor="#40C3C8"
-        android:startColor="#99DCD6" />
+    <solid
+        android:color="#94CED2D5" />
     <!-- The corners of the shape -->
     <corners android:radius="10dp" />
 
     <!-- Stroke around the background, width and color -->
     <stroke
-        android:width="2dp"
+        android:width="1dp"
         android:color="@color/light_black" />
 
 

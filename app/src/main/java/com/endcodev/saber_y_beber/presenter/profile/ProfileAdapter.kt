@@ -3,11 +3,11 @@ package com.endcodev.saber_y_beber.presenter.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.endcodev.saber_y_beber.data.model.ActivityModel
+import com.endcodev.saber_y_beber.data.model.ProfileModel
 import com.endcodev.saber_y_beber.databinding.ProfileHolderBinding
 
 class ProfileAdapter(
-    private var activityList: List<ActivityModel>,
+    private var activityList: List<ProfileModel>,
 ) : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ProfileHolderBinding) :

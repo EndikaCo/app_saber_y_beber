@@ -9,10 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.data.model.ActivityModel
-import com.endcodev.saber_y_beber.data.model.PlayersModel
+import com.endcodev.saber_y_beber.data.model.ProfileModel
 import com.endcodev.saber_y_beber.databinding.FragmentProfileBinding
-import com.endcodev.saber_y_beber.presenter.game.GameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -69,7 +67,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
     //Recycler adapter
-    private fun initAdapter(list: List<ActivityModel>?) {
+    private fun initAdapter(list: List<ProfileModel>?) {
         list?.let {
             adapter = ProfileAdapter(it)
             binding.profileRv.layoutManager = LinearLayoutManager(this.activity)

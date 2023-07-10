@@ -68,8 +68,8 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         val optionA = binding.createCorrect.text.toString()
         val optionB = binding.createOption2.text.toString()
         val optionC = binding.createOption3.text.toString()
-        val feedback = binding.createFeedback.text.toString()
-        val alternative = binding.createAlternative.text.toString()
+        val feedback = ""
+        val alternative = ""
 
         createViewModel.checkValues(quest, optionA, optionB,
             optionC, feedback, alternative )
@@ -89,8 +89,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    activity?.finish()
-                    exitProcess(0)
+                    findNavController().navigate(R.id.homeFragment)
                 }
             }
         )
