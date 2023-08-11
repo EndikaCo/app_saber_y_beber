@@ -1,22 +1,28 @@
 package com.endcodev.saber_y_beber.data.model
 
-
+/**
+ * @param quest - The question
+ * @param author - The author of the question
+ * @param answer - The correct answer
+ * @param option1 - The first option
+ * @param option2 - The second option
+ * @param option3 - The third option
+ * @param difficulty - The difficulty of the question
+ * @param title - The title
+ * @param round - The round
+ * @param optionsColor - The color of the options
+ * @param answered - state of the quest
+ */
 data class GameUiModel(
     var quest: String,
     var author: String,
-    var answer: Int,
-    var option1: String?,
-    var option2: String?,
-    var option3: String?,
+    var option1: OptionModel?,
+    var option2: OptionModel?,
+    var option3: OptionModel?,
     val difficulty: Int,
     val title: String,
     val round: Int,
-    var optionsColor: Int,
-    var answered: Int,
-    val actualPlayer: Int,
-    val report: Float,
-    val ranking: Int,
-    var optionSelected : Int,
+    var answered: Boolean
 )
 
 

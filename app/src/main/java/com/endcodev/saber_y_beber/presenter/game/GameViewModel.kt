@@ -1,31 +1,25 @@
 package com.endcodev.saber_y_beber.presenter.game
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
+import com.endcodev.saber_y_beber.data.model.ChallengeModel
+import com.endcodev.saber_y_beber.data.model.GameUiModel
+import com.endcodev.saber_y_beber.data.model.OptionModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
+import com.endcodev.saber_y_beber.data.model.QuestModel
 import com.endcodev.saber_y_beber.domain.GetChallengeUseCase
 import com.endcodev.saber_y_beber.domain.GetPlayersUseCase
 import com.endcodev.saber_y_beber.domain.GetQuestUseCase
 import com.endcodev.saber_y_beber.domain.GetRandomChallengeUseCase
 import com.endcodev.saber_y_beber.domain.GetRandomQuestUseCase
+import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.GameUiModel
-import com.endcodev.saber_y_beber.data.model.QuestModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
-import kotlin.random.nextInt
-
-const val CORRECT_ANSWER = 0
-const val INCORRECT_ANSWER = 1
-const val NO_ANSWER = -1
-const val FINAL = 2
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -37,6 +31,11 @@ class GameViewModel @Inject constructor(
     private val playersUseCase: GetPlayersUseCase
 
 ) : ViewModel() {
+
+    companion object {
+        const val TAG = "GameViewModel ***"
+    }
+
     val isLoading = MutableLiveData<Boolean>()
 
     private val _gameModel = MutableLiveData<GameUiModel?>()
@@ -45,23 +44,19 @@ class GameViewModel @Inject constructor(
     private val _playerList = MutableLiveData<MutableList<PlayersModel>>()
     val playerList: LiveData<MutableList<PlayersModel>> get() = _playerList
 
-    val rankingReady = MutableLiveData<Boolean>()
-
     private var _round = 1
     private var _actualPlayer = -1
     private var questCounter: Int = 0
+    private var answer: Int = -1
 
     init {
         viewModelScope.launch {
             isLoading.postValue(true)
             _playerList.value = playersUseCase.invoke().toMutableList()
-            rankingReady.value = true
 
             if (getQuestUseCase().isNotEmpty() && getChallengeUseCase().isNotEmpty()) {
-
                 getRandomQuestUseCase()
                 getRandomChallengeUseCase()
-
                 startRoundChallenge()
                 isLoading.postValue(false)
             }
@@ -69,75 +64,70 @@ class GameViewModel @Inject constructor(
     }
 
     private fun startRoundChallenge() {
-        _gameModel.value = challengeToGame(
-            ChallengeModel(
-                resources.getString(R.string.game_start_round_title),
-                resources.getString(R.string.game_start_round_text),
-                resources.getString(R.string.game_start_round_author),
-                0
-            ),
-            1
-        )
+        _gameModel.value = challengeToGame(getRandomChallengeUseCase.startChallenge(), 1)
     }
 
-    private fun middleRoundChallenge() {
+    private fun randomChallenge() {
         viewModelScope.launch {
             val randomNum = (_playerList.value!!.indices).random(Random(System.currentTimeMillis()))
-            val player = _playerList.value!![randomNum]
-            val aux = getRandomChallengeUseCase.nextChallenge()
-            aux!!.challenge = aux.challenge.replace("#player", player.name)//todo add player to model and dont replace here
-            _gameModel.value = challengeToGame(aux, 0)
+            val randPlayer = _playerList.value!![randomNum]
+            val randChallenge = getRandomChallengeUseCase.nextChallenge()
+
+            if (randChallenge != null)
+                randChallenge.challenge =
+                    randChallenge.challenge.replace("#player", randPlayer.name)
+            _gameModel.value = randChallenge?.let { challengeToGame(it, 1) }
         }
     }
 
+    //get the name of the player with the highest score
+    private fun leaderPlayer(players: MutableList<PlayersModel>): String? {
+        if (players.isEmpty()) {
+            return null // Return null if the list is empty
+        }
+        // Find the player with the highest score
+        val leaderPlayer = players.maxByOrNull { it.points }
+        return leaderPlayer?.name
+    }
+
     private fun finalRoundChallenge() {
-        val finRonda = ChallengeModel(
-            resources.getString(R.string.fin_ronda, _round),
-            resources.getString(R.string.final_ranking_lead, _playerList.value?.get(0)?.name!!),
-            "Developer",
-            0
-        )
+        val finRonda =
+            getRandomChallengeUseCase.finalChallenge(_round, leaderPlayer(_playerList.value!!)!!)
         _gameModel.value = challengeToGame(finRonda, 3)
+        _actualPlayer += 1
+        _round += 1
     }
 
     private fun randomQuest() {
         viewModelScope.launch {
             isLoading.postValue(true)
             _gameModel.value = questToGame(getRandomQuestUseCase.nextQuest()!!)
-            _gameModel.postValue(_gameModel.value)
+
             isLoading.postValue(false)
         }
     }
 
-    private fun questToGame(questModel: QuestModel): GameUiModel {
-        with(questModel) {
-            val optionList = arrayListOf(option1, option2, option3)
-            val randInts = generateSequence { Random.nextInt(0..2) }.distinct().take(3).toSet()
+    private fun questToGame(model: QuestModel): GameUiModel {
 
-            val answer = when (option1) {
-                optionList[randInts.elementAt(0)] -> 1
-                optionList[randInts.elementAt(1)] -> 2
-                else -> 3
+        val shuffledList = arrayListOf(model.option1, model.option2, model.option3).shuffled()
+
+        for (item in shuffledList) {
+            if (item.contains(model.option1)) {
+                answer = shuffledList.indexOf(item) + 1
             }
-
-            return GameUiModel(
-                "${playerList.value!![_actualPlayer].name}, $challenge",
-                author,
-                answer,
-                optionList[randInts.elementAt(0)],
-                optionList[randInts.elementAt(1)],
-                optionList[randInts.elementAt(2)],
-                difficulty,
-                resources.getString(R.string.round_n, _round),
-                _round,
-                -1,
-                NO_ANSWER,
-                _actualPlayer,
-                0.3F,
-                View.VISIBLE,
-                -1
-            )
         }
+
+        return GameUiModel(
+            quest = model.challenge,
+            author = model.author,
+            option1 = OptionModel(shuffledList[0], false, isCorrect = false),
+            option2 = OptionModel(shuffledList[1], false, isCorrect = false),
+            option3 = OptionModel(shuffledList[2], false, isCorrect = false),
+            difficulty = model.difficulty,
+            title = playerList.value!![_actualPlayer].name,
+            round = _round,
+            answered = false
+        )
     }
 
     private fun challengeToGame(challengeModel: ChallengeModel, difficulty: Int): GameUiModel {
@@ -145,71 +135,90 @@ class GameViewModel @Inject constructor(
             return GameUiModel(
                 challenge,
                 author,
-                -1,
                 null,
                 null,
                 null,
                 difficulty,
                 title,
                 _round,
-                -2,
-                FINAL,
-                _actualPlayer,
-                0.3F,
-                View.GONE,
-                -1
+                answered = true
             )
         }
     }
 
-    fun optionClick(checkedId: Int) {
+    fun checkedOption(checkedId: Int) {
 
-        val button = when (checkedId) {
-
+        val checked = when (checkedId) {
             R.id.bt_option1 -> 1
             R.id.bt_option2 -> 2
             R.id.bt_option3 -> 3
-            else -> {
-                -1
-            }
+            else -> -1
         }
-        _gameModel.value?.optionSelected = button
-
-        if (_gameModel.value != null && _gameModel.value!!.answered == NO_ANSWER)
-            checkAnswer(button)
+        returnModel(checked)
     }
 
-    fun nextRound() {
-        if (_actualPlayer == _playerList.value!!.size - 1) {   // final round
-            finalRoundChallenge()
-            _actualPlayer += 1
-            _round += 1
-        } else if (questCounter == 3) //middle round -> every 3 quests
-        {
-            middleRoundChallenge()
-            questCounter = 0
-        } else {   // normal round
-            _actualPlayer += 1 // next player
-            questCounter++
-            if (_actualPlayer > playerList.value!!.size - 1) {
-                _actualPlayer = 0 // reset player to 1st
-            }
-            randomQuest()
+    private fun returnModel(checked: Int) {
+        val model = _gameModel.value
+        when (checked) {
+            1 -> model?.option1?.isSelected = true
+            2 -> model?.option2?.isSelected = true
+            3 -> model?.option3?.isSelected = true
         }
-    }
 
-    private fun checkAnswer(option: Int) {
-        val optionColors = arrayListOf(0, 0, 0)
-        optionColors[_gameModel.value!!.answer - 1] = 1
-        _gameModel.value!!.optionsColor = _gameModel.value!!.answer
-        _gameModel.postValue(_gameModel.value)
+        when (answer) {
+            1 -> model?.option1?.isCorrect = true
+            2 -> model?.option2?.isCorrect = true
+            3 -> model?.option3?.isCorrect = true
+        }
 
-        if (option == _gameModel.value!!.answer) { //correct answer
-            _gameModel.value!!.answered = CORRECT_ANSWER
-            _playerList.value!![_actualPlayer].points += _gameModel.value!!.difficulty
-            _playerList.value!!.sortWith(compareByDescending { it.points })
+        if (checked == answer && model?.answered == false) {
+            model.quest = resources.getString(R.string.game_feedback_correct, model.difficulty)
+            val playerList = _playerList.value
+            if (playerList != null && _actualPlayer > -1)
+                playerList[_actualPlayer].points += 1
         } else
-            _gameModel.value!!.answered = INCORRECT_ANSWER
+            model?.quest = resources.getString(
+                R.string.game_feedback_incorrect,
+                drinkInverter(model!!.difficulty)
+            )
+        model.answered = true
+        _gameModel.value = model
+    }
+
+    private fun drinkInverter(drinkNum: Int): Int {
+        return when (drinkNum) {
+            3 -> 1
+            2 -> 2
+            else -> 3
+        }
+    }
+
+    fun nextQuest() {
+
+        val playerList = _playerList.value
+
+        if (playerList != null) {
+            if (isFinalRound(playerList)) {
+                finalRoundChallenge()
+            } else if (questCounter == 3) //middle round -> every 3 quests
+            {
+                randomChallenge()
+                questCounter = 0
+            } else {   // normal round
+                _actualPlayer += 1 // next player
+                questCounter++
+                if (_actualPlayer > playerList.size - 1) {
+                    _actualPlayer = 0 // reset player to 1st
+                }
+                randomQuest()
+            }
+        }
+    }
+
+    private fun isFinalRound(playerList: MutableList<PlayersModel>): Boolean {
+        if (_actualPlayer == playerList.size - 1)
+            return true
+        return false
     }
 }
 

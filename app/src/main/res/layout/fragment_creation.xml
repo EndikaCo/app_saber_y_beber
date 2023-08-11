@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
 
     <LinearLayout
-        android:id="@+id/options"
+        android:id="@+id/game_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -79,7 +79,7 @@
             android:id="@+id/create_correct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/answer_option_correct"
+            android:background="@drawable/answer_option_selected"
             android:fontFamily="casual"
             android:hint="@string/create_correct_option"
             android:importantForAutofill="no"
@@ -136,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/options" />
+        app:layout_constraintTop_toBottomOf="@+id/game_options" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.RadioButton
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,10 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.model.GameUiModel
+import com.endcodev.saber_y_beber.data.model.OptionModel
+import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.endcodev.saber_y_beber.data.model.GameUiModel
-import com.endcodev.saber_y_beber.data.model.PlayersModel
 
 @AndroidEntryPoint
 class GameFragment : Fragment(R.layout.fragment_game) {
@@ -25,7 +27,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     private val binding: FragmentGameBinding get() = _binding!!
     private lateinit var adapter: GameAdapter
     private val gameVM: GameViewModel by viewModels()
-    lateinit var optionButtons: OptionButtons
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +42,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         initListeners()
         initObservers()
         onBackPressed()
-        initOptions()
     }
 
     private fun initListeners() {
@@ -58,16 +58,16 @@ class GameFragment : Fragment(R.layout.fragment_game) {
                 //reportQuest(gameVM.gameModel.value!!)
             }
 
-            //OnClick any option button in Radio group
-            options.setOnCheckedChangeListener { _, checkedId ->
-                gameVM.optionClick(checkedId)
+            //OnClick option button in Radio group
+            gameOptions.setOnCheckedChangeListener { _, checkedId ->
+                gameVM.checkedOption(checkedId)
             }
         }
     }
 
     private fun initObservers() {
-        gameVM.rankingReady.observe(viewLifecycleOwner) {
-            initAdapter(gameVM.playerList.value)
+        gameVM.playerList.observe(viewLifecycleOwner) {
+            initAdapter(it)
         }
 
         //ProgressBar visibility
@@ -77,85 +77,77 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         //normal round questModel
         gameVM.gameModel.observe(viewLifecycleOwner) {
-            normalRound(it)
+            updateUi(it)
         }
     }
 
-    private fun normalRound(it: GameUiModel?) {
+    private fun updateUi(ui: GameUiModel?) {
+        if (ui != null)
+            with(binding) {
+                tvChallenge.text = ui.quest
+                tvAuthor.text = ui.author
+                tvTitle.text = ui.title
 
-        with(binding) {
-            optionButtons.optionColor(it!!.optionsColor, it.optionSelected)
-            tvRound.text = it.title
-            btOption1.text = it.option1
-            btOption2.text = it.option2
-            btOption3.text = it.option3
-            tvAuthor.text = it.author
-            report.visibility = View.VISIBLE
-            report.alpha = it.report
-            setDifficulty(it.difficulty)
-            when (it.answered) {
-                FINAL -> tvChallenge.text = it.quest
-                NO_ANSWER -> tvChallenge.text = it.quest
-                CORRECT_ANSWER -> {
-                    tvChallenge.text =
-                        resources.getString(R.string.game_feedback_correct, it.difficulty)
-                    adapter.notifyDataSetChanged()
-                    report.alpha = 1F
-                }
+                setOption(ui.option1, btOption1)
+                setOption(ui.option2, btOption2)
+                setOption(ui.option3, btOption3)
 
-                INCORRECT_ANSWER -> {
-                    val drinks = drinkInverter(it.difficulty)
-                    if (drinks > 1) {
-                        tvChallenge.text = resources.getString(R.string.drinks, drinks)
-                    } else
-                        tvChallenge.text = resources.getString(R.string.drink)
-                    report.alpha = 1F
-                }
+                enableButtons(ui.answered)
+
+                report.visibility = View.VISIBLE
+
+                if (!ui.answered)
+                    animateOptions()
+                //report.alpha = ui.report
+                setDifficulty(ui.difficulty)
+                gameRound.text = resources.getString(R.string.round_n, ui.round)
+                adapter.sortListByPoints()
             }
-        }
-        animateOptions(it)
     }
 
-    private fun drinkInverter(drinkNum: Int): Int {
-        return when (drinkNum) {
-            3 -> 1
-            2 -> 2
-            else -> 3
-        }
+    private fun enableButtons(ans: Boolean) {
+        binding.btOption1.isEnabled = !ans
+        binding.btOption2.isEnabled = !ans
+        binding.btOption3.isEnabled = !ans
+        binding.background.isEnabled = ans
     }
 
-    /** animates answer options pop up*/
-    private fun animateOptions(it: GameUiModel?) {
-        val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.animation1)
-        if (binding.options.visibility == View.VISIBLE && it!!.answered == NO_ANSWER) {
-            binding.options.startAnimation(anim)
+    private fun setOption(option: OptionModel?, button: RadioButton) {
+        if (option == null) {
+            button.visibility = View.INVISIBLE
+        } else {
+            button.visibility = View.VISIBLE
+            button.text = option.text
         }
-        if (it!!.answered == FINAL) {
-            binding.tvChallenge.startAnimation(anim)
-            binding.tvTitle.startAnimation(anim)
-        }
+
+        if (option?.isSelected == true)
+            button.setBackgroundResource(R.drawable.answer_option_selected)
+
+        if (option?.isCorrect == true)
+            button.setBackgroundResource(R.drawable.answer_optio_correctn)
     }
 
-    private fun initOptions() {
-        optionButtons = OptionButtons(
-            binding.options,
-            binding.btOption1,
-            binding.btOption2,
-            binding.btOption3,
-            context
-        )
+
+    private fun resetDrawables() {
+        binding.gameOptions.clearCheck()
+        binding.btOption1.setBackgroundResource(R.drawable.answer_option)
+        binding.btOption2.setBackgroundResource(R.drawable.answer_option)
+        binding.btOption3.setBackgroundResource(R.drawable.answer_option)
     }
 
     /** resets answered option [gameVM] and calls to next random quest*/
     private fun nextQuestion(gameModel: GameUiModel) {
-        if (gameVM.gameModel.value != null) {
-            if (binding.options.checkedRadioButtonId != -1) {
-                binding.options.clearCheck()
-                setDifficulty(0)
-                gameVM.nextRound()
-            } else if (gameModel.answered == FINAL)
-                gameVM.nextRound()
-        }
+        resetDrawables()
+        gameVM.nextQuest()
+    }
+
+
+    /** animates answer options pop up*/
+    private fun animateOptions() {
+        val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.animation1)
+        binding.gameOptions.startAnimation(anim)
+        binding.tvChallenge.startAnimation(anim)
+        binding.tvTitle.startAnimation(anim)
     }
 
     private fun setDifficulty(difficulty: Int) {
@@ -168,9 +160,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     private fun openDialogRanking() {
-        //val bundle = Bundle()
-        //bundle.putParcelableArrayList("ranking", gameVM.playerList.value!!)
-        //findNavController().navigate(R.id.rankingDialogFragment, bundle)
+        //findNavController().navigate(R.id.rankingDialogFragment)
     }
 
     //Recycler adapter
@@ -183,7 +173,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             binding.gameRank.adapter = adapter
         }
     }
-
 
     /**On BACK button pressed*/
     private fun onBackPressed() {

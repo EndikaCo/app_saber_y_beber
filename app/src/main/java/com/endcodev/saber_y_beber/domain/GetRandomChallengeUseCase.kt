@@ -1,12 +1,15 @@
 package com.endcodev.saber_y_beber.domain
 
 import android.util.Log
+import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.ChallengeModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
+import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import javax.inject.Inject
 
 class GetRandomChallengeUseCase @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    private val resources: ResourcesProvider
 ) {
     companion object {
         const val TAG = "GetRandomChallengeUseCase:"
@@ -14,6 +17,7 @@ class GetRandomChallengeUseCase @Inject constructor(
 
     private lateinit var challengeList: List<ChallengeModel?>
     private var i = 0
+
     suspend operator fun invoke() {
         challengeList = repository.getAllChallengesFromDB().shuffled()
     }
@@ -21,6 +25,24 @@ class GetRandomChallengeUseCase @Inject constructor(
     fun nextChallenge(): ChallengeModel? {
         Log.v(TAG, "challenge i:$i")
         return challengeList[i++]
+    }
+
+    fun startChallenge(): ChallengeModel {
+        return ChallengeModel(
+            resources.getString(R.string.game_start_round_title),
+            resources.getString(R.string.game_start_round_text),
+            resources.getString(R.string.game_start_round_author),
+            1
+        )
+    }
+
+    fun finalChallenge(round : Int, player: String): ChallengeModel {
+        return ChallengeModel(
+            resources.getString(R.string.fin_ronda, round),
+            resources.getString(R.string.final_ranking_lead, player),
+            "Developer",
+            3
+        )
     }
 
 }

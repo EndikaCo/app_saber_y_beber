@@ -47,4 +47,9 @@ class GameAdapter(
         else
             size
     }
+
+    fun sortListByPoints() {
+        playerList = playerList.sortedByDescending { it.points }
+        notifyDataSetChanged()
+    }
 }
