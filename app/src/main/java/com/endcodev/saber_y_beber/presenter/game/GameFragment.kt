@@ -59,7 +59,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             }
 
             //OnClick option button in Radio group
-            gameOptions.setOnCheckedChangeListener { _, checkedId ->
+            options.setOnCheckedChangeListener { _, checkedId ->
                 gameVM.checkedOption(checkedId)
             }
         }
@@ -100,7 +100,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
                     animateOptions()
                 //report.alpha = ui.report
                 setDifficulty(ui.difficulty)
-                gameRound.text = resources.getString(R.string.round_n, ui.round)
+                tvRound.text = resources.getString(R.string.round_n, ui.round)
                 adapter.sortListByPoints()
             }
     }
@@ -129,7 +129,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
 
     private fun resetDrawables() {
-        binding.gameOptions.clearCheck()
+        binding.options.clearCheck()
         binding.btOption1.setBackgroundResource(R.drawable.answer_option)
         binding.btOption2.setBackgroundResource(R.drawable.answer_option)
         binding.btOption3.setBackgroundResource(R.drawable.answer_option)
@@ -145,7 +145,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     /** animates answer options pop up*/
     private fun animateOptions() {
         val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.animation1)
-        binding.gameOptions.startAnimation(anim)
+        binding.options.startAnimation(anim)
         binding.tvChallenge.startAnimation(anim)
         binding.tvTitle.startAnimation(anim)
     }

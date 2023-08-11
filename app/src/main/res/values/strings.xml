@@ -22,7 +22,7 @@
     <string name="final_ranking_lead">%s va en cabeza y reparte 3 tragos</string>
     <string name="need_login">Tienes que iniciar sesión para poder reportar</string>
     <string name="game_feedback_correct">Correcto, reparte %x tragos</string>
-
+    <string name="game_feedback_incorrect">Incorrecto, Bebe %x tragos</string>
 
     <!-- login fragment-->
     <string name="login_back_button">botón atras</string>
