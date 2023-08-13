@@ -21,12 +21,14 @@ import kotlin.system.exitProcess
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
-        const val TAG = "HomeFragment **"
+        const val TAG = "HomeFragment ***"
     }
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     private val homeViewModel: HomeViewModel by viewModels()
+
     private lateinit var adapter: PlayerAdapter
 
     override fun onCreateView(
@@ -51,24 +53,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         homeViewModel.isConnected.observe(viewLifecycleOwner) {
-            with(binding) {
-                if (it != null) {
-                    homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
-                    homeLoginBt.text = it.toString()
-                    homeCreateBt.alpha = 1f
-                } else {
-                    homeLoginBt.setBackgroundResource(R.drawable.ic_login)
-                    homeLoginBt.text = ""
-                    homeCreateBt.alpha = 0.3f
-                }
-            }
+            setLoginButton(it)
         }
     }
 
     private fun initListeners() {
 
         binding.homeCreateBt.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_correctFragment)
+            correctQuest()
         }
 
         //Login imageButton click
@@ -84,6 +76,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.homeStartBt.setOnClickListener {
             startGame()
         }
+    }
+
+    /** navigate to GameFragment if user is connected and mail verified*/
+    private fun correctQuest() {
+        if (homeViewModel.isConnected())
+            findNavController().navigate(R.id.action_homeFragment_to_correctFragment)
+        else
+            Toast.makeText(context, getString(R.string.need_login), Toast.LENGTH_SHORT).show()
     }
 
     /**Initialize recycler view [PlayerAdapter] */
@@ -115,18 +115,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
-    private fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
-                    exitProcess(0)
-                }
-            }
-        )
-    }
-
     /** change to [HomeFragment]*/
     private fun startGame() {
         if (homeViewModel.playerList.value?.size!! > 2) {
@@ -138,6 +126,34 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 requireContext().getText(R.string.error_no_players),
                 Toast.LENGTH_SHORT
             ).show()
+    }
+
+    /** change login button background if user is connected*/
+    private fun setLoginButton(it: Char?) {
+        with(binding) {
+            if (it != null) {
+                homeLoginBt.setBackgroundResource(R.drawable.user_login_button)
+                homeLoginBt.text = it.toString()
+                homeCreateBt.alpha = 1f
+            } else {
+                homeLoginBt.setBackgroundResource(R.drawable.ic_login)
+                homeLoginBt.text = ""
+                homeCreateBt.alpha = 0.3f
+            }
+        }
+    }
+
+    /** close app when back button is pressed*/
+    private fun onBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                    exitProcess(0)
+                }
+            }
+        )
     }
 
     override fun onResume() {

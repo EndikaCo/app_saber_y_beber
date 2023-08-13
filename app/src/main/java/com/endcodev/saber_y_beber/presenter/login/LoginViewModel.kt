@@ -25,9 +25,7 @@ class LoginViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    companion object {
-        const val TAG = "LoginViewModel **"
-    }
+    companion object { const val TAG = "LoginViewModel ***" }
 
     private var _toast = MutableLiveData<String>()
     val toast get() = _toast

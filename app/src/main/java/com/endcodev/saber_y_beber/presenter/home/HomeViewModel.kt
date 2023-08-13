@@ -1,18 +1,13 @@
 package com.endcodev.saber_y_beber.presenter.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.database.entities.toDb
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.GetPlayersUseCase
-import com.endcodev.saber_y_beber.presenter.home.HomeFragment.Companion.TAG
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,13 +45,16 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    /** checks if user is logged*/
+    /** updates isConnected observer with first char of userName to show in UI*/
     fun checkLogin() {
         val auth = firebase.auth.currentUser
         if (auth != null && auth.isEmailVerified)
             _isConnected.value = auth.displayName?.first()
     }
 
+    /**
+     * returns true if user is connected and false if not
+     */
     fun isConnected(): Boolean {
         val auth = firebase.auth.currentUser
         return auth != null && auth.isEmailVerified

@@ -17,7 +17,7 @@ open class PlayerDialogFragment(
 ) : androidx.fragment.app.DialogFragment() {
 
     private lateinit var binding: DialogFragmentPlayerBinding
-    var image: Int = 0
+    private var image: Int = 0
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -36,26 +36,15 @@ open class PlayerDialogFragment(
     }
 
     private fun initListeners() {
+
         with(binding) {
+
             idName.onFocusChangeListener = OnFocusChangeListener { _, _ ->
-                idName.postDelayed({
-                    val inputMethodManager =
-                        requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    inputMethodManager.showSoftInput(
-                        idName,
-                        InputMethodManager.SHOW_IMPLICIT
-                    )
-                }, 200)
+                textUpdate()
             }
 
             idContinue.setOnClickListener {
-                if (idName.text.isNullOrEmpty())
-                    idName.error = "Cant be empty"
-                else {
-                    val player = PlayersModel(image, idName.text.toString(), 0)
-                    onSubmitClickListener.invoke(player)
-                    dismiss()
-                }
+                acceptPlayer()
             }
 
             errorCancel2.setOnClickListener {
@@ -63,25 +52,56 @@ open class PlayerDialogFragment(
             }
 
             idPicture.setOnClickListener {
-                when (image) {
-                    0 -> {
-                        idPicture.setImageResource(R.drawable.player_girl)
-                        idGenre.text = "F"
-                        image++
-                    }
+                changeGender()
+            }
+        }
+    }
 
-                    1 -> {
-                        idPicture.setImageResource(R.drawable.player_horse)
-                        idGenre.text = "-"
-                        image++
-                    }
+    private fun acceptPlayer() {
+        if (binding.idName.text.isNullOrEmpty())
+            binding.idName.error = "Cant be empty"
+        else {
+            val player = PlayersModel(image, binding.idName.text.toString(), 0)
+            onSubmitClickListener.invoke(player)
+            dismiss()
+        }
+    }
 
-                    2 -> {
-                        image = 0
-                        idGenre.text = "M"
-                        idPicture.setImageResource(R.drawable.player_boy)
-                    }
+    private fun textUpdate() {
+        with(binding) {
+            idName.postDelayed({
+                val inputMethodManager =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.showSoftInput(
+                    idName,
+                    InputMethodManager.SHOW_IMPLICIT
+                )
+            }, 200)
+        }
+    }
+
+    private fun changeGender() {
+        with(binding) {
+            when (image) {
+                0 -> {
+                    idPicture.setImageResource(R.drawable.player_girl)
+                    idGenre.text = "F"
+                    image++
                 }
+
+                1 -> {
+                    idPicture.setImageResource(R.drawable.player_horse)
+                    idGenre.text = "-"
+                    image++
+                }
+
+                2 -> {
+                    image = 0
+                    idGenre.text = "M"
+                    idPicture.setImageResource(R.drawable.player_boy)
+                }
+
+                else -> {}
             }
         }
     }

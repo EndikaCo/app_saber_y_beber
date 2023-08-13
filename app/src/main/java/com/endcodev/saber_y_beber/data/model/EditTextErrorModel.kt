@@ -2,7 +2,7 @@ package com.endcodev.saber_y_beber.data.model
 
 data class EditTextErrorModel(
     var questError: EditTextError?,
-    var CorrectError: EditTextError?,
+    var correctError: EditTextError?,
     var option2Error: EditTextError?,
     var option3Error: EditTextError?,
     var feedbackError: EditTextError?,

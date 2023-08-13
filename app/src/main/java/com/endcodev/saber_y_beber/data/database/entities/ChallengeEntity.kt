@@ -11,9 +11,8 @@ data class ChallengeEntity(
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "author") val author: String,
     @ColumnInfo(name = "challenge") val challenge: String,
-    @ColumnInfo(name = "rating") val rating: Int,
-    @ColumnInfo(name = "title") val title: String
+    @ColumnInfo(name = "rating") val diff: Int,
 )
 
 fun ChallengeModel.toDB() =
-    ChallengeEntity(challenge = challenge, author = author, title = title, rating = rating)
+    ChallengeEntity(challenge = challenge, author = author, diff = diff)

@@ -119,10 +119,10 @@ class CreateViewModel @Inject constructor(
 
     private fun isValidCorrectOption(option: String): Boolean {
         return if (option == "") {
-            _questError.value?.CorrectError = EditTextError("cannot be empty", 1)
+            _questError.value?.correctError = EditTextError("cannot be empty", 1)
             false
         } else {
-            _questError.value?.CorrectError = null
+            _questError.value?.correctError = null
             true
         }
     }

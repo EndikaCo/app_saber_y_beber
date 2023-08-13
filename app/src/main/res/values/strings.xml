@@ -20,7 +20,7 @@
     <string name="fin_ronda">Fin de la ronda %d</string>
     <string name="round_n">Ronda %d</string>
     <string name="final_ranking_lead">%s va en cabeza y reparte 3 tragos</string>
-    <string name="need_login">Tienes que iniciar sesión para poder reportar</string>
+    <string name="need_login">Primero tienes que iniciar sesión con una cuenta verificada</string>
     <string name="game_feedback_correct">Correcto, reparte %x tragos</string>
     <string name="game_feedback_incorrect">Incorrecto, Bebe %x tragos</string>
 
@@ -128,7 +128,6 @@
     <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_title">Log in as</string>
     <string name="game_difficulty">Difficulty</string>
@@ -137,6 +136,7 @@
     <string name="login_success">Login success</string>
     <string name="drinks">bebes %d tragos</string>
     <string name="drink">bebes 1 trago</string>
+    <string name="button_to_add_new_player">button to add new player</string>
 
 
 </resources>

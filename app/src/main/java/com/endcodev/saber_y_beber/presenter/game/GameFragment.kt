@@ -25,7 +25,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding get() = _binding!!
+
     private lateinit var adapter: GameAdapter
+
     private val gameVM: GameViewModel by viewModels()
 
     override fun onCreateView(

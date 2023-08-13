@@ -26,7 +26,7 @@
         android:fontFamily="casual"
         android:text="@string/forgot_text"
         android:textAlignment="center"
-        android:textColor="@color/blue1"
+        android:textColor="@color/dark_grey"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
