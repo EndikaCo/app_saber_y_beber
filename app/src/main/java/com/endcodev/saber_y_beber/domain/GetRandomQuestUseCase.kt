@@ -1,9 +1,7 @@
 package com.endcodev.saber_y_beber.domain
 
-import android.util.Log
-import com.endcodev.saber_y_beber.data.repository.GameRepository
 import com.endcodev.saber_y_beber.data.model.QuestModel
-
+import com.endcodev.saber_y_beber.data.repository.GameRepository
 import javax.inject.Inject
 
 class GetRandomQuestUseCase @Inject constructor(
@@ -21,7 +19,9 @@ class GetRandomQuestUseCase @Inject constructor(
     }
 
     fun nextQuest(): QuestModel? {
-        Log.v(TAG, "quest i:$i")
-        return questList[i++]
+        return if (questList.size > i)
+            questList[i++]
+        else
+            null
     }
 }

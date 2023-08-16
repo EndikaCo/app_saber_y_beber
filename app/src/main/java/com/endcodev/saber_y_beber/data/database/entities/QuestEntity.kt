@@ -10,7 +10,7 @@ import com.endcodev.saber_y_beber.data.model.QuestModel
 data class QuestEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "challenge") val challenge: String,
+    @ColumnInfo(name = "quest") val quest: String,
     @ColumnInfo(name = "author") val author: String,
     @ColumnInfo(name = "option1") val option1: String,
     @ColumnInfo(name = "option2") val option2: String,
@@ -21,7 +21,7 @@ data class QuestEntity(
 )
 
 fun QuestModel.toDB() = QuestEntity(
-    challenge = challenge,
+    quest = quest,
     author = author,
     option1 = option1,
     option2 = option2,

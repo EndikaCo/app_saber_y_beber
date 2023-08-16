@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -14,11 +15,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.data.model.GameUiModel
 import com.endcodev.saber_y_beber.data.model.OptionModel
 import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
+import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class GameFragment : Fragment(R.layout.fragment_game) {
@@ -51,12 +55,11 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
             //OnClick background
             background.setOnClickListener {
-                if (gameVM.gameModel.value != null)
-                    nextQuestion(gameVM.gameModel.value!!)
+                nextQuestion(gameVM.gameModel.value)
             }
 
             //OnClick report button
-            binding.report.setOnClickListener {
+            report.setOnClickListener {
                 //reportQuest(gameVM.gameModel.value!!)
             }
 
@@ -80,6 +83,33 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         //normal round questModel
         gameVM.gameModel.observe(viewLifecycleOwner) {
             updateUi(it)
+        }
+
+        gameVM.error.observe(viewLifecycleOwner) {
+            showError()
+        }
+    }
+
+    private fun showError() {
+
+            val dialog = ErrorDialogFragment(onAcceptClickLister = {
+                    findNavController().navigate(R.id.homeFragment)
+            }, ErrorModel(
+                "No hay mas preguntas",
+                "El juego se reiniciara",
+                "aceptar",
+                getString(R.string.cancel)
+            ))
+            dialog.isCancelable = false
+            dialog.show(parentFragmentManager, "dialog")
+
+    }
+
+    /** resets answered option [gameVM] and calls to next random quest*/
+    private fun nextQuestion(gameModel: GameUiModel?) {
+        if (gameModel != null) {
+            resetDrawables()
+            gameVM.nextQuest()
         }
     }
 
@@ -136,13 +166,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         binding.btOption2.setBackgroundResource(R.drawable.answer_option)
         binding.btOption3.setBackgroundResource(R.drawable.answer_option)
     }
-
-    /** resets answered option [gameVM] and calls to next random quest*/
-    private fun nextQuestion(gameModel: GameUiModel) {
-        resetDrawables()
-        gameVM.nextQuest()
-    }
-
 
     /** animates answer options pop up*/
     private fun animateOptions() {

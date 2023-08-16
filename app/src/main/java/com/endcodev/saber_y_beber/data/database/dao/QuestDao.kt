@@ -9,7 +9,8 @@ import com.endcodev.saber_y_beber.data.database.entities.QuestEntity
 @Dao
 interface QuestDao {
 
-    @Query("SELECT * FROM quest_table")
+    //get all if post value is true
+    @Query("SELECT * FROM quest_table WHERE post = 1")
     suspend fun getAllQuest(): List<QuestEntity>
 
     @Query("SELECT * FROM quest_table WHERE author = :author")

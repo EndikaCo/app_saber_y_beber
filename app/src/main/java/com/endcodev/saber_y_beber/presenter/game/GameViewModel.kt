@@ -19,7 +19,6 @@ import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -44,6 +43,9 @@ class GameViewModel @Inject constructor(
     private val _playerList = MutableLiveData<MutableList<PlayersModel>>()
     val playerList: LiveData<MutableList<PlayersModel>> get() = _playerList
 
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean> get() = _error
+
     private var _round = 1
     private var _actualPlayer = -1
     private var questCounter: Int = 0
@@ -53,30 +55,30 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             _playerList.value = playersUseCase.invoke().toMutableList()
+            loadData()
+            isLoading.postValue(false)
+        }
+    }
 
-            if (getQuestUseCase().isNotEmpty() && getChallengeUseCase().isNotEmpty()) {
-                getRandomQuestUseCase()
-                getRandomChallengeUseCase()
-                startRoundChallenge()
-                isLoading.postValue(false)
-            }
+    private suspend fun loadData(){
+        if (getQuestUseCase().isNotEmpty() && getChallengeUseCase().isNotEmpty()) {
+            getRandomQuestUseCase()
+            getRandomChallengeUseCase()
+            startRoundChallenge()
         }
     }
 
     private fun startRoundChallenge() {
-        _gameModel.value = challengeToGame(getRandomChallengeUseCase.startChallenge(), 1)
+        _gameModel.value = challengeToGame(getRandomChallengeUseCase.startChallenge())
     }
 
     private fun randomChallenge() {
         viewModelScope.launch {
-            val randomNum = (_playerList.value!!.indices).random(Random(System.currentTimeMillis()))
-            val randPlayer = _playerList.value!![randomNum]
             val randChallenge = getRandomChallengeUseCase.nextChallenge()
-
             if (randChallenge != null)
-                randChallenge.challenge =
-                    randChallenge.challenge.replace("#player", randPlayer.name)
-            _gameModel.value = randChallenge?.let { challengeToGame(it, 1) }
+                _gameModel.value = challengeToGame(randChallenge)
+            else
+                _error.value = true
         }
     }
 
@@ -93,7 +95,7 @@ class GameViewModel @Inject constructor(
     private fun finalRoundChallenge() {
         val finRonda =
             getRandomChallengeUseCase.finalChallenge(_round, leaderPlayer(_playerList.value!!)!!)
-        _gameModel.value = challengeToGame(finRonda, 3)
+        _gameModel.value = challengeToGame(finRonda)
         _actualPlayer += 1
         _round += 1
     }
@@ -101,13 +103,20 @@ class GameViewModel @Inject constructor(
     private fun randomQuest() {
         viewModelScope.launch {
             isLoading.postValue(true)
-            _gameModel.value = questToGame(getRandomQuestUseCase.nextQuest()!!)
 
+            val quest = questToGame(getRandomQuestUseCase.nextQuest())
+            if (quest != null)
+                _gameModel.value = quest
+            else
+                _error.value = true
             isLoading.postValue(false)
         }
     }
 
-    private fun questToGame(model: QuestModel): GameUiModel {
+    private fun questToGame(model: QuestModel?): GameUiModel? {
+
+        if (model == null)
+            return null
 
         val shuffledList = arrayListOf(model.option1, model.option2, model.option3).shuffled()
 
@@ -118,7 +127,7 @@ class GameViewModel @Inject constructor(
         }
 
         return GameUiModel(
-            quest = model.challenge,
+            quest = model.quest,
             author = model.author,
             option1 = OptionModel(shuffledList[0], false, isCorrect = false),
             option2 = OptionModel(shuffledList[1], false, isCorrect = false),
@@ -130,7 +139,7 @@ class GameViewModel @Inject constructor(
         )
     }
 
-    private fun challengeToGame(challengeModel: ChallengeModel, difficulty: Int): GameUiModel {
+    private fun challengeToGame(challengeModel: ChallengeModel): GameUiModel {
         with(challengeModel) {
             return GameUiModel(
                 challenge,
@@ -138,7 +147,7 @@ class GameViewModel @Inject constructor(
                 null,
                 null,
                 null,
-                difficulty,
+                diff,
                 title,
                 _round,
                 answered = true
