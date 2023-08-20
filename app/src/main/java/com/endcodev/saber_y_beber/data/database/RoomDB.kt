@@ -14,7 +14,7 @@ import com.endcodev.saber_y_beber.data.database.entities.QuestEntity
         QuestEntity::class,
         ChallengeEntity::class,
         PlayerEntity::class],
-    version = 4
+    version = 1
 )
 abstract class RoomDB : RoomDatabase() {
     abstract fun getQuestDao(): QuestDao

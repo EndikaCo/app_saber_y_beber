@@ -7,7 +7,5 @@ data class CorrectionModel(
     var option2: String,
     var option3: String,
     val difficulty: Int,
-    val fail: String,
-    val rating: Int,
     val correctors: ArrayList<CorrectorModel>
 )

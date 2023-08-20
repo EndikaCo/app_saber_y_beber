@@ -16,7 +16,6 @@ data class QuestEntity(
     @ColumnInfo(name = "option2") val option2: String,
     @ColumnInfo(name = "option3") val option3: String,
     @ColumnInfo(name = "difficulty") val difficulty: Int,
-    //@ColumnInfo(name = "correctors") val correctors: ArrayList<CorrectorModel>,
     @ColumnInfo(name = "post") val post: Boolean
 )
 
@@ -27,6 +26,5 @@ fun QuestModel.toDB() = QuestEntity(
     option2 = option2,
     option3 = option3,
     difficulty = difficulty,
-    //correctors = correctors,
     post = post
 )

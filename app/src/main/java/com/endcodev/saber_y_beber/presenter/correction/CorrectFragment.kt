@@ -46,45 +46,64 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         onBackPressed()
     }
 
+    /**
+     * Initialize the views.
+     */
     private fun initViews() {
         binding.viewHeader.headerTitle.text = resources.getString(R.string.correction_title_default)
     }
 
+    /**
+     * Initialize the listeners.
+     */
     private fun initListeners() {
 
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
-        binding.correctOkBt.setOnClickListener {
+        binding.correctOk.setOnClickListener {
             acceptCorrection()
         }
     }
 
+    /**
+     * Initialize the observers.
+     */
     private fun initObservers() {
 
+        // update Ui when the correction is available.
         correctViewModel.correctModel.observe(viewLifecycleOwner) { correction ->
+            // if correction is null, show error dialog.
             if (correction == null) {
-                val dialog = ErrorDialogFragment(
-                    onAcceptClickLister = {
-                        if (it) {
-                            findNavController().navigate(R.id.createFragment)
-                        }
-                    }, ErrorModel(
-                        getString(R.string.correct_no_correction_available_title),
-                        getString(R.string.correct_no_correction_available),
-                        getString(R.string.ok),
-                        ""
-                    )
-                )
-                dialog.isCancelable = false
-                dialog.show(childFragmentManager, "dialog")
-            } else
+                showErrorDialog()
+            } else {
+                // Show the correction in UI.
                 showCorrection(correction)
+            }
         }
 
+        // navigate to create fragment.
         correctViewModel.toCreate.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.createFragment)
         }
+    }
+
+    /**
+     * Show error dialog.
+     */
+    private fun showErrorDialog() {
+        val dialog = ErrorDialogFragment(
+            onAcceptClickLister = {
+                if (it) { findNavController().navigate(R.id.createFragment) }
+            }, ErrorModel(
+                getString(R.string.correct_no_correction_available_title),
+                getString(R.string.correct_no_correction_available),
+                getString(R.string.ok),
+                ""
+            )
+        )
+        dialog.isCancelable = false
+        dialog.show(childFragmentManager, "dialog")
     }
 
     private fun acceptCorrection() {
@@ -98,6 +117,9 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         correctViewModel.postAvailableCorrection() //else, correct another question
     }
 
+    /**
+     * @return TRUE if all the checks are checked.
+     */
     private fun allChecked(): Boolean {
         return (binding.correctDifficultyCheck.isChecked
                 && binding.correctQuestCheck.isChecked
@@ -115,6 +137,16 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         binding.correctOption2.text = correction.option2
         binding.correctOption3.text = correction.option3
         binding.correctQuestion.text = correction.correction
+        setDifficulty(correction.difficulty)
+    }
+
+    private fun setDifficulty(difficulty: Int) {
+        when (difficulty) {
+            0 -> binding.correctDifficulty.setBackgroundResource(R.drawable.difficulty_0)
+            1 -> binding.correctDifficulty.setBackgroundResource(R.drawable.difficulty_1)
+            2 -> binding.correctDifficulty.setBackgroundResource(R.drawable.difficulty_2)
+            3 -> binding.correctDifficulty.setBackgroundResource(R.drawable.difficulty_3)
+        }
     }
 
     private fun onBackPressed() {

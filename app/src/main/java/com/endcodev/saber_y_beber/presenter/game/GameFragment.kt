@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -22,7 +21,6 @@ import com.endcodev.saber_y_beber.data.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class GameFragment : Fragment(R.layout.fragment_game) {
@@ -50,6 +48,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         onBackPressed()
     }
 
+    /**
+     * Initialize the listeners.
+     */
     private fun initListeners() {
         with(binding) {
 
@@ -70,6 +71,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
+    /**
+     * Initialize the observers.
+     */
     private fun initObservers() {
         gameVM.playerList.observe(viewLifecycleOwner) {
             initAdapter(it)
@@ -90,18 +94,21 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
+    /** shows error dialog*/
     private fun showError() {
 
-            val dialog = ErrorDialogFragment(onAcceptClickLister = {
-                    findNavController().navigate(R.id.homeFragment)
+        val dialog = ErrorDialogFragment(
+            onAcceptClickLister = {
+                findNavController().navigate(R.id.homeFragment)
             }, ErrorModel(
-                "No hay mas preguntas",
+                "No hay mas preguntas", //todo
                 "El juego se reiniciara",
                 "aceptar",
                 getString(R.string.cancel)
-            ))
-            dialog.isCancelable = false
-            dialog.show(parentFragmentManager, "dialog")
+            )
+        )
+        dialog.isCancelable = false
+        dialog.show(parentFragmentManager, "dialog")
 
     }
 
@@ -113,6 +120,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
+    /** updates UI with [ui]*/
     private fun updateUi(ui: GameUiModel?) {
         if (ui != null)
             with(binding) {
@@ -130,13 +138,15 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
                 if (!ui.answered)
                     animateOptions()
-                //report.alpha = ui.report
+                //report.alpha = ui.report //todo
                 setDifficulty(ui.difficulty)
                 tvRound.text = resources.getString(R.string.round_n, ui.round)
                 adapter.sortListByPoints()
             }
     }
 
+    /** enables or disables buttons
+     * @param ans is the state to change*/
     private fun enableButtons(ans: Boolean) {
         binding.btOption1.isEnabled = !ans
         binding.btOption2.isEnabled = !ans
@@ -144,7 +154,13 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         binding.background.isEnabled = ans
     }
 
+
+    /** sets the option in the button
+     * @param option is the option to change the text
+     * @param button is the radiobutton View to modify*/
     private fun setOption(option: OptionModel?, button: RadioButton) {
+
+        // if null hide button
         if (option == null) {
             button.visibility = View.INVISIBLE
         } else {
@@ -152,14 +168,16 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             button.text = option.text
         }
 
+        // if selected but wrong
         if (option?.isSelected == true)
             button.setBackgroundResource(R.drawable.answer_option_selected)
 
+        //if selected and correct
         if (option?.isCorrect == true)
-            button.setBackgroundResource(R.drawable.answer_optio_correctn)
+            button.setBackgroundResource(R.drawable.answer_option_correct)
     }
 
-
+    /** resets all drawables to default*/
     private fun resetDrawables() {
         binding.options.clearCheck()
         binding.btOption1.setBackgroundResource(R.drawable.answer_option)
@@ -175,6 +193,8 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         binding.tvTitle.startAnimation(anim)
     }
 
+    /** sets the difficulty background
+     * @param difficulty is the difficulty to set*/
     private fun setDifficulty(difficulty: Int) {
         when (difficulty) {
             0 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_0)
@@ -188,7 +208,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         //findNavController().navigate(R.id.rankingDialogFragment)
     }
 
-    //Recycler adapter
+    /** initializes the adapter with [value]*/
     private fun initAdapter(value: List<PlayersModel>?) {
         value?.let {
             adapter = GameAdapter(it, onClickListener = {

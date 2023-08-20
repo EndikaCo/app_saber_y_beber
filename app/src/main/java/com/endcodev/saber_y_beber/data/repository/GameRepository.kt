@@ -53,12 +53,4 @@ class GameRepository @Inject constructor(
     suspend fun clearChallenges() {
         challengeDao.deleteAllChallenges()
     }
-
-    suspend fun getAllCorrections(): List<CorrectionModel> {
-        return api.getCorrections()
-    }
-    /**
-    fun postCorrection(q: QuestModel): Call<QuestModel> {
-    return api.postQuest(q)
-    }*/
 }

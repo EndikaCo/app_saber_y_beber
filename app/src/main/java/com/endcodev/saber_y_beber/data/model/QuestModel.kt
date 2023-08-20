@@ -9,7 +9,6 @@ data class QuestModel(
     var option2: String,
     var option3: String,
     val difficulty: Int,
-    //val correctors: ArrayList<CorrectorModel>,
     val post: Boolean
 )
 

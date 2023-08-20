@@ -66,6 +66,8 @@ class GameViewModel @Inject constructor(
             getRandomChallengeUseCase()
             startRoundChallenge()
         }
+        else
+            _error.value = true //todo
     }
 
     private fun startRoundChallenge() {

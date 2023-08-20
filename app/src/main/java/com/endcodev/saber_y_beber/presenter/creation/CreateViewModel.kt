@@ -20,16 +20,16 @@ import javax.inject.Inject
 class CreateViewModel @Inject constructor(
     private val getCorrectionsUseCase: GetCorrectionsUseCase,
     private val firebase: FirebaseClient,
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _notification = MutableLiveData<String>()
-    val notification get() = _notification
+    val notification: LiveData<String> get() = _notification
 
-    private val _difficulty = MutableLiveData<Int>(0)
+    private val _difficulty = MutableLiveData(0)
     val difficulty: LiveData<Int> get() = _difficulty
 
     private var _questError = MutableLiveData<EditTextErrorModel>()
-    val questError get() = _questError
+    val questError: LiveData<EditTextErrorModel>get() = _questError
 
     fun onCreate() {
         EditTextErrorModel(null, null, null, null, null, null, null)
@@ -41,9 +41,9 @@ class CreateViewModel @Inject constructor(
             val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
             database = FirebaseDatabase.getInstance().reference.child(path)
             database.setValue(correctionModel).addOnSuccessListener {
-                notification.postValue("Subido correcto puta")
+                _notification.postValue("Subido correcto puta") // todo enviar val cono in o sealed class y coger string en fragment
             }.addOnFailureListener {
-                notification.postValue("Algo ha ido mal puta")
+                _notification.postValue("Algo ha ido mal puta")
             }
         }
     }
@@ -52,19 +52,15 @@ class CreateViewModel @Inject constructor(
         quest: String,
         optionA: String,
         optionB: String,
-        optionC: String,
-        feedback: String,
-        alternative: String,
+        optionC: String
     ) {
         val questOk: Boolean = isValidQuest(quest)
         val aOptionOK: Boolean = isValidCorrectOption(optionA)
         val bOptionOK: Boolean = isValidOptionB(optionB)
         val cOptionOK: Boolean = isValidOptionC(optionC)
-        val failOk: Boolean = isValidFail(feedback)
-        val alternativeOk: Boolean = isValidAlternative(alternative)
         val difficultyOk: Boolean = isValidDifficulty(_difficulty.value!!)
 
-        if (questOk && aOptionOK && bOptionOK && cOptionOK && failOk && alternativeOk && difficultyOk)
+        if (questOk && aOptionOK && bOptionOK && cOptionOK && difficultyOk)
             postCorrection(
                 CorrectionModel(
                     correction = quest,
@@ -72,27 +68,21 @@ class CreateViewModel @Inject constructor(
                     option1 = optionA,
                     option2 = optionB,
                     option3 = optionC,
-                    difficulty = _difficulty.value!!,
-                    fail = onFailText(feedback,alternative),
-                    rating = 0,
+                    difficulty = _difficulty.value!!, //todo
                     correctors = correctorsList()
                 )
-            ) else questError.postValue(_questError.value)
+            ) else _questError.postValue(_questError.value)
     }
 
     private fun correctorsList(): ArrayList<CorrectorModel> {
         val correctorsList: ArrayList<CorrectorModel> = ArrayList()
-        correctorsList.add(CorrectorModel(getUid(), true, 1))
+        correctorsList.add(CorrectorModel(getUid(), true))
         return correctorsList
-    }
-
-    private fun onFailText(feedback: String, alternative: String): String {
-        return "$feedback\nBebe ${_difficulty.value} tragos $alternative"
     }
 
     private fun getUid(): String {
         val uid = firebase.auth.uid
-        uid?.let { return it}
+        uid?.let { return it }
         return "00"
     }
 
@@ -100,7 +90,7 @@ class CreateViewModel @Inject constructor(
 
         val user = firebase.auth.currentUser
         user?.let { return it.displayName.toString() }
-       return "Anonymous"
+        return "Anonymous"
     }
 
 
@@ -144,20 +134,6 @@ class CreateViewModel @Inject constructor(
         } else {
             _questError.value?.option3Error = null
             true
-        }
-    }
-
-    private fun isValidFail(feedback: String): Boolean {
-        return if (feedback == "") {
-            _questError.value?.feedbackError = null
-            true
-        } else if (feedback.first().isUpperCase() && feedback.last() == '.') {
-            _questError.value?.feedbackError = null
-            true
-        } else {
-            _questError.value?.feedbackError =
-                EditTextError("Should start with capital letter and end in with '.'", 2)
-            false
         }
     }
 
