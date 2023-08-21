@@ -9,11 +9,12 @@ data class QuestModel(
     var option2: String,
     var option3: String,
     val difficulty: Int,
+    val correctors: ArrayList<CorrectorModel>?,
     val post: Boolean
 )
 
 fun QuestModel.toDomain() =
-    QuestModel(quest, author, option1, option2, option3, difficulty, post)
+    QuestModel(quest, author, option1, option2, option3, difficulty, correctors, post)
 
 fun QuestEntity.toDomain() =
-    QuestModel(quest, author, option1, option2, option3, difficulty, post)
+    QuestModel(quest, author, option1, option2, option3, difficulty,null, post)

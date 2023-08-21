@@ -3,14 +3,12 @@ package com.endcodev.saber_y_beber.data.model
 /**
  * @param quest - The question
  * @param author - The author of the question
- * @param answer - The correct answer
  * @param option1 - The first option
  * @param option2 - The second option
  * @param option3 - The third option
  * @param difficulty - The difficulty of the question
  * @param title - The title
  * @param round - The round
- * @param optionsColor - The color of the options
  * @param answered - state of the quest
  */
 data class GameUiModel(

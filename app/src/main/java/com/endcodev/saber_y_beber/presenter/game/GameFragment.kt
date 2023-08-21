@@ -101,9 +101,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             onAcceptClickLister = {
                 findNavController().navigate(R.id.homeFragment)
             }, ErrorModel(
-                "No hay mas preguntas", //todo
-                "El juego se reiniciara",
-                "aceptar",
+                getString(R.string.no_quest_available),
+                getString(R.string.game_reset),
+                getString(R.string.player_accept),
                 getString(R.string.cancel)
             )
         )
@@ -134,11 +134,10 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
                 enableButtons(ui.answered)
 
-                report.visibility = View.VISIBLE
+                report.visibility = View.INVISIBLE
 
                 if (!ui.answered)
                     animateOptions()
-                //report.alpha = ui.report //todo
                 setDifficulty(ui.difficulty)
                 tvRound.text = resources.getString(R.string.round_n, ui.round)
                 adapter.sortListByPoints()

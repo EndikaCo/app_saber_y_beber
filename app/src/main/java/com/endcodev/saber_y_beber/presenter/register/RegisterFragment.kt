@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     companion object {
-        const val TAG = "RegisterFragment **"
+        const val TAG = "RegisterFragment ***"
     }
 
     private var _binding: FragmentRegisterBinding? = null
@@ -42,6 +42,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun initViews() {
         binding.viewHeader.headerTitle.text = resources.getString(R.string.register_account_title)
         binding.viewSignIn.btnLogin.text = resources.getString(R.string.register_bt)
+        binding.viewSignIn.registerGoogle.visibility = View.GONE
+        binding.viewSignIn.registerFacebook.visibility = View.GONE
+        binding.viewSignIn.registerTwitter.visibility = View.GONE
+        binding.viewSignIn.tvLogin.visibility = View.GONE
     }
 
     private fun initObservers() {
@@ -90,7 +94,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         try {
             registerViewModel.createAccount(email, pass, repeat, userName)
         } catch (e: Exception) {
-            Log.e(TAG, "$e")
+            Log.e(TAG, "Error: $e")
         }
     }
 

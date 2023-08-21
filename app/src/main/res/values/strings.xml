@@ -12,6 +12,7 @@
     <string name="home_player_add_button"> Añadir\njugador</string>
     <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
     <string name="home_start_game_button">Iniciar juego</string>
+    <string name="add_player">Añadir</string>
 
     <!-- game fragment-->
     <string name="game_start_round_title"><b>Ronda 1</b></string>
@@ -30,14 +31,18 @@
     <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico</string>
     <string name="login_mail">Email</string>
     <string name="login_password">Contraseña</string>
-    <string name="login_forgot_pass">He olvidado la contraseña</string>
+    <string name="login_forgot_pass"><b> <u><font color="@colors/light_black">He olvidado la contraseña</font></u></b></string>
     <string name="login_bt">Iniciar sesión</string>
-    <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/blue1">Crear cuenta</font></u></b></string>
+    <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/light_black">Crear cuenta</font></u></b></string>
     <string name="login_facebook">Login with facebook</string>
     <string name="login_google">Iniciar sesión con Google</string>
     <string name="login_not_verified">El Email no ha sido verificado aún. Accede a tu cuenta de correo electronico y pincha en el enlace de verificación. (Mira tambien en la bandeja de SPAM)</string>
     <string name="login_failed">El Email o la contraseña no son correctos</string>
     <string name="login_error">Introduce tu mail y contraseña</string>
+    <string name="something_went_wrong">algo ha salido mal</string>
+    <string name="logged_as">Sesión iniciada como %s\n</string>
+    <string name="log_out">Cerrar sesión</string>
+
 
     <!-- facebook login -->
     <string name="facebook_app_id">1234</string>
@@ -69,6 +74,7 @@
     <string name="register_error_user">El nombre de usuario debe tener al menos 3 caracteres</string>
     <string name="register_success">Cuenta creada correctamente</string>
     <string name="register_check_mail">Compruebe el correo electrónico para la verificación de la cuenta. Compruebe también su carpeta de spam.</string>
+    <string name="register_account"><b> <u><font color="@colors/light_black">¿tienes ya una cuenta? Inicia Sesión</font></u></b></string>
 
     <!-- forgot pass fragment-->
     <string name="forgot_title">Recuperar contraseña</string>
@@ -116,12 +122,11 @@
     <string name="correction_title">Pregunta de %s Corregidas %d/2 </string>
     <string name="correction_title_default">Correción de preguntas </string>
     <string name="correction_back_button">Botón atrás</string>
-    <string name="todo">TODO</string>
     <string name="correct_info_bt">Botón info</string>
     <string name="correct_difficulty">Marcar la casilla si la dificultad es adecuada a la pregunta</string>
     <string name="correct_no_correction_available">Puedes crear una pregunta directamente</string>
     <string name="correct_no_correction_available_title">No hay correciones disponibles en este momento</string>
-
+    <string name="correction_state">state of the quest correction</string>
 
     <!--UPDATE DIALOG-->
     <string name="require_update">Update required</string>
@@ -137,6 +142,9 @@
     <string name="drinks">bebes %d tragos</string>
     <string name="drink">bebes 1 trago</string>
     <string name="button_to_add_new_player">button to add new player</string>
-
+    <string name="list_of_created_questions">Lista de preguntas creadas por ti</string>
+    <string name="login_icon">Icono de inicio de sesion</string>
+    <string name="no_quest_available">no hay más preguntas disponibles</string>
+    <string name="game_reset">El juego se reiniciará</string>
 
 </resources>

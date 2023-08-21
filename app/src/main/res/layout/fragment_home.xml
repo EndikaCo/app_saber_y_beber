@@ -58,21 +58,6 @@
         app:layout_constraintTop_toTopOf="@+id/home_login_bt"
         app:tint="@color/light_black" />
 
-
-    <Button
-        android:id="@+id/home_add_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="50sp"
-        android:background="@color/transparent"
-        android:focusable="true"
-        android:text="ADD"
-        android:drawableLeft="@drawable/ic_person_add"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/home_rv"
-        app:layout_constraintEnd_toEndOf="@+id/home_rv"
-        app:layout_constraintStart_toStartOf="@+id/home_rv"
-        android:contentDescription="@string/button_to_add_new_player" />
-    <!--
     <Button
         android:id="@+id/home_add_bt"
         android:layout_width="wrap_content"
@@ -83,11 +68,11 @@
         android:focusable="true"
         android:text="@string/home_player_add_button"
         android:textColor="@color/light_black"
-        android:textSize="17sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/home_rv"
         app:layout_constraintEnd_toEndOf="@+id/home_rv"
         app:layout_constraintStart_toStartOf="@+id/home_rv" />
--->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_rv"
         android:layout_width="wrap_content"

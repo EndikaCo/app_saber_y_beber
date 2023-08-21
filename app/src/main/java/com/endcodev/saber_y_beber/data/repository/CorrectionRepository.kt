@@ -8,7 +8,7 @@ class CorrectionRepository @Inject constructor(
     private val api: FirebaseService,
 ) {
 
-    suspend fun getAllCorrections(): List<CorrectionModel> {
+    suspend fun getAllCorrectionsFromApi(): List<CorrectionModel> {
         return api.getCorrections()
     }
 }

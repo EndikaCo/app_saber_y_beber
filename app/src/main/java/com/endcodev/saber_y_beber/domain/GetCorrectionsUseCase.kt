@@ -17,7 +17,7 @@ class GetCorrectionsUseCase @Inject constructor(
         var quest: List<CorrectionModel>? = null
 
         try {
-            quest = repository.getAllCorrections()
+            quest = repository.getAllCorrectionsFromApi()
         } catch (e: Exception) {
             Log.e(TAG, "No reply from  quest retrofit API")
         }

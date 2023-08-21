@@ -74,9 +74,6 @@ class CorrectViewModel @Inject constructor(
      */
     private fun checkAnyCorrection(item: CorrectionModel): Boolean {
 
-        //if (firebase.auth.currentUser == null) // todo sobra
-        //    return false
-
         for ((index, value) in item.correctors.withIndex()) {
             if (value.id == firebase.auth.currentUser!!.uid) {
                 Log.v(TAG, "correction $index already corrected or created")

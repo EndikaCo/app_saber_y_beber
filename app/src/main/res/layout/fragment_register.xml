@@ -132,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="¿tienes ya una cuenta? Inicia Sesión"
+        android:text="@string/register_account"
         android:textAlignment="center"
         android:textColor="@color/blue2"
         android:textSize="15sp"

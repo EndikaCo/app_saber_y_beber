@@ -7,7 +7,6 @@
     android:background="@drawable/gradient_background"
     tools:context=".presenter.profile.ProfileFragment">
 
-
     <ImageButton
         android:id="@+id/profile_back"
         android:layout_width="60dp"
@@ -23,21 +22,20 @@
         app:tint="@color/light_black" />
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profile_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/profile_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_rv_title"
-        tools:listitem="@layout/player_holder" />
+        tools:listitem="@layout/profile_holder" />
 
     <TextView
         android:id="@+id/profile_username"
@@ -45,9 +43,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:textAlignment="textEnd"
+        android:textColor="@color/dark_grey"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/dark_grey"
         app:layout_constraintBottom_toTopOf="@+id/profile_mail"
         app:layout_constraintEnd_toStartOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_back"
@@ -58,8 +56,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:textAlignment="textEnd"
-        android:textSize="18sp"
         android:textColor="@color/dark_grey"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/profile_back"
         app:layout_constraintEnd_toStartOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_back"
@@ -70,19 +68,30 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/login_icon"
         android:src="@drawable/ic_login"
         app:layout_constraintBottom_toBottomOf="@+id/profile_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_back" />
+
+    <ProgressBar
+        android:id="@+id/profile_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/profile_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_rv" />
 
     <TextView
         android:id="@+id/profile_rv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
-        android:text="List of created questions"
-        android:textSize="20sp"
+        android:text="@string/list_of_created_questions"
         android:textColor="@color/dark_grey"
+        android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="@+id/profile_rv"
         app:layout_constraintStart_toStartOf="@+id/profile_rv"
@@ -95,7 +104,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="Log Out"
+        android:maxWidth="200dp"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

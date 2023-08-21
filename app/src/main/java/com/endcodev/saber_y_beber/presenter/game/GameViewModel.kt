@@ -60,14 +60,13 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    private suspend fun loadData(){
+    private suspend fun loadData() {
         if (getQuestUseCase().isNotEmpty() && getChallengeUseCase().isNotEmpty()) {
             getRandomQuestUseCase()
             getRandomChallengeUseCase()
             startRoundChallenge()
-        }
-        else
-            _error.value = true //todo
+        } else
+            _error.value = true
     }
 
     private fun startRoundChallenge() {
@@ -82,6 +81,7 @@ class GameViewModel @Inject constructor(
             else
                 _error.value = true
         }
+        questCounter = 0
     }
 
     //get the name of the player with the highest score
@@ -209,21 +209,22 @@ class GameViewModel @Inject constructor(
         val playerList = _playerList.value
 
         if (playerList != null) {
-            if (isFinalRound(playerList)) {
+            if (isFinalRound(playerList))
                 finalRoundChallenge()
-            } else if (questCounter == 3) //middle round -> every 3 quests
-            {
+            else if (questCounter == 3) //middle round -> every 3 quests
                 randomChallenge()
-                questCounter = 0
-            } else {   // normal round
-                _actualPlayer += 1 // next player
-                questCounter++
-                if (_actualPlayer > playerList.size - 1) {
-                    _actualPlayer = 0 // reset player to 1st
-                }
-                randomQuest()
-            }
+            else
+                normalRound(playerList)
         }
+    }
+
+    private fun normalRound(playerList: MutableList<PlayersModel>) {
+        _actualPlayer += 1 // next player
+        questCounter++
+        if (_actualPlayer > playerList.size - 1) {
+            _actualPlayer = 0 // reset player to 1st
+        }
+        randomQuest()
     }
 
     private fun isFinalRound(playerList: MutableList<PlayersModel>): Boolean {

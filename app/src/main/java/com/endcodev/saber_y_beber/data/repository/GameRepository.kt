@@ -1,13 +1,11 @@
 package com.endcodev.saber_y_beber.data.repository
 
-
 import com.endcodev.saber_y_beber.data.database.dao.ChallengeDao
 import com.endcodev.saber_y_beber.data.database.dao.QuestDao
 import com.endcodev.saber_y_beber.data.database.entities.ChallengeEntity
 import com.endcodev.saber_y_beber.data.database.entities.QuestEntity
 import com.endcodev.saber_y_beber.data.retrofit.FirebaseService
 import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.CorrectionModel
 import com.endcodev.saber_y_beber.data.model.QuestModel
 import com.endcodev.saber_y_beber.data.model.toDomain
 import javax.inject.Inject

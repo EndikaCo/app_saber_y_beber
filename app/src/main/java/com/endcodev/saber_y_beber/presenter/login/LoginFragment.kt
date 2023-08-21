@@ -26,19 +26,27 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    companion object { const val TAG = "LoginFragment ***" }
+    companion object {
+        const val TAG = "LoginFragment ***"
+    }
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     private val loginViewModel: LoginViewModel by viewModels()
 
-    private val gLogin = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result -> gLoginInit(result) }
+    private val gLogin =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            gLoginInit(result)
+        }
+
     private val callbackManager = CallbackManager.Factory.create()
 
     override fun onCreateView(
@@ -116,15 +124,17 @@ class LoginFragment : Fragment() {
     }
 
     private fun gLoginInit(result: ActivityResult?) {
+
         if (result != null) {
+
             if (result.resultCode == Activity.RESULT_OK) {
+
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
 
                 try {
                     val account = task.getResult(ApiException::class.java)
-                    if (account != null) {
+                    if (account != null)
                         gLogin(account)
-                    }
                 } catch (e: ApiException) {
                     Toast.makeText(requireContext(), "error:$e", Toast.LENGTH_SHORT).show()
                 }
@@ -138,23 +148,21 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    //todo falta meter el nombre si es la primera  vez y no tiene nombre de usuario,
-                    // como en register con un dialogo tal vez o coger el nombre que tiene en el mail
                     Toast.makeText(
                         requireContext(),
-                        "Sesión iniciada como ${auth.currentUser}",//todo aqui poner el name una vez exista
+                        getString(R.string.login_success),
                         Toast.LENGTH_SHORT
                     ).show()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else
                     Toast.makeText(
                         requireContext(),
-                        "fail google",//todo a strings
+                        getString(R.string.something_went_wrong),
                         Toast.LENGTH_SHORT
                     ).show()
             }
-    }
 
+    }
 
     private fun mailPassLogin() {
         loginViewModel.login(
@@ -177,10 +185,18 @@ class LoginFragment : Fragment() {
                         FirebaseAuth.getInstance().signInWithCredential(credential)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    Toast.makeText(requireContext(), "ok s", Toast.LENGTH_SHORT) //todo
+                                    Toast.makeText(
+                                        requireContext(),
+                                        getString(R.string.login_success),
+                                        Toast.LENGTH_SHORT
+                                    )
                                         .show()
                                 } else {
-                                    Toast.makeText(requireContext(), "mal face", Toast.LENGTH_SHORT) //todo
+                                    Toast.makeText(
+                                        requireContext(),
+                                        getString(R.string.something_went_wrong),
+                                        Toast.LENGTH_SHORT
+                                    )
                                         .show()
                                 }
                             }
