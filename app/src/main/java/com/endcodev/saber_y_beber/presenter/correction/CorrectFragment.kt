@@ -1,6 +1,7 @@
 package com.endcodev.saber_y_beber.presenter.correction
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,18 @@ import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.CorrectionModel
 import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.FragmentCorrectBinding
+import com.endcodev.saber_y_beber.presenter.creation.CreateFragment
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CorrectFragment : Fragment(R.layout.fragment_correct) {
+
+    private var mInterstitialAd: InterstitialAd? = null
 
     private var _binding: FragmentCorrectBinding? = null
     private val binding: FragmentCorrectBinding get() = _binding!!
@@ -40,10 +48,27 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initAdmob()
         initViews()
         initListeners()
         initObservers()
         onBackPressed()
+    }
+
+    private fun initAdmob() {
+        val adRequest: AdRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(requireContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(CreateFragment.TAG, adError.toString())
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(CreateFragment.TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
     }
 
     /**
@@ -63,6 +88,7 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         }
         binding.correctOk.setOnClickListener {
             acceptCorrection()
+            mInterstitialAd?.show(requireActivity())
         }
     }
 
@@ -94,12 +120,17 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     private fun showErrorDialog() {
         val dialog = ErrorDialogFragment(
             onAcceptClickLister = {
-                if (it) { findNavController().navigate(R.id.createFragment) }
+                if (it) {
+                    findNavController().navigate(R.id.createFragment)
+                    mInterstitialAd?.show(requireActivity())
+                }
+                else
+                    findNavController().navigate(R.id.homeFragment)
             }, ErrorModel(
                 getString(R.string.correct_no_correction_available_title),
                 getString(R.string.correct_no_correction_available),
                 getString(R.string.ok),
-                ""
+                getString(R.string.cancel)
             )
         )
         dialog.isCancelable = false

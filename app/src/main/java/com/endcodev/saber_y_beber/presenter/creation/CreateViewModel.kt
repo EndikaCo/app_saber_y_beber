@@ -41,7 +41,7 @@ class CreateViewModel @Inject constructor(
             val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
             database = FirebaseDatabase.getInstance().reference.child(path)
             database.setValue(correctionModel).addOnSuccessListener {
-                _notification.postValue("Subido correcto puta") // todo enviar val cono in o sealed class y coger string en fragment
+                _notification.postValue("Subido correctamente") // todo enviar val cono in o sealed class y coger string en fragment
             }.addOnFailureListener {
                 _notification.postValue("Algo ha ido mal puta")
             }

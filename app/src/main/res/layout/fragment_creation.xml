@@ -121,7 +121,6 @@
             android:textColor="@color/light_black"
             android:textColorHint="@color/light_black" />
 
-
     </LinearLayout>
 
     <Button

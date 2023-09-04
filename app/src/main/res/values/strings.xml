@@ -131,11 +131,11 @@
     <!--UPDATE DIALOG-->
     <string name="require_update">Update required</string>
     <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
-    <string name="cancel">Cancel</string>
-    <string name="update">Update</string>
+    <string name="cancel">Cancelar</string>
+    <string name="update">Actualizar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_title">Log in as</string>
-    <string name="game_difficulty">Difficulty</string>
+    <string name="game_difficulty">Dificultad</string>
     <string name="error_no_players">Error: No hay suficientes jugadores para comenzar la partida</string>
     <string name="report">Reportar</string>
     <string name="login_success">Login success</string>

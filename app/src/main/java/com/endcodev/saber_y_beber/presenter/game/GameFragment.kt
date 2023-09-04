@@ -134,7 +134,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
                 enableButtons(ui.answered)
 
-                report.visibility = View.INVISIBLE
+                report.alpha = 0.5f
 
                 if (!ui.answered)
                     animateOptions()

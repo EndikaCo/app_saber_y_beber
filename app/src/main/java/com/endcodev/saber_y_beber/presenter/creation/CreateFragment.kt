@@ -1,6 +1,7 @@
 package com.endcodev.saber_y_beber.presenter.creation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.FragmentCreationBinding
-import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class CreateFragment : Fragment(R.layout.fragment_creation) {
+
+    companion object {
+        const val TAG = "CreateFragment ***"
+    }
 
     private var _binding: FragmentCreationBinding? = null
     private val binding: FragmentCreationBinding get() = _binding!!
@@ -41,9 +47,14 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
         initListeners()
         initObservers()
         onBackPressed()
+    }
+
+    private fun initViews() {
+        binding.viewHeader.headerTitle.text = resources.getString(R.string.create_title)
     }
 
     /**
@@ -55,6 +66,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         createViewModel.notification.observe(viewLifecycleOwner) {
+            //todo send Int error to UI and get string from here
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
@@ -79,6 +91,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
             postData()
         }
     }
+
 
     /**
      * post to server

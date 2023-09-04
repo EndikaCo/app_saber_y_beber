@@ -44,7 +44,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.viewSignIn.btnLogin.text = resources.getString(R.string.register_bt)
         binding.viewSignIn.registerGoogle.visibility = View.GONE
         binding.viewSignIn.registerFacebook.visibility = View.GONE
-        binding.viewSignIn.registerTwitter.visibility = View.GONE
         binding.viewSignIn.tvLogin.visibility = View.GONE
     }
 

@@ -1,14 +1,10 @@
 package com.endcodev.saber_y_beber.domain
 
-import android.util.Log
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
-import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
 import com.endcodev.saber_y_beber.presenter.utils.ResourcesProvider
 import javax.inject.Inject
-import kotlin.system.exitProcess
 
 class GetRandomChallengeUseCase @Inject constructor(
     private val repository: GameRepository,
