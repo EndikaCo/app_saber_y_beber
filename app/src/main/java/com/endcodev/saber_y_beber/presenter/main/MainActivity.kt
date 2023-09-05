@@ -17,6 +17,8 @@ import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.data.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.ActivityMainBinding
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.system.exitProcess
 
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //FacebookSdk.sdkInitialize(applicationContext);
-        //AppEventsLogger.activateApp(this);
+        FacebookSdk.sdkInitialize(applicationContext);
+        AppEventsLogger.activateApp(this);
 
         mainViewModel.isConnected()
 

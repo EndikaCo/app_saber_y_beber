@@ -16,6 +16,14 @@ class RegisterViewModel @Inject constructor(
     private val authenticationService: AuthenticationService
 ) : ViewModel() {
 
+    companion object {
+        const val PASS_SHORT = 101
+        const val PASS_DIGIT = 102
+        const val PASS_CAP = 103
+        const val PASS_MINUS = 104
+        const val PASS_SPECIAL = 105
+    }
+
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> get() = _email
 
@@ -28,8 +36,8 @@ class RegisterViewModel @Inject constructor(
     private val _repeat = MutableLiveData<String>()
     val repeat: LiveData<String> get() = _repeat
 
-    private val _dialog = MutableLiveData<DialogModel>()
-    val dialog: LiveData<DialogModel> get() = _dialog
+    private val _dialog = MutableLiveData<Int>()
+    val dialog: LiveData<Int> get() = _dialog
 
     fun createAccount(email: String, pass: String, repeat: String, userName: String) {
 
@@ -39,14 +47,6 @@ class RegisterViewModel @Inject constructor(
         val userOk: Boolean = isValidUser(userName)
         if (emailOk && passOk && repeatOk && userOk)
             _dialog.value = authenticationService.createUser(email, pass, userName)
-    }
-
-    companion object {
-        const val PASS_SHORT = 101
-        const val PASS_DIGIT = 102
-        const val PASS_CAP = 103
-        const val PASS_MINUS = 104
-        const val PASS_SPECIAL = 105
     }
 
     private fun isValidPass(pass: String): Boolean {

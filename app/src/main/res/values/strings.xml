@@ -146,5 +146,7 @@
     <string name="login_icon">Icono de inicio de sesion</string>
     <string name="no_quest_available">no hay más preguntas disponibles</string>
     <string name="game_reset">El juego se reiniciará</string>
+    <string name="register_error_creating_acc">Ha ocurrido un error creando la cuenta</string>
+    <string name="error_sending_mail">Ha ocurrido un error al enviar el mail</string>
 
 </resources>

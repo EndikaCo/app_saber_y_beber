@@ -21,23 +21,27 @@ class AuthenticationService @Inject constructor(
         const val NO_ERROR = 0
         const val MAIL_NO_VERIFICATION = 100
         const val ERROR_MAIL_OR_PASS = 101
+        const val ERROR_CREATING_ACC = 102
+        const val MAIL_SENT_SUCCESS = 103
+        const val MAIL_SENT_ERROR = 104
+        const val UNKNOWN_ERROR = 104
+
+
     }
 
-    fun createUser(email: String, pass: String, userName: String): DialogModel {
+    fun createUser(email: String, pass: String, userName: String): Int {
         val auth = firebase.auth
-        var error = DialogModel("null", "null")
+
+        var error = UNKNOWN_ERROR
 
         auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
                 putUserName(userName)
                 error = sendMailVerification()
                 Log.v(TAG, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
-            } else if (it.isCanceled) {
-                Log.e(TAG, "Error: createUserWithEmail:canceled -->${it.exception}")
-                error = DialogModel("Error", "Error occurred creating account")
-            } else {
+            }else {
                 Log.e(TAG, "Error: createUserWithEmail:failure")
-                error = DialogModel("Error", "Error occurred creating account")
+                error = ERROR_CREATING_ACC
             }
         }
         return error
@@ -54,20 +58,22 @@ class AuthenticationService @Inject constructor(
         }
     }
 
-    private fun sendMailVerification(): DialogModel {
+    private fun sendMailVerification(): Int {
 
-        var error = DialogModel("null", "null")
+        var error = UNKNOWN_ERROR
 
         Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
-            error = if (it.isSuccessful) {
+            if (it.isSuccessful) {
                 Log.v(TAG, "OK: sendEmailVerification:Success")
-                DialogModel(
-                    resources.getString(R.string.register_success),
-                    resources.getString(R.string.register_check_mail)
-                )
+                error = MAIL_SENT_SUCCESS
+                //DialogModel(
+                //    resources.getString(R.string.register_success),
+                //    resources.getString(R.string.register_check_mail)
+                //)
             } else {
                 Log.e(TAG, "Error: sendEmailVerification:fail")
-                DialogModel("Server Error", "Unable to send verification email")
+                error = MAIL_SENT_ERROR
+            //DialogModel("Server Error", "Unable to send verification email")
             }
         }
         return error
