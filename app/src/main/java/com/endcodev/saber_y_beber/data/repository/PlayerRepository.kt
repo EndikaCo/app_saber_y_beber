@@ -18,7 +18,7 @@ class PlayerRepository @Inject constructor(
         playerDao.insertPlayer(player)
     }
 
-    fun deletePlayer(name : String) {
+    fun deletePlayer(name: String) {
         playerDao.deletePlayer(name)
     }
 

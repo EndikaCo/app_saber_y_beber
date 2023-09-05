@@ -1,7 +1,6 @@
 package com.endcodev.saber_y_beber.presenter.creation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentCreationBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -71,7 +66,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
-            //Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() //todo
         }
     }
 
@@ -92,7 +87,6 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
     }
 
-
     /**
      * post to server
      */
@@ -106,7 +100,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
             optionC)
     }
 
-    private fun setDifficulty(difficulty: Int) {
+    private fun setDifficulty(difficulty: Int) { //todo repeated in correct
         when (difficulty) {
             0 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_0)
             1 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_1)

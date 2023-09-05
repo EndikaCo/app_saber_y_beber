@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
-    @Singleton //creates a unique instance
+    @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()

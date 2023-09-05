@@ -19,49 +19,34 @@ class GetPlayersUseCase @Inject constructor(
 
         try {
             playerList = repository.getAllPlayersFromDB()
-            Log.e(TAG, "players found $playerList")
+            Log.v(TAG, "players found $playerList")
         } catch (e: Exception) {
-            Log.e(TAG, "No players found")
+            Log.e(TAG, "No players found, $e")
         }
-        if (playerList.isNullOrEmpty()){
-            Log.e(TAG, "null $playerList")
+        if (playerList.isNullOrEmpty()) {
+            Log.v(TAG, "null $playerList")
             repository.insertAllPlayers(examplePlayers())
             playerList = repository.getAllPlayersFromDB()
         }
         return playerList
     }
 
-    private fun examplePlayers() : MutableList<PlayerEntity>{
+    private fun examplePlayers(): MutableList<PlayerEntity> {
         return arrayListOf(
-            PlayerEntity(1,0, "Player 1", 0),
-            PlayerEntity(2,1, "Player 2", 0),
-            PlayerEntity(3,2, "Horse Luis", 0)
+            PlayerEntity(1, 0, "Player 1", 0),
+            PlayerEntity(2, 1, "Player 2", 0),
+            PlayerEntity(3, 2, "Horse Luis", 0)
         )
     }
 
-     suspend fun saveAllPlayers(playersList: List<PlayerEntity>?)
-    {
-        if (playersList != null) {
-            Log.e(TAG, "save players $playersList")
-            repository.insertAllPlayers(playersList)
-            Log.e(TAG, "new players ${repository.getAllPlayersFromDB()}")
-        }
-    }
-
-    fun savePlayer(player : PlayerEntity?)
-    {
+    fun savePlayer(player: PlayerEntity?) {
         if (player != null) {
             Log.e(TAG, "player inserted")
             repository.insertPlayer(player)
         }
     }
 
-    suspend fun deleteAllPlayers() {
-        repository.clearAllPlayers()
-        Log.e(TAG, "all players deleted")
-    }
-
-     fun deletePlayer(name : String) {
+    fun deletePlayer(name: String) {
         repository.deletePlayer(name)
         Log.e(TAG, "player deleted $name")
     }

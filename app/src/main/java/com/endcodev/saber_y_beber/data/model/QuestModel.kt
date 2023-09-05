@@ -17,4 +17,4 @@ fun QuestModel.toDomain() =
     QuestModel(quest, author, option1, option2, option3, difficulty, correctors, post)
 
 fun QuestEntity.toDomain() =
-    QuestModel(quest, author, option1, option2, option3, difficulty,null, post)
+    QuestModel(quest, author, option1, option2, option3, difficulty, null, post)

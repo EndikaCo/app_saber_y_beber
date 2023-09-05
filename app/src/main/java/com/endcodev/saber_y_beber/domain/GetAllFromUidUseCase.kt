@@ -14,7 +14,7 @@ class GetAllFromUidUseCase @Inject constructor(
     private val repository: CorrectionRepository,
     private val firebase: FirebaseClient,
     private val gameRepository: GameRepository
-    ) {
+) {
 
     companion object {
         const val TAG = "GetAllFromUid***"
@@ -29,26 +29,24 @@ class GetAllFromUidUseCase @Inject constructor(
             val uid = firebase.auth.uid
             correctionList = repository.getAllCorrectionsFromApi()
 
-            if (correctionList.isNotEmpty()){
-                for (item in correctionList){
-                    if (item.correctors[0].id == uid){
+            if (correctionList.isNotEmpty()) {
+                for (item in correctionList) {
+                    if (item.correctors[0].id == uid) {
                         filteredCorrectionList.add(
                             ProfileModel(
                                 quest = item.correction,
                                 user = item.author,
                                 result = false
-                                )
+                            )
                         )
-
                     }
-
                 }
             }
 
             questList = gameRepository.getAllQuestFromApi()
-            if (questList.isNotEmpty()){
-                for (item in questList){
-                    if (item.correctors != null && item.correctors[0].id == uid){
+            if (questList.isNotEmpty()) {
+                for (item in questList) {
+                    if (item.correctors != null && item.correctors[0].id == uid) {
                         filteredCorrectionList.add(
                             ProfileModel(
                                 quest = item.quest,
@@ -56,12 +54,9 @@ class GetAllFromUidUseCase @Inject constructor(
                                 result = true
                             )
                         )
-
                     }
-
                 }
             }
-
 
         } catch (e: Exception) {
             Log.e(TAG, "No reply from  quest retrofit API")

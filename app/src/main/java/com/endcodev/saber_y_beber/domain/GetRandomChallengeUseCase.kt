@@ -10,9 +10,6 @@ class GetRandomChallengeUseCase @Inject constructor(
     private val repository: GameRepository,
     private val resources: ResourcesProvider
 ) {
-    companion object {
-        const val TAG = "GetRandomChallengeUseCase:"
-    }
 
     private lateinit var challengeList: List<ChallengeModel?>
     private var i = 0
@@ -28,7 +25,7 @@ class GetRandomChallengeUseCase @Inject constructor(
             null
     }
 
-    fun startChallenge(): ChallengeModel {
+    fun startChallenge(): ChallengeModel { //todo
         return ChallengeModel(
             resources.getString(R.string.game_start_round_title),
             resources.getString(R.string.game_start_round_text),
@@ -37,7 +34,7 @@ class GetRandomChallengeUseCase @Inject constructor(
         )
     }
 
-    fun finalChallenge(round: Int, player: String): ChallengeModel {
+    fun finalChallenge(round: Int, player: String): ChallengeModel { //todo
         return ChallengeModel(
             resources.getString(R.string.fin_ronda, round),
             resources.getString(R.string.final_ranking_lead, player),
@@ -45,5 +42,4 @@ class GetRandomChallengeUseCase @Inject constructor(
             3
         )
     }
-
 }

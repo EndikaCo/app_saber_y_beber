@@ -21,7 +21,7 @@ class GetQuestUseCase @Inject constructor(
             // Attempt to get all quests from the API
             questList = repository.getAllQuestFromApi()
         } catch (e: Exception) {
-            Log.e(TAG, "No reply from quest retrofit API")
+            Log.e(TAG, "No reply from quest retrofit API $e")
             // Retrieve all quests from the database instead
             repository.getAllQuestFromDB()
         }

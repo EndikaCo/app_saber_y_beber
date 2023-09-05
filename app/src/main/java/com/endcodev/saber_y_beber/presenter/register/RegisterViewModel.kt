@@ -22,8 +22,8 @@ class RegisterViewModel @Inject constructor(
     private val _user = MutableLiveData<String>()
     val user: LiveData<String> get() = _user
 
-    private val _pass = MutableLiveData<String>()
-    val pass: LiveData<String> get() = _pass
+    private val _pass = MutableLiveData<Int>()
+    val pass: LiveData<Int> get() = _pass
 
     private val _repeat = MutableLiveData<String>()
     val repeat: LiveData<String> get() = _repeat
@@ -41,25 +41,33 @@ class RegisterViewModel @Inject constructor(
             _dialog.value = authenticationService.createUser(email, pass, userName)
     }
 
+    companion object {
+        const val PASS_SHORT = 101
+        const val PASS_DIGIT = 102
+        const val PASS_CAP = 103
+        const val PASS_MINUS = 104
+        const val PASS_SPECIAL = 105
+    }
+
     private fun isValidPass(pass: String): Boolean {
         if (pass.length < 6) {
-            _pass.value = resources.getString(R.string.register_error_pass)
+            _pass.value = PASS_SHORT
             return false
         }
         if (pass.firstOrNull { it.isDigit() } == null) {
-            _pass.value = resources.getString(R.string.register_error_pass2)
+            _pass.value = PASS_DIGIT
             return false
         }
         if (pass.filter { it.isLetter() }.firstOrNull { it.isUpperCase() } == null) {
-            _pass.value = resources.getString(R.string.register_error_pass_uppercase)
+            _pass.value = PASS_CAP
             return false
         }
         if (pass.filter { it.isLetter() }.firstOrNull { it.isLowerCase() } == null) {
-            _pass.value = resources.getString(R.string.register_error_pass_lowercase)
+            _pass.value = PASS_MINUS
             return false
         }
         if (pass.firstOrNull { !it.isLetterOrDigit() } == null) {
-            _pass.value = resources.getString(R.string.register_error_pass_special)
+            _pass.value = PASS_SPECIAL
             return false
         }
         return true
@@ -75,11 +83,11 @@ class RegisterViewModel @Inject constructor(
 
     private fun isValidMail(email: String): Boolean {
         if (email.isEmpty() || email.length < 5) {
-            _email.value =  resources.getString(R.string.register_error_mail_valid)
+            _email.value = resources.getString(R.string.register_error_mail_valid)
             return false
         }
         if (!email.contains('@') || !email.contains('.')) {
-            _email.value =  resources.getString(R.string.register_error_mail_valid)
+            _email.value = resources.getString(R.string.register_error_mail_valid)
             return false
         }
         return true

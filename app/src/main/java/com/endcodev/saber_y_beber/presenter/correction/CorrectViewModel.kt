@@ -32,7 +32,7 @@ class CorrectViewModel @Inject constructor(
     val correctModel: LiveData<CorrectionModel?> get() = _correctModel
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> get() = _isLoading
+    val isLoading: LiveData<Boolean> get() = _isLoading //todo
 
     private val _toCreate = MutableLiveData<Boolean>()
     val toCreate: LiveData<Boolean> get() = _toCreate

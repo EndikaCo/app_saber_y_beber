@@ -19,7 +19,7 @@ class GetCorrectionsUseCase @Inject constructor(
         try {
             quest = repository.getAllCorrectionsFromApi()
         } catch (e: Exception) {
-            Log.e(TAG, "No reply from  quest retrofit API")
+            Log.e(TAG, "No reply from  quest retrofit API $e")
         }
         return quest
     }

@@ -25,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class CorrectFragment : Fragment(R.layout.fragment_correct) {
 
     private var mInterstitialAd: InterstitialAd? = null
-
     private var _binding: FragmentCorrectBinding? = null
     private val binding: FragmentCorrectBinding get() = _binding!!
     private val correctViewModel: CorrectViewModel by viewModels()
@@ -47,7 +46,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initAdmob()
         initViews()
         initListeners()
@@ -58,17 +56,21 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     private fun initAdmob() {
         val adRequest: AdRequest = AdRequest.Builder().build()
 
-        InterstitialAd.load(requireContext(),"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d(CreateFragment.TAG, adError.toString())
-                mInterstitialAd = null
-            }
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(CreateFragment.TAG, adError.toString())
+                    mInterstitialAd = null
+                }
 
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                Log.d(CreateFragment.TAG, "Ad was loaded.")
-                mInterstitialAd = interstitialAd
-            }
-        })
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d(CreateFragment.TAG, "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
     }
 
     /**
@@ -82,7 +84,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
      * Initialize the listeners.
      */
     private fun initListeners() {
-
         binding.viewHeader.headerBack.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
@@ -96,7 +97,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
      * Initialize the observers.
      */
     private fun initObservers() {
-
         // update Ui when the correction is available.
         correctViewModel.correctModel.observe(viewLifecycleOwner) { correction ->
             // if correction is null, show error dialog.
@@ -123,8 +123,7 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
                 if (it) {
                     findNavController().navigate(R.id.createFragment)
                     mInterstitialAd?.show(requireActivity())
-                }
-                else
+                } else
                     findNavController().navigate(R.id.homeFragment)
             }, ErrorModel(
                 getString(R.string.correct_no_correction_available_title),
@@ -138,14 +137,12 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     }
 
     private fun acceptCorrection() {
-
         if (allChecked())
-            correctViewModel.acceptCorrection(true) // if all ok +1 to rating
+            correctViewModel.acceptCorrection(true)
         else
-            correctViewModel.acceptCorrection(false) // if some wrong directly -1 to rating
-
+            correctViewModel.acceptCorrection(false)
         uncheckAll()
-        correctViewModel.postAvailableCorrection() //else, correct another question
+        correctViewModel.postAvailableCorrection()
     }
 
     /**

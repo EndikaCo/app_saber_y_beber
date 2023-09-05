@@ -9,7 +9,7 @@ plugins {
     //dagger hilt
     id 'kotlin-android'
     id 'dagger.hilt.android.plugin'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 apply plugin: 'com.android.application'
@@ -63,7 +63,6 @@ dependencies {
     // For local unit tests
     testImplementation 'com.google.dagger:hilt-android-testing:2.45'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-    kaptTest 'com.google.dagger:hilt-compiler:2.45'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:5.4.0'
 
@@ -73,7 +72,6 @@ dependencies {
     androidTestImplementation 'org.mockito:mockito-android:5.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
 
     testImplementation "androidx.arch.core:core-testing:2.2.0"
     androidTestImplementation "android.arch.core:core-testing:1.1.1"
@@ -96,15 +94,14 @@ dependencies {
 
     //dagger hilt
     implementation 'com.google.dagger:hilt-android:2.48'
-    kapt 'com.google.dagger:hilt-compiler:2.45'
+    ksp 'com.google.dagger:hilt-compiler:2.48'
 
     //room
     def room_version = "2.5.2"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-    // To use Kotlin annotation processing tool (kapt)
-    kapt "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
 
     //admob
     implementation 'com.google.android.gms:play-services-ads:22.3.0'
@@ -113,7 +110,7 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     //on back pressed
-    implementation 'androidx.appcompat:appcompat:1.7.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.7.0-alpha02' //do not update
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

@@ -4,7 +4,6 @@ import android.util.Log
 import com.endcodev.saber_y_beber.data.database.entities.toDB
 import com.endcodev.saber_y_beber.data.model.ChallengeModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
-
 import javax.inject.Inject
 
 class GetChallengeUseCase @Inject constructor(

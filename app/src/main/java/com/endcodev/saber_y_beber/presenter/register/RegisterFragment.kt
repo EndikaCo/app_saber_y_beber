@@ -49,7 +49,16 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private fun initObservers() {
         registerViewModel.pass.observe(viewLifecycleOwner) {
-            binding.registerPassEt.error = it
+
+            var error = ""
+            when (it) {
+                RegisterViewModel.PASS_SHORT -> error = resources.getString(R.string.register_error_pass)
+                RegisterViewModel.PASS_DIGIT -> error = resources.getString(R.string.register_error_pass2)
+                RegisterViewModel.PASS_CAP -> error = resources.getString(R.string.register_error_pass_uppercase)
+                RegisterViewModel.PASS_MINUS -> error = resources.getString(R.string.register_error_pass_lowercase)
+                RegisterViewModel.PASS_SPECIAL -> error = resources.getString(R.string.register_error_pass_special)
+            }
+                binding.registerPassEt.error = error
         }
 
         registerViewModel.repeat.observe(viewLifecycleOwner) {
@@ -65,11 +74,13 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         }
 
         registerViewModel.dialog.observe(viewLifecycleOwner) {
+            //todo dialog show
             findNavController().navigate(R.id.loginFragment)
         }
     }
 
     private fun initListeners() {
+        //Sign Up Button
         binding.viewSignIn.btnLogin.setOnClickListener {
             getData()
         }

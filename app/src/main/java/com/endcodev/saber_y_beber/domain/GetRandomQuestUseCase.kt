@@ -8,12 +8,9 @@ class GetRandomQuestUseCase @Inject constructor(
     private val repository: GameRepository
 ) {
 
-    companion object {
-        const val TAG = "GetRandomQuestUseCase:"
-    }
-
     private lateinit var questList: List<QuestModel?>
     private var i = 0
+
     suspend operator fun invoke() {
         questList = repository.getAllQuestFromDB().shuffled()
     }

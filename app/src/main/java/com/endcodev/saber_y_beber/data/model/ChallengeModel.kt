@@ -1,6 +1,6 @@
 package com.endcodev.saber_y_beber.data.model
-import com.endcodev.saber_y_beber.data.database.entities.ChallengeEntity
 
+import com.endcodev.saber_y_beber.data.database.entities.ChallengeEntity
 
 data class ChallengeModel(
     val title: String,
