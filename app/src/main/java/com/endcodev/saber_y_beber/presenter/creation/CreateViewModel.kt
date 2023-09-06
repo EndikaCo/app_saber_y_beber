@@ -43,7 +43,7 @@ class CreateViewModel @Inject constructor(
             database.setValue(correctionModel).addOnSuccessListener {
                 _notification.postValue("Subido correctamente") // todo enviar val cono in o sealed class y coger string en fragment
             }.addOnFailureListener {
-                _notification.postValue("Algo ha ido mal puta")
+                _notification.postValue("Algo ha ido mal")
             }
         }
     }

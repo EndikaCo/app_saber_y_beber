@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/light_black"
-        android:background="@color/transparent" />
+        android:background="@color/transparent"/>
 
 
     <Button
@@ -69,22 +69,22 @@
         android:text="@string/home_player_add_button"
         android:textColor="@color/light_black"
         android:textSize="14sp"
-        android:fontFamily="casual"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/home_rv"
-        app:layout_constraintEnd_toEndOf="@+id/home_rv"
-        app:layout_constraintStart_toStartOf="@+id/home_rv"
-        tools:ignore="RtlHardcoded" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/home_rv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_rv"
         android:layout_width="wrap_content"
-        android:layout_height="319dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/home_start_bt"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_logo"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/player_holder">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -94,16 +94,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ic_action_start"
         android:minHeight="60sp"
         android:scaleX="0.9"
         android:scaleY="1"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/ic_action_start"
-        android:textColor="@color/light_black"
         android:text="@string/home_start_game_button"
+        android:textColor="@color/light_black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

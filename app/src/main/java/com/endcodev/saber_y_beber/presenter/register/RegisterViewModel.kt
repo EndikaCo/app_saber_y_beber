@@ -46,7 +46,9 @@ class RegisterViewModel @Inject constructor(
         val repeatOk: Boolean = isEqualPass(pass, repeat)
         val userOk: Boolean = isValidUser(userName)
         if (emailOk && passOk && repeatOk && userOk)
-            _dialog.value = authenticationService.createUser(email, pass, userName)
+            authenticationService.createUser(email, pass, userName){
+                _dialog.value = it
+            }
     }
 
     private fun isValidPass(pass: String): Boolean {

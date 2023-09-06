@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,6 +15,12 @@ import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.M
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_SENT_SUCCESS
 import com.endcodev.saber_y_beber.databinding.FragmentRegisterBinding
 import com.endcodev.saber_y_beber.presenter.dialogs.ErrorDialogFragment
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel.Companion.PASS_CAP
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel.Companion.PASS_DIGIT
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel.Companion.PASS_MINUS
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel.Companion.PASS_SHORT
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel.Companion.PASS_SPECIAL
+import com.endcodev.saber_y_beber.presenter.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +32,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private val registerViewModel: RegisterViewModel by viewModels()
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,64 +58,47 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun initObservers() {
-        registerViewModel.pass.observe(viewLifecycleOwner) {
+        viewModel.pass.observe(viewLifecycleOwner) {
 
             var error = ""
 
             when (it) {
-                RegisterViewModel.PASS_SHORT -> error =
-                    resources.getString(R.string.register_error_pass)
-
-                RegisterViewModel.PASS_DIGIT -> error =
-                    resources.getString(R.string.register_error_pass2)
-
-                RegisterViewModel.PASS_CAP -> error =
-                    resources.getString(R.string.register_error_pass_uppercase)
-
-                RegisterViewModel.PASS_MINUS -> error =
-                    resources.getString(R.string.register_error_pass_lowercase)
-
-                RegisterViewModel.PASS_SPECIAL -> error =
-                    resources.getString(R.string.register_error_pass_special)
+                PASS_SHORT -> error = resources.getString(R.string.register_error_pass)
+                PASS_DIGIT -> error = resources.getString(R.string.register_error_pass2)
+                PASS_CAP -> error = resources.getString(R.string.register_error_pass_uppercase)
+                PASS_MINUS -> error = resources.getString(R.string.register_error_pass_lowercase)
+                PASS_SPECIAL -> error = resources.getString(R.string.register_error_pass_special)
             }
             binding.registerPassEt.error = error
         }
 
-        registerViewModel.repeat.observe(viewLifecycleOwner) {
+        viewModel.repeat.observe(viewLifecycleOwner) {
             binding.repeatPassEt.error = it
         }
 
-        registerViewModel.email.observe(viewLifecycleOwner) {
+        viewModel.email.observe(viewLifecycleOwner) {
             binding.registerMailEt.error = it
         }
 
-        registerViewModel.user.observe(viewLifecycleOwner) {
+        viewModel.user.observe(viewLifecycleOwner) {
             binding.registerUserEt.error = it
         }
 
-        registerViewModel.dialog.observe(viewLifecycleOwner) {
-
-            if (it == ERROR_CREATING_ACC)
-                Toast.makeText(
-                    requireContext(),
-                    resources.getString(R.string.register_error_creating_acc),
-                    Toast.LENGTH_LONG
-                ).show()
-            else if (it == MAIL_SENT_ERROR)
-                Toast.makeText(
-                    requireContext(),
-                    resources.getString(R.string.error_sending_mail),
-                    Toast.LENGTH_LONG
-                ).show()
-            else if (it == MAIL_SENT_SUCCESS)
-                dialogError(
-                    ErrorModel(
-                        resources.getString(R.string.register_success),
-                        resources.getString(R.string.register_check_mail),
-                        resources.getString(R.string.player_accept),
-                        ""
+        viewModel.dialog.observe(viewLifecycleOwner) {
+            when (it) {
+                ERROR_CREATING_ACC -> context?.toast(resources.getString(R.string.register_error_creating_acc))
+                MAIL_SENT_ERROR -> context?.toast(resources.getString(R.string.error_sending_mail))
+                MAIL_SENT_SUCCESS -> {
+                    dialogError(
+                        ErrorModel(
+                            resources.getString(R.string.register_success),
+                            resources.getString(R.string.register_check_mail),
+                            resources.getString(R.string.player_accept),
+                            ""
+                        )
                     )
-                )
+                }
+            }
         }
     }
 
@@ -157,7 +145,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val repeat: String = binding.repeatPassEt.text.toString()
         val userName: String = binding.registerUserEt.text.toString()
         try {
-            registerViewModel.createAccount(email, pass, repeat, userName)
+            viewModel.createAccount(email, pass, repeat, userName)
         } catch (e: Exception) {
             Log.e(TAG, "Error: $e")
         }

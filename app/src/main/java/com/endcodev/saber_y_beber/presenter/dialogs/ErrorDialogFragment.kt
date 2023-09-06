@@ -3,6 +3,7 @@ package com.endcodev.saber_y_beber.presenter.dialogs
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
 import com.endcodev.saber_y_beber.data.model.ErrorModel
@@ -52,8 +53,14 @@ class ErrorDialogFragment(
     private fun initViews() {
         binding.errorTitle.text = error.title
         binding.errorDescription.text = error.description
+
         binding.errorAccept.text = error.acceptButton
-        binding.errorCancel.text = error.cancelButton
+
+        if (error.cancelButton == "")
+        {
+            binding.errorCancel.visibility = View.GONE
+        }else
+            binding.errorCancel.text = error.cancelButton
     }
 
     override fun onPause() {

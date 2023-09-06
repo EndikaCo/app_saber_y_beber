@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentForgotPassBinding
+import com.endcodev.saber_y_beber.presenter.utils.toast
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
 
     private var _binding: FragmentForgotPassBinding? = null
     private val binding: FragmentForgotPassBinding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
+    private val viewModel: ForgotViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +35,18 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
 
         initViews()
         initListeners()
+        initObservers()
+    }
+
+    private fun initObservers() {
+
+        viewModel.sent.observe(viewLifecycleOwner) {
+            if (it) {
+                context?.toast(resources.getString(R.string.forgot_mail_sent))
+                findNavController().navigate(R.id.action_forgotPassFragment_to_loginFragment)
+            } else
+                context?.toast(resources.getString(R.string.forgot_error_send))
+        }
     }
 
     private fun initViews() {
@@ -45,23 +60,7 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
         }
 
         binding.forgotAcceptBt.setOnClickListener {
-            val email = binding.forgotMail.text
-            auth = FirebaseAuth.getInstance()
-            auth.sendPasswordResetEmail(email.toString())
-                .addOnSuccessListener {
-                    Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.forgot_mail_sent),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.action_forgotPassFragment_to_loginFragment)
-                }.addOnFailureListener {
-                    Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.forgot_error_send),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            viewModel.forgotPass(binding.forgotMail.text.toString())
         }
     }
 

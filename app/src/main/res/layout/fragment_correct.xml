@@ -14,11 +14,9 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:context=".presenter.correction.CorrectFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <include
             android:id="@+id/view_header"
@@ -46,7 +44,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
             android:layout_marginEnd="32dp"
             android:text="@string/correction_wrong_option_2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +64,6 @@
             android:id="@+id/correct_option2_info"
             style="@style/correctTextViews"
             android:layout_width="0dp"
-
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
@@ -80,9 +76,9 @@
             android:id="@+id/correct_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="8dp"
             android:background="@drawable/difficulty_0"
+            android:contentDescription="@string/game_difficulty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/correct_difficulty_info" />
@@ -97,7 +93,6 @@
             android:background="@drawable/answer_option_correct"
             android:fontFamily="casual"
             android:textAlignment="center"
-
             android:textColor="@color/dark_grey"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,11 +129,10 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:textColor="@color/dark_grey"
-
             android:background="@drawable/answer_option"
             android:fontFamily="casual"
             android:textAlignment="center"
+            android:textColor="@color/dark_grey"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,14 +154,13 @@
             android:id="@+id/correct_option2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_grey"
-
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/answer_option"
             android:fontFamily="casual"
             android:textAlignment="center"
+            android:textColor="@color/dark_grey"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,12 +180,12 @@
             android:id="@+id/correct_question"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_grey"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="casual"
             android:gravity="center"
+            android:textColor="@color/dark_grey"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +213,6 @@
             app:layout_constraintStart_toEndOf="@+id/correct_difficulty_check"
             app:layout_constraintTop_toBottomOf="@+id/correct_option3" />
 
-
         <Button
             android:id="@+id/correct_ok"
             android:layout_width="0dp"
@@ -232,10 +224,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.core.widget.NestedScrollView>
 

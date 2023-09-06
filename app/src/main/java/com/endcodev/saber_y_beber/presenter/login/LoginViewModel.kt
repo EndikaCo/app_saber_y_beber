@@ -36,7 +36,6 @@ class LoginViewModel @Inject constructor(
     fun login(loginMail: String, loginPass: String) {
 
         if (loginMail.isNotEmpty() && loginPass.isNotEmpty()) {
-
             authenticationService.mailPassLogin(loginMail, loginPass) { error ->
                 when (error) {
                     NO_ERROR -> {
@@ -44,12 +43,10 @@ class LoginViewModel @Inject constructor(
                         _toast.value = resources.getString(R.string.login_success)
                         _isConnected.value = true
                     }
-
                     MAIL_NO_VERIFICATION -> {
                         _toast.value = resources.getString(R.string.login_not_verified)
                         Log.v(TAG, "MAIL_NO_VERIFICATION")
                     }
-
                     else -> {
                         _toast.value = resources.getString(R.string.login_failed)
                         Log.v(TAG, "ERROR_MAIL_OR_PASS")
