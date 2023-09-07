@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".presenter.correction.CorrectFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/view_header"
+            layout="@layout/view_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/correct_quest_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/checkbox_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_header" />
+
+
+        <TextView
+            android:id="@+id/correct_option3_info"
+            style="@style/correctTextViews"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correction_wrong_option_2"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_option3_check"
+            app:layout_constraintStart_toEndOf="@+id/correct_option3_check"
+            app:layout_constraintTop_toTopOf="@+id/correct_option3_check" />
+
+        <CheckBox
+            android:id="@+id/correct_option2_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/checkbox_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/correct_answer_check" />
+
+        <TextView
+            android:id="@+id/correct_option2_info"
+            style="@style/correctTextViews"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correction_wrong_option_2"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_option2_check"
+            app:layout_constraintStart_toEndOf="@+id/correct_option2_check"
+            app:layout_constraintTop_toTopOf="@+id/correct_option2_check" />
+
+        <ImageView
+            android:id="@+id/correct_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:background="@drawable/difficulty_0"
+            android:contentDescription="@string/game_difficulty"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_difficulty_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/correct_difficulty_info"
+            app:layout_constraintTop_toTopOf="@+id/correct_difficulty_info" />
+
+        <TextView
+            android:id="@+id/correct_answer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option_correct"
+            android:fontFamily="casual"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_answer_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/correct_answer_info"
+            app:layout_constraintTop_toTopOf="@+id/correct_answer_check" />
+
+        <TextView
+            android:id="@+id/correct_answer_info"
+            style="@style/correctTextViews"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correction_answer"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_answer_check"
+            app:layout_constraintStart_toEndOf="@+id/correct_answer_check"
+            app:layout_constraintTop_toTopOf="@+id/correct_answer_check" />
+
+        <CheckBox
+            android:id="@+id/correct_difficulty_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/checkbox_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/correct_option3_check" />
+
+        <TextView
+            android:id="@+id/correct_option3"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_option3_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/correct_option3_info"
+            app:layout_constraintTop_toTopOf="@+id/correct_option3_check" />
+
+        <TextView
+            android:id="@+id/correct_question_info"
+            style="@style/correctTextViews"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correction_question"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_quest_check"
+            app:layout_constraintStart_toEndOf="@+id/correct_quest_check"
+            app:layout_constraintTop_toTopOf="@+id/correct_quest_check" />
+
+        <TextView
+            android:id="@+id/correct_option2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_option2_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/correct_option2_info"
+            app:layout_constraintTop_toTopOf="@+id/correct_option2_check" />
+
+        <CheckBox
+            android:id="@+id/correct_option3_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/checkbox_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/correct_option2_check" />
+
+        <TextView
+            android:id="@+id/correct_question"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_quest_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/correct_question_info"
+            app:layout_constraintTop_toTopOf="@+id/correct_quest_check" />
+
+        <CheckBox
+            android:id="@+id/correct_answer_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/checkbox_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/correct_quest_check" />
+
+        <TextView
+            android:id="@+id/correct_difficulty_info"
+            style="@style/correctTextViews"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correct_difficulty"
+            app:layout_constraintBottom_toBottomOf="@+id/correct_difficulty_check"
+            app:layout_constraintStart_toEndOf="@+id/correct_difficulty_check"
+            app:layout_constraintTop_toTopOf="@+id/correct_difficulty_check" />
+
+        <Button
+            android:id="@+id/correct_ok"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".presenter.creation.CreateFragment">
+
+    <include
+        android:id="@+id/view_header"
+        layout="@layout/view_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/create_tv_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/create_difficulty"
+        android:textColor="@color/light_black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+
+    <ImageView
+        android:id="@+id/create_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/difficulty_0"
+        android:contentDescription="@string/create_difficulty"
+        app:layout_constraintBottom_toTopOf="@+id/create_quest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty" />
+
+    <EditText
+        android:id="@+id/create_quest"
+        style="@style/circledEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:hint="@string/create_question"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
+
+    <LinearLayout
+        android:id="@+id/game_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_quest">
+
+        <EditText
+            android:id="@+id/create_correct"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option_correct"
+            android:fontFamily="casual"
+            android:hint="@string/create_correct_option"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColorHint="#EDE7F6" />
+
+        <EditText
+            android:id="@+id/create_option2"
+            style="@style/circledEditText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:hint="@string/create_option_wrong"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/light_black"
+            android:textColorHint="@color/light_black" />
+
+
+        <EditText
+            android:id="@+id/create_option3"
+            style="@style/circledEditText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/answer_option"
+            android:fontFamily="casual"
+            android:hint="@string/create_option_wrong2"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/light_black"
+            android:textColorHint="@color/light_black" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/create_ok"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
