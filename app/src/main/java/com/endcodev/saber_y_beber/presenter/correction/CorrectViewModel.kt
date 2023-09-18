@@ -18,11 +18,11 @@ import javax.inject.Inject
 class CorrectViewModel @Inject constructor(
     private val getCorrectionsUseCase: GetCorrectionsUseCase,
     private val firebase: FirebaseClient,
-
     ) : ViewModel() {
 
     companion object {
         const val TAG = "getCorrectionsUseCase **"
+
     }
 
     private var allCorrectionList: List<CorrectionModel>? = null
@@ -79,9 +79,13 @@ class CorrectViewModel @Inject constructor(
                 Log.v(TAG, "correction $index already corrected or created")
                 return true
             }
+            if (item.correctors.size > 4) {
+                Log.v(TAG, "correction $index already corrected by 3 person")
+                return true
+            }
         }
         return false
-    }
+        }
 
     /**
      * @return the UID of the user.

@@ -74,7 +74,7 @@
     <string name="register_error_user">El nombre de usuario debe tener al menos 3 caracteres</string>
     <string name="register_success">Cuenta creada correctamente</string>
     <string name="register_check_mail">Compruebe el correo electrónico para la verificación de la cuenta. Compruebe también su carpeta de spam.</string>
-    <string name="register_account"><b> <u><font color="@colors/light_black">¿tienes ya una cuenta? Inicia Sesión</font></u></b></string>
+    <string name="register_account"><font color="@colors/light_black">¿Tienes ya una cuenta?</font> <b> <u><font color="@colors/light_black">Inicia Sesión</font></u></b></string>
 
     <!-- forgot pass fragment-->
     <string name="forgot_title">Recuperar contraseña</string>
@@ -148,5 +148,8 @@
     <string name="game_reset">El juego se reiniciará</string>
     <string name="register_error_creating_acc">Ha ocurrido un error creando la cuenta</string>
     <string name="error_sending_mail">Ha ocurrido un error al enviar el mail</string>
+    <string name="create_error_quest">No puede estar vacio</string>
+    <string name="create_error_quest2">Has olvidado el signo ?</string>
+    <string name="create_error_dif">Tienes que selecionar una dificultad</string>
 
 </resources>

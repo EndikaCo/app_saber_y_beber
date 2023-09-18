@@ -1,16 +1,9 @@
 package com.endcodev.saber_y_beber.data.model
 
 data class EditTextErrorModel(
-    var questError: EditTextError?,
-    var correctError: EditTextError?,
-    var option2Error: EditTextError?,
-    var option3Error: EditTextError?,
-    var feedbackError: EditTextError?,
-    var alternativeError: EditTextError?,
-    var difficultyError: EditTextError?,
-)
-
-data class EditTextError(
-    val error: String,
-    var type: Int,
+    var questError: Int,
+    var correctError: Int,
+    var option2Error: Int,
+    var option3Error: Int,
+    var difficultyError: Int,
 )

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.data.model.CorrectionModel
 import com.endcodev.saber_y_beber.data.model.CorrectorModel
-import com.endcodev.saber_y_beber.data.model.EditTextError
 import com.endcodev.saber_y_beber.data.model.EditTextErrorModel
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.GetCorrectionsUseCase
@@ -22,6 +21,14 @@ class CreateViewModel @Inject constructor(
     private val firebase: FirebaseClient,
 ) : ViewModel() {
 
+    companion object {
+        const val QUEST_EMPTY = 101
+        const val A_EMPTY = 103
+        const val B_EMPTY = 104
+        const val C_EMPTY = 105
+        const val DIF_EMPTY = 106
+    }
+
     private val _notification = MutableLiveData<String>()
     val notification: LiveData<String> get() = _notification
 
@@ -29,10 +36,10 @@ class CreateViewModel @Inject constructor(
     val difficulty: LiveData<Int> get() = _difficulty
 
     private var _questError = MutableLiveData<EditTextErrorModel>()
-    val questError: LiveData<EditTextErrorModel>get() = _questError
+    val questError: LiveData<EditTextErrorModel> get() = _questError
 
     fun onCreate() {
-        EditTextErrorModel(null, null, null, null, null, null, null)
+        EditTextErrorModel(0, 0, 0, 0, 0)
     }
 
     private fun postCorrection(correctionModel: CorrectionModel) {
@@ -41,19 +48,15 @@ class CreateViewModel @Inject constructor(
             val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
             database = FirebaseDatabase.getInstance().reference.child(path)
             database.setValue(correctionModel).addOnSuccessListener {
-                _notification.postValue("Subido correctamente") // todo enviar val cono in o sealed class y coger string en fragment
+                _notification.postValue("Subido correctamente")
             }.addOnFailureListener {
                 _notification.postValue("Algo ha ido mal")
             }
         }
     }
 
-    fun checkValues(
-        quest: String,
-        optionA: String,
-        optionB: String,
-        optionC: String
-    ) {
+    fun checkValues(quest: String, optionA: String, optionB: String, optionC: String) {
+        _questError.value = EditTextErrorModel(0, 0, 0, 0, 0)
         val questOk: Boolean = isValidQuest(quest)
         val aOptionOK: Boolean = isValidCorrectOption(optionA)
         val bOptionOK: Boolean = isValidOptionB(optionB)
@@ -68,7 +71,7 @@ class CreateViewModel @Inject constructor(
                     option1 = optionA,
                     option2 = optionB,
                     option3 = optionC,
-                    difficulty = _difficulty.value!!, //todo
+                    difficulty = _difficulty.value!!,
                     correctors = correctorsList()
                 )
             ) else _questError.postValue(_questError.value)
@@ -93,69 +96,55 @@ class CreateViewModel @Inject constructor(
         return "Anonymous"
     }
 
-
     private fun isValidQuest(quest: String): Boolean {
         return if (quest == "") {
-            _questError.value?.questError = EditTextError("cannot be empty", 1)
+            _questError.value?.questError = QUEST_EMPTY
             false
-        } else if (!quest.contains('?')) {
-            _questError.value?.questError = EditTextError("do you forget '?' at the end", 2)
-            false
-        } else {
-            _questError.value?.questError = null
+        }// else if (!quest.contains('?')) {
+        //    _questError.value?.questError = QUEST_SIGN
+        //    false }
+        else {
+            _questError.value?.questError = 0
             true
         }
     }
 
     private fun isValidCorrectOption(option: String): Boolean {
         return if (option == "") {
-            _questError.value?.correctError = EditTextError("cannot be empty", 1)
+            _questError.value?.correctError = A_EMPTY
             false
         } else {
-            _questError.value?.correctError = null
+            _questError.value?.correctError = 0
             true
         }
     }
 
     private fun isValidOptionB(optionB: String): Boolean {
         return if (optionB == "") {
-            _questError.value?.option2Error = EditTextError("cannot be empty", 1)
+            _questError.value?.option2Error = B_EMPTY
             false
         } else {
-            _questError.value?.option2Error = null
+            _questError.value?.option2Error = 0
             true
         }
     }
 
     private fun isValidOptionC(optionC: String): Boolean {
         return if (optionC == "") {
-            _questError.value?.option3Error = EditTextError("cannot be empty", 1)
+            _questError.value?.option3Error = C_EMPTY
             false
         } else {
-            _questError.value?.option3Error = null
+            _questError.value?.option3Error = 0
             true
-        }
-    }
-
-    private fun isValidAlternative(alternative: String): Boolean {
-        return if (alternative == "") {
-            questError.value?.alternativeError = null
-            true
-        } else if (alternative.startsWith("o ")) {
-            questError.value?.alternativeError = null
-            true
-        } else {
-            questError.value?.alternativeError = EditTextError("Should start with \"o\"", 2)
-            false
         }
     }
 
     private fun isValidDifficulty(difficulty: Int): Boolean {
         return if (difficulty == 0) {
-            questError.value?.difficultyError = EditTextError("difficulty is empty", 1)
+            questError.value?.difficultyError = DIF_EMPTY
             false
         } else {
-            questError.value?.difficultyError = EditTextError("", 0)
+            questError.value?.difficultyError = 0
             true
         }
     }

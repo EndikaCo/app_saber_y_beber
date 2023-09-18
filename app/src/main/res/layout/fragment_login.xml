@@ -87,14 +87,12 @@
             android:id="@+id/login_forgot_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/login_forgot_pass"
             android:textColor="@color/blue1"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/login_pass_et"
-            app:layout_constraintStart_toStartOf="@+id/login_pass_et"
             app:layout_constraintTop_toBottomOf="@+id/login_pass_et" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

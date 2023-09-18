@@ -69,10 +69,10 @@
         android:text="@string/home_player_add_button"
         android:textColor="@color/light_black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/home_start_bt"
         app:layout_constraintEnd_toStartOf="@+id/home_rv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/home_start_bt" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_rv"
@@ -103,6 +103,7 @@
         android:textColor="@color/light_black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/home_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

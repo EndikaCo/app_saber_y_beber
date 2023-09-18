@@ -112,6 +112,13 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
         correctViewModel.toCreate.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.createFragment)
         }
+
+        correctViewModel.isLoading.observe(viewLifecycleOwner) {
+            if (it)
+                binding//todo
+            else
+                binding//todo
+        }
     }
 
     /**

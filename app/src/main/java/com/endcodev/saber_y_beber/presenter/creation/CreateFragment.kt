@@ -11,6 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentCreationBinding
+import com.endcodev.saber_y_beber.presenter.creation.CreateViewModel.Companion.A_EMPTY
+import com.endcodev.saber_y_beber.presenter.creation.CreateViewModel.Companion.B_EMPTY
+import com.endcodev.saber_y_beber.presenter.creation.CreateViewModel.Companion.C_EMPTY
+import com.endcodev.saber_y_beber.presenter.creation.CreateViewModel.Companion.DIF_EMPTY
+import com.endcodev.saber_y_beber.presenter.creation.CreateViewModel.Companion.QUEST_EMPTY
+import com.endcodev.saber_y_beber.presenter.register.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,12 +67,21 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         createViewModel.notification.observe(viewLifecycleOwner) {
-            //todo send Int error to UI and get string from here
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
-            //Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() //todo
+            if( it.questError == QUEST_EMPTY)
+                binding.createQuest.error = resources.getString(R.string.create_error_quest)
+            if(it.correctError == A_EMPTY)
+                binding.createCorrect.error = resources.getString(R.string.create_error_quest)
+            if(it.option2Error == B_EMPTY)
+                binding.createOption2.error = resources.getString(R.string.create_error_quest)
+            if(it.option3Error == C_EMPTY)
+                binding.createOption3.error = resources.getString(R.string.create_error_quest)
+            if(it.difficultyError == DIF_EMPTY)
+                Toast.makeText(context, resources.getString(R.string.create_error_dif),
+                    Toast.LENGTH_LONG).show()
         }
     }
 

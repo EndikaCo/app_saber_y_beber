@@ -41,7 +41,7 @@ class AuthenticationService @Inject constructor(
     private fun putUserName(name: String) {
 
         val profileUpdates = userProfileChangeRequest { displayName = name }
-        Firebase.auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task -> //todo !!
+        Firebase.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if (task.isSuccessful)
                 Log.v(TAG, "OK: User profile updated correctly.")
             else
@@ -68,7 +68,7 @@ class AuthenticationService @Inject constructor(
                 if (task.isSuccessful) {
                     if (!Firebase.auth.currentUser?.isEmailVerified!!) {
                         completionHandler(MAIL_NO_VERIFICATION) //todo send another
-                        //sendMailVerification
+                        //sendMailVerification{}
                         Log.v(TAG, "Login success but mail no verification")
                     } else {
                         completionHandler(NO_ERROR)
