@@ -50,22 +50,20 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.7.1'
-
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
 
     // For local unit tests
     testImplementation 'com.google.dagger:hilt-android-testing:2.45'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:5.4.0'
-
 
     // For instrumentation tests
     androidTestImplementation  'com.google.dagger:hilt-android-testing:2.45'
@@ -89,9 +87,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.1'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
 
-    //facebook Login
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-
     //dagger hilt
     implementation 'com.google.dagger:hilt-android:2.48'
     ksp 'com.google.dagger:hilt-compiler:2.48'
@@ -104,13 +99,13 @@ dependencies {
     ksp "androidx.room:room-compiler:$room_version"
 
     //admob
-    implementation 'com.google.android.gms:play-services-ads:22.3.0'
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
 
     //splashscreen
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     //on back pressed
-    implementation 'androidx.appcompat:appcompat:1.7.0-alpha02' //do not update
+    implementation 'androidx.appcompat:appcompat:1.7.0-alpha03' //do not update
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

@@ -16,7 +16,7 @@
 
     <!-- game fragment-->
     <string name="game_start_round_title"><b>Ronda 1</b></string>
-    <string name="game_start_round_text">\"El juego comienza, todos bebeis 1 trago\"</string>
+    <string name="game_start_round_text">El juego comienza, todos bebeis 1 trago</string>
     <string name="game_start_round_author">Developer</string>
     <string name="fin_ronda">Fin de la ronda %d</string>
     <string name="round_n">Ronda %d</string>
@@ -31,7 +31,7 @@
     <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico</string>
     <string name="login_mail">Email</string>
     <string name="login_password">Contraseña</string>
-    <string name="login_forgot_pass"><b> <u><font color="@colors/light_black">He olvidado la contraseña</font></u></b></string>
+    <string name="login_forgot_pass"><b> <u><font color="@colors/light_black">Recuperar contraseña</font></u></b></string>
     <string name="login_bt">Iniciar sesión</string>
     <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/light_black">Crear cuenta</font></u></b></string>
     <string name="login_facebook">Login with facebook</string>
@@ -95,7 +95,7 @@
     <string name="player_2">2.</string>
     <string name="player_name">Escribe aquí tu nombre</string>
     <string name="player_accept">ACEPTAR</string>
-    <string name="player_cancelar">CANCELAR</string>
+    <string name="player_cancel">CANCELAR</string>
     <string name="player_3">3.</string>
     <string name="player_genre_selector">Genre selector</string>
 
@@ -151,5 +151,8 @@
     <string name="create_error_quest">No puede estar vacio</string>
     <string name="create_error_quest2">Has olvidado el signo ?</string>
     <string name="create_error_dif">Tienes que selecionar una dificultad</string>
+    <string name="anonyme">anónimo</string>
+    <string name="error_description">Ha ocurrido un error inesperado</string>
+    <string name="error_title">ERROR GRAVE</string>
 
 </resources>

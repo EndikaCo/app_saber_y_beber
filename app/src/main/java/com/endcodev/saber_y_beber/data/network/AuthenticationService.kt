@@ -1,6 +1,7 @@
 package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
+import com.endcodev.saber_y_beber.domain.utils.App
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -12,7 +13,6 @@ class AuthenticationService @Inject constructor(
     private val firebase: FirebaseClient,
 ) {
     companion object {
-        const val TAG = "AuthenticationService **"
         const val NO_ERROR = 0
         const val MAIL_NO_VERIFICATION = 100
         const val ERROR_MAIL_OR_PASS = 101
@@ -30,9 +30,9 @@ class AuthenticationService @Inject constructor(
                  sendMailVerification{ mError->
                      completionHandler(mError)
                 }
-                Log.v(TAG, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
+                Log.v(App.tag, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
             } else {
-                Log.e(TAG, "Error: createUserWithEmail:failure")
+                Log.e(App.tag, "Error: createUserWithEmail:failure")
                 completionHandler(ERROR_CREATING_ACC)
             }
         }
@@ -43,9 +43,9 @@ class AuthenticationService @Inject constructor(
         val profileUpdates = userProfileChangeRequest { displayName = name }
         Firebase.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if (task.isSuccessful)
-                Log.v(TAG, "OK: User profile updated correctly.")
+                Log.v(App.tag, "OK: User profile updated correctly.")
             else
-                Log.e(TAG, "Error: User profile update error")
+                Log.e(App.tag, "Error: User profile update error")
         }
     }
 
@@ -53,10 +53,10 @@ class AuthenticationService @Inject constructor(
 
         Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             if (it.isSuccessful) {
-                Log.v(TAG, "OK: sendEmailVerification:Success")
+                Log.v(App.tag, "OK: sendEmailVerification:Success")
                 completionHandler(MAIL_SENT_SUCCESS)
             } else {
-                Log.e(TAG, "Error: sendEmailVerification:fail")
+                Log.e(App.tag, "Error: sendEmailVerification:fail")
                 completionHandler(MAIL_SENT_ERROR)
             }
         }
@@ -69,14 +69,14 @@ class AuthenticationService @Inject constructor(
                     if (!Firebase.auth.currentUser?.isEmailVerified!!) {
                         completionHandler(MAIL_NO_VERIFICATION) //todo send another
                         //sendMailVerification{}
-                        Log.v(TAG, "Login success but mail no verification")
+                        Log.v(App.tag, "Login success but mail no verification")
                     } else {
                         completionHandler(NO_ERROR)
-                        Log.v(TAG, "Login success")
+                        Log.v(App.tag, "Login success")
                     }
                 } else if (task.isCanceled || task.isComplete) {
                     completionHandler(ERROR_MAIL_OR_PASS)
-                    Log.v(TAG, "Login failed")
+                    Log.v(App.tag, "Login failed")
                 }
             }
     }

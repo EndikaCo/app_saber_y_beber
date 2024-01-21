@@ -2,8 +2,8 @@ package com.endcodev.saber_y_beber.data.repository
 
 import com.endcodev.saber_y_beber.data.database.dao.PlayerDao
 import com.endcodev.saber_y_beber.data.database.entities.PlayerEntity
-import com.endcodev.saber_y_beber.data.model.PlayersModel
-import com.endcodev.saber_y_beber.data.model.toDomain
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
+import com.endcodev.saber_y_beber.domain.model.toDomain
 import javax.inject.Inject
 
 class PlayerRepository @Inject constructor(
@@ -24,9 +24,5 @@ class PlayerRepository @Inject constructor(
 
     suspend fun insertAllPlayers(playerList: List<PlayerEntity>) {
         playerDao.insertAllPlayers(playerList)
-    }
-
-    suspend fun clearAllPlayers() {
-        playerDao.deleteAllPlayers()
     }
 }

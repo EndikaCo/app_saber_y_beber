@@ -6,8 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F2F4F6"
-    tools:context=".presenter.view.ui.dialog.ErrorDialogFragment">
+    android:background="#F2F4F6">
 
     <TextView
         android:id="@+id/error_title"
@@ -17,7 +16,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:minHeight="50dp"
-        android:text="ERROR GRAVE"
+        android:text="@string/error_title"
         android:textSize="20sp"
         app:drawableStartCompat="@drawable/ic_error"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +30,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="Ha ocurrido un error inesperado"
+        android:text="@string/error_description"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Cancel"
+        android:text="@string/player_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/error_accept"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Accept"
+        android:text="@string/player_accept"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/error_cancel"

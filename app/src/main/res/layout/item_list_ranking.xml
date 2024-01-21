@@ -3,13 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/tv_rank_trophy"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_gravity="start|center"
-        />
-
     <TextView
         android:id="@+id/tv_points"
         android:minWidth="20dp"

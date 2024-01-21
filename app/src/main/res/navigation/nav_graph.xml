@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.home.HomeFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.login.LoginFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.register.RegisterFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPassFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.forgot_pass.ForgotPassFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.forgot_pass.ForgotPassFragment"
         android:label="fragment_forgot_pass"
         tools:layout="@layout/fragment_forgot_pass" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/correctFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.correction.CorrectFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.correction.CorrectFragment"
         android:label="fragment_correct"
         tools:layout="@layout/fragment_correct" >
         <action
@@ -66,17 +66,17 @@
     </fragment>
     <fragment
         android:id="@+id/createFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.creation.CreateFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.creation.CreateFragment"
         android:label="fragment_creation"
         tools:layout="@layout/fragment_creation" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.profile.ProfileFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.endcodev.saber_y_beber.presenter.game.GameFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
 </navigation>

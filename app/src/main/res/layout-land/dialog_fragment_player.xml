@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presenter.dialogs.ErrorDialogFragment">
+    tools:context=".presentation.dialogs.ErrorDialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/id_card"
@@ -139,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/player_cancelar"
+        android:text="@string/player_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/id_continue"
         app:layout_constraintStart_toStartOf="@+id/id_card"

@@ -3,7 +3,7 @@ package com.endcodev.saber_y_beber.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.endcodev.saber_y_beber.data.model.QuestModel
+import com.endcodev.saber_y_beber.domain.model.QuestModel
 
 @Entity(tableName = "quest_table")
 data class QuestEntity(
