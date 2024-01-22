@@ -45,13 +45,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
         initObservers()
         initListeners()
-    }
-
-    private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.login_title)
     }
 
     private fun initObservers() {

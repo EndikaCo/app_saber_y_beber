@@ -9,6 +9,21 @@
 
     tools:context=".presentation.register.RegisterFragment">
 
+    <TextView
+        android:id="@+id/register_title"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/prata"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+
     <include
         android:id="@+id/view_header"
         layout="@layout/view_header"
@@ -23,25 +38,24 @@
         android:id="@+id/register_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="casual"
         android:text="@string/register_subtitle"
         android:textAlignment="center"
         android:textColor="@color/mid_grey"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/register_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+        app:layout_constraintTop_toBottomOf="@+id/register_title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/register_text"
+        app:layout_constraintStart_toEndOf="@+id/register_title"
         app:layout_constraintTop_toBottomOf="@+id/view_header">
 
         <EditText
@@ -54,9 +68,9 @@
             android:autofillHints="emailAddress"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_mail"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_email"
             android:inputType="textEmailAddress"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +87,7 @@
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_pass"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +105,7 @@
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_repeat_pass"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +124,7 @@
             android:autofillHints="username"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_login"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_username"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +141,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/register_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_text" />
 
@@ -131,12 +149,13 @@
         android:id="@+id/login_create_link2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/dosis"
         android:text="@string/register_account"
         android:textAlignment="center"
         android:textColor="@color/blue2"
         android:textSize="15sp"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout2"

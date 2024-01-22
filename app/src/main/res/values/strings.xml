@@ -9,7 +9,7 @@
     <string name="home_login_button_desc">botón de inicio de sesión</string>
     <string name="home_app_logo">logo de la app</string>
     <string name="home_creation_description">Pulsa para crear una pregunta</string>
-    <string name="home_player_add_button"> Añadir\njugador</string>
+    <string name="home_player_add_button">añadir</string>
     <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
     <string name="home_start_game_button">Iniciar juego</string>
     <string name="add_player">Añadir</string>
@@ -28,10 +28,10 @@
     <!-- login fragment-->
     <string name="login_back_button">botón atras</string>
     <string name="login_title">Iniciar sesión</string>
-    <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico</string>
+    <string name="login_welcome">Inicia sesión para poder crear preguntas</string>
     <string name="login_mail">Email</string>
     <string name="login_password">Contraseña</string>
-    <string name="login_forgot_pass"><b> <u><font color="@colors/light_black">Recuperar contraseña</font></u></b></string>
+    <string name="login_forgot_pass"><b> <u>Recuperar contraseña</u></b></string>
     <string name="login_bt">Iniciar sesión</string>
     <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/light_black">Crear cuenta</font></u></b></string>
     <string name="login_facebook">Login with facebook</string>
@@ -42,12 +42,6 @@
     <string name="something_went_wrong">algo ha salido mal</string>
     <string name="logged_as">Sesión iniciada como %s\n</string>
     <string name="log_out">Cerrar sesión</string>
-
-
-    <!-- facebook login -->
-    <string name="facebook_app_id">1234</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
 
     <!-- register fragment-->
     <string name="register_account_title">Crear cuenta</string>
@@ -79,7 +73,7 @@
     <!-- forgot pass fragment-->
     <string name="forgot_title">Recuperar contraseña</string>
     <string name="forgot_text">Te enviaremos un mail para que puedas cambiar la contraseña </string>
-    <string name="forgot_change">Enviar</string>
+    <string name="forgot_change">Recuperar contraseña</string>
     <string name="forgot_back_button">Botón atrás</string>
     <string name="forgot_mail_sent">Enviado correctamente, revisa tu Email (revisa tambien la carpeta de SPAM)</string>
     <string name="forgot_error_send">Error en el Envio</string>
@@ -154,5 +148,9 @@
     <string name="anonyme">anónimo</string>
     <string name="error_description">Ha ocurrido un error inesperado</string>
     <string name="error_title">ERROR GRAVE</string>
+    <string name="continua_con_google">Continua con Google</string>
+    <string name="o">o</string>
+    <string name="log_in">INICIAR SESION</string>
+    <string name="spam">En ocasiones el mail puede llegar a la carpeta de SPAM</string>
 
 </resources>

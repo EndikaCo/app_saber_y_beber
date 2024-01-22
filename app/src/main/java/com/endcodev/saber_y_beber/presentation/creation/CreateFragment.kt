@@ -43,14 +43,9 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
         initListeners()
         initObservers()
         onBackPressed()
-    }
-
-    private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.create_title)
     }
 
     /**

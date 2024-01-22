@@ -7,8 +7,8 @@
     android:id="@+id/home_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.HomeFragment"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    tools:context=".presentation.home.HomeFragment">
 
     <ImageView
         android:id="@+id/home_logo"
@@ -17,13 +17,13 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:adjustViewBounds="true"
+        android:background="@color/transparent"
         android:contentDescription="@string/home_app_logo"
         android:scaleType="fitCenter"
         android:src="@drawable/saber_y_beber_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/light_black"
-        android:background="@color/transparent" />
+        app:tint="@color/light_black" />
 
 
     <Button
@@ -66,13 +66,15 @@
         android:drawableLeft="@drawable/ic_person_add"
         android:drawableTint="@color/light_black"
         android:focusable="true"
+        android:fontFamily="@font/prata"
         android:text="@string/home_player_add_button"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@color/light_black"
-        android:textSize="14sp"
-        android:fontFamily="casual"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/home_rv"
         app:layout_constraintEnd_toEndOf="@+id/home_rv"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="@+id/home_rv"
         tools:ignore="RtlHardcoded" />
 
@@ -94,13 +96,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ic_action_start"
         android:minHeight="60sp"
         android:scaleX="0.9"
         android:scaleY="1"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/ic_action_start"
-        android:textColor="@color/light_black"
         android:text="@string/home_start_game_button"
+        android:textColor="@color/light_black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

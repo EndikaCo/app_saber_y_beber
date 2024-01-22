@@ -47,7 +47,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdmob()
-        initViews()
         initListeners()
         initObservers()
         onBackPressed()
@@ -71,13 +70,6 @@ class CorrectFragment : Fragment(R.layout.fragment_correct) {
                     mInterstitialAd = interstitialAd
                 }
             })
-    }
-
-    /**
-     * Initialize the views.
-     */
-    private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.correction_title_default)
     }
 
     /**

@@ -47,7 +47,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.register_account_title)
         binding.viewSignIn.btnLogin.text = resources.getString(R.string.register_bt)
         binding.viewSignIn.registerGoogle.visibility = View.GONE
         binding.viewSignIn.tvLogin.visibility = View.GONE

@@ -32,7 +32,6 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
         initListeners()
         initObservers()
     }
@@ -46,10 +45,6 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
             } else
                 context?.toast(resources.getString(R.string.forgot_error_send))
         }
-    }
-
-    private fun initViews() {
-        binding.viewHeader.headerTitle.text = resources.getString(R.string.forgot_title)
     }
 
     private fun initListeners() {
