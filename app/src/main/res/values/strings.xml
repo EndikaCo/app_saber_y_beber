@@ -9,7 +9,7 @@
     <string name="home_login_button_desc">botón de inicio de sesión</string>
     <string name="home_app_logo">logo de la app</string>
     <string name="home_creation_description">Pulsa para crear una pregunta</string>
-    <string name="home_player_add_button">añadir</string>
+    <string name="home_player_add_button">AÑADIR</string>
     <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
     <string name="home_start_game_button">Iniciar juego</string>
     <string name="add_player">Añadir</string>

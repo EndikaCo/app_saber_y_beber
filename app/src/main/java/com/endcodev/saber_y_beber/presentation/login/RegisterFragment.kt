@@ -1,4 +1,4 @@
-package com.endcodev.saber_y_beber.presentation.register
+package com.endcodev.saber_y_beber.presentation.login
 
 import android.os.Bundle
 import android.util.Log
@@ -16,11 +16,11 @@ import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.M
 import com.endcodev.saber_y_beber.databinding.FragmentRegisterBinding
 import com.endcodev.saber_y_beber.domain.utils.App
 import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
-import com.endcodev.saber_y_beber.presentation.register.RegisterViewModel.Companion.PASS_CAP
-import com.endcodev.saber_y_beber.presentation.register.RegisterViewModel.Companion.PASS_DIGIT
-import com.endcodev.saber_y_beber.presentation.register.RegisterViewModel.Companion.PASS_MINUS
-import com.endcodev.saber_y_beber.presentation.register.RegisterViewModel.Companion.PASS_SHORT
-import com.endcodev.saber_y_beber.presentation.register.RegisterViewModel.Companion.PASS_SPECIAL
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_CAP
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_DIGIT
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_MINUS
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_SHORT
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_SPECIAL
 import com.endcodev.saber_y_beber.presentation.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 

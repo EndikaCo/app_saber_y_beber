@@ -1,5 +1,6 @@
 package com.endcodev.saber_y_beber.presentation.game
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,14 +44,16 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
         initListeners()
         initObservers()
         onBackPressed()
     }
 
-    /**
-     * Initialize the listeners.
-     */
+    private fun initViews() {
+        binding.options.visibility = View.GONE
+    }
+
     private fun initListeners() {
         with(binding) {
 
@@ -147,6 +150,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     /** enables or disables buttons
      * @param ans is the state to change*/
     private fun enableButtons(ans: Boolean) {
+        binding.options.visibility = View.VISIBLE
         binding.btOption1.isEnabled = !ans
         binding.btOption2.isEnabled = !ans
         binding.btOption3.isEnabled = !ans
@@ -168,20 +172,24 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
 
         // if selected but wrong
-        if (option?.isSelected == true)
-            button.setBackgroundResource(R.drawable.answer_option_selected)
-
-        //if selected and correct
-        if (option?.isCorrect == true)
-            button.setBackgroundResource(R.drawable.answer_option_correct)
+        if (option?.isSelected == true) {
+            //if selected and correct
+            if (option.isCorrect) {
+                button.setBackgroundResource(R.drawable.answer_option_correct)
+            } else
+                button.paintFlags = button.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
     }
 
     /** resets all drawables to default*/
     private fun resetDrawables() {
         binding.options.clearCheck()
-        binding.btOption1.setBackgroundResource(R.drawable.answer_option)
-        binding.btOption2.setBackgroundResource(R.drawable.answer_option)
-        binding.btOption3.setBackgroundResource(R.drawable.answer_option)
+        binding.btOption1.paintFlags = Paint.LINEAR_TEXT_FLAG
+        binding.btOption2.paintFlags = Paint.LINEAR_TEXT_FLAG
+        binding.btOption3.paintFlags = Paint.LINEAR_TEXT_FLAG
+        binding.btOption1.setBackgroundResource(R.drawable.round_corners)
+        binding.btOption2.setBackgroundResource(R.drawable.round_corners)
+        binding.btOption3.setBackgroundResource(R.drawable.round_corners)
     }
 
     /** animates answer options pop up*/

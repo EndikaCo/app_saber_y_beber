@@ -5,15 +5,7 @@
     <!-- Background color -->
     <solid android:color="#3EC1B7B7" />
 
-    <!-- Stroke around the background, width and color -->
-    <stroke android:width="0dp" android:color="#3EFFFFFF"/>
-
     <!-- The corners of the shape -->
     <corners android:radius="20dp"/>
-
-    <!-- Padding for the background, e.g the Text inside a TextView will be
-    located differently -->
-    <padding android:left="3dp" android:right="3dp"
-        android:bottom="3dp" android:top="3dp" />
 
 </shape>

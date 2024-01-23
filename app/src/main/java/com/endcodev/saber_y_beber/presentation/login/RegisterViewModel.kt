@@ -1,4 +1,4 @@
-package com.endcodev.saber_y_beber.presentation.register
+package com.endcodev.saber_y_beber.presentation.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

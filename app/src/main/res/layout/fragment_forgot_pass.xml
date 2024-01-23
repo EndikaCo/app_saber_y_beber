@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".presentation.forgot_pass.ForgotPassFragment">
+    tools:context=".presentation.login.ForgotPassFragment">
 
     <include
         android:id="@+id/view_header"
@@ -65,7 +65,7 @@
         android:minHeight="50dp"
         android:text="@string/forgot_change"
         android:textSize="15sp"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

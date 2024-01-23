@@ -1,4 +1,4 @@
-package com.endcodev.saber_y_beber.presentation.forgot_pass
+package com.endcodev.saber_y_beber.presentation.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

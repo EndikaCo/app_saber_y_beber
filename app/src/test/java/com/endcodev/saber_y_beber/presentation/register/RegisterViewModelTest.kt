@@ -2,6 +2,7 @@ package com.endcodev.saber_y_beber.presentation.register
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
+import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule

@@ -13,9 +13,6 @@
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_correctFragment"
-            app:destination="@id/correctFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
@@ -39,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.endcodev.saber_y_beber.presentation.register.RegisterFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.login.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -48,21 +45,12 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPassFragment"
-        android:name="com.endcodev.saber_y_beber.presentation.forgot_pass.ForgotPassFragment"
+        android:name="com.endcodev.saber_y_beber.presentation.login.ForgotPassFragment"
         android:label="fragment_forgot_pass"
         tools:layout="@layout/fragment_forgot_pass" >
         <action
             android:id="@+id/action_forgotPassFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/correctFragment"
-        android:name="com.endcodev.saber_y_beber.presentation.correction.CorrectFragment"
-        android:label="fragment_correct"
-        tools:layout="@layout/fragment_correct" >
-        <action
-            android:id="@+id/action_correctFragment_to_createFragment"
-            app:destination="@id/createFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
