@@ -13,7 +13,7 @@ data class ChallengeEntity(
     @ColumnInfo(name = "challenge") val challenge: String,
     @ColumnInfo(name = "diff") val diff: Int,
     @ColumnInfo(name = "title") val title: String,
-    )
+)
 
 fun ChallengeModel.toDB() =
     ChallengeEntity(challenge = challenge, author = author, diff = diff, title = title)

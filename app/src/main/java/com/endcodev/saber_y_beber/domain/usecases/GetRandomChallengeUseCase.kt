@@ -1,8 +1,8 @@
 package com.endcodev.saber_y_beber.domain.usecases
 
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.ChallengeModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
+import com.endcodev.saber_y_beber.domain.model.ChallengeModel
 import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import javax.inject.Inject
 

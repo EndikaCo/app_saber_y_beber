@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.data.database.entities.toDb
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.domain.usecases.GetPlayersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

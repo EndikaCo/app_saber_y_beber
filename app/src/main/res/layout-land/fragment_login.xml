@@ -109,11 +109,11 @@
         android:id="@+id/login_create_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/dosis"
         android:text="@string/login_create_account"
         android:textAlignment="center"
         android:textColor="@color/dark_grey"
         android:textSize="15sp"
-        android:fontFamily="@font/dosis"
         app:layout_constraintBottom_toBottomOf="@+id/view_sign_in"
         app:layout_constraintEnd_toEndOf="@+id/login_pass_et"
         app:layout_constraintStart_toStartOf="@+id/login_pass_et" />

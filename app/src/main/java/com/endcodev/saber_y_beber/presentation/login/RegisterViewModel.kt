@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
+import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -45,7 +45,7 @@ class RegisterViewModel @Inject constructor(
         val repeatOk: Boolean = isEqualPass(pass, repeat)
         val userOk: Boolean = isValidUser(userName)
         if (emailOk && passOk && repeatOk && userOk)
-            authenticationService.createUser(email, pass, userName){
+            authenticationService.createUser(email, pass, userName) {
                 _dialog.value = it
             }
     }

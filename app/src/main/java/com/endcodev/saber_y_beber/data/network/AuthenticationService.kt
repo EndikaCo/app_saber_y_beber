@@ -21,14 +21,19 @@ class AuthenticationService @Inject constructor(
         const val MAIL_SENT_ERROR = 104
     }
 
-    fun createUser(email: String, pass: String, userName: String, completionHandler: (Int) -> Unit){
+    fun createUser(
+        email: String,
+        pass: String,
+        userName: String,
+        completionHandler: (Int) -> Unit
+    ) {
         val auth = firebase.auth
 
         auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
             if (it.isSuccessful) {
                 putUserName(userName)
-                 sendMailVerification{ mError->
-                     completionHandler(mError)
+                sendMailVerification { mError ->
+                    completionHandler(mError)
                 }
                 Log.v(App.tag, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
             } else {
@@ -49,7 +54,7 @@ class AuthenticationService @Inject constructor(
         }
     }
 
-    private fun sendMailVerification(completionHandler: (Int) -> Unit){
+    private fun sendMailVerification(completionHandler: (Int) -> Unit) {
 
         Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             if (it.isSuccessful) {

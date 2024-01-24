@@ -1,6 +1,5 @@
 package com.endcodev.saber_y_beber.presentation.game
 
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +14,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.domain.model.GameUiModel
 import com.endcodev.saber_y_beber.domain.model.OptionModel
 import com.endcodev.saber_y_beber.domain.model.PlayersModel
-import com.endcodev.saber_y_beber.databinding.FragmentGameBinding
 import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,9 +27,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding get() = _binding!!
-
     private lateinit var adapter: GameAdapter
-
     private val gameVM: GameViewModel by viewModels()
 
     override fun onCreateView(
@@ -123,7 +120,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    /** updates UI with [ui]*/
     private fun updateUi(ui: GameUiModel?) {
         if (ui != null)
             with(binding) {
@@ -172,21 +168,17 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
 
         // if selected but wrong
-        if (option?.isSelected == true) {
-            //if selected and correct
-            if (option.isCorrect) {
-                button.setBackgroundResource(R.drawable.answer_option_correct)
-            } else
-                button.paintFlags = button.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        if (option?.isCorrect == false && option.isSelected) {
+            button.setBackgroundResource(R.drawable.answer_wrong)
         }
+        if (option?.isCorrect == true)
+            button.setBackgroundResource(R.drawable.answer_option_correct)
+
     }
 
     /** resets all drawables to default*/
     private fun resetDrawables() {
         binding.options.clearCheck()
-        binding.btOption1.paintFlags = Paint.LINEAR_TEXT_FLAG
-        binding.btOption2.paintFlags = Paint.LINEAR_TEXT_FLAG
-        binding.btOption3.paintFlags = Paint.LINEAR_TEXT_FLAG
         binding.btOption1.setBackgroundResource(R.drawable.round_corners)
         binding.btOption2.setBackgroundResource(R.drawable.round_corners)
         binding.btOption3.setBackgroundResource(R.drawable.round_corners)
@@ -204,10 +196,10 @@ class GameFragment : Fragment(R.layout.fragment_game) {
      * @param difficulty is the difficulty to set*/
     private fun setDifficulty(difficulty: Int) {
         when (difficulty) {
-            0 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_0)
-            1 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_1)
-            2 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_2)
-            3 -> binding.difficulty.setBackgroundResource(R.drawable.difficulty_3)
+            0 -> binding.gameDifficulty.setBackgroundResource(R.drawable.d1)
+            1 -> binding.gameDifficulty.setBackgroundResource(R.drawable.d1)
+            2 -> binding.gameDifficulty.setBackgroundResource(R.drawable.d2)
+            3 -> binding.gameDifficulty.setBackgroundResource(R.drawable.d3)
         }
     }
 

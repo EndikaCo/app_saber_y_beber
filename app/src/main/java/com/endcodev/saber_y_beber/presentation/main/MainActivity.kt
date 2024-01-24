@@ -8,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.ActivityMainBinding
+import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.domain.utils.App
 import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
 import com.endcodev.saber_y_beber.presentation.utils.StoreUtils.getVersion

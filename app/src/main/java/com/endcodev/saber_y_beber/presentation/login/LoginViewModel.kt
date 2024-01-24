@@ -4,12 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import com.endcodev.saber_y_beber.data.network.AuthenticationService
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_NO_VERIFICATION
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.NO_ERROR
 import com.endcodev.saber_y_beber.domain.utils.App
-
+import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -36,10 +35,12 @@ class LoginViewModel @Inject constructor(
                         _toast.value = resources.getString(R.string.login_success)
                         _isConnected.value = true
                     }
+
                     MAIL_NO_VERIFICATION -> {
                         _toast.value = resources.getString(R.string.login_not_verified)
                         Log.v(App.tag, "MAIL_NO_VERIFICATION")
                     }
+
                     else -> {
                         _toast.value = resources.getString(R.string.login_failed)
                         Log.v(App.tag, "ERROR_MAIL_OR_PASS")

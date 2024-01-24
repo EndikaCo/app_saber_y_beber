@@ -11,10 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.FragmentHomeBinding
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.presentation.utils.StoreUtils.openPlayStore
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.system.exitProcess
 
@@ -82,7 +81,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /** navigate to GameFragment if user is connected and mail verified*/
     private fun correctQuest() {
         if (homeViewModel.isConnected())
-            findNavController().navigate(R.id.action_homeFragment_to_correctFragment)
+            findNavController().navigate(R.id.createFragment)
         else
             Toast.makeText(context, getString(R.string.need_login), Toast.LENGTH_SHORT).show()
     }

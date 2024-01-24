@@ -9,8 +9,8 @@ import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.DialogFragmentPlayerBinding
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 
 open class PlayerDialogFragment(
     private val onSubmitClickListener: (PlayersModel) -> Unit

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.ProfileModel
 import com.endcodev.saber_y_beber.databinding.ProfileHolderBinding
+import com.endcodev.saber_y_beber.domain.model.ProfileModel
 
 class ProfileAdapter(
     private var activityList: List<ProfileModel>,
@@ -34,6 +34,6 @@ class ProfileAdapter(
     }
 
     override fun getItemCount(): Int {
-        return  activityList.size
+        return activityList.size
     }
 }

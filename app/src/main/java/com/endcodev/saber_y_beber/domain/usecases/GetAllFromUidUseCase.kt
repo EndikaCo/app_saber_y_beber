@@ -1,12 +1,12 @@
 package com.endcodev.saber_y_beber.domain.usecases
 
 import android.util.Log
-import com.endcodev.saber_y_beber.domain.model.CorrectionModel
-import com.endcodev.saber_y_beber.domain.model.ProfileModel
-import com.endcodev.saber_y_beber.domain.model.QuestModel
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.data.repository.CorrectionRepository
 import com.endcodev.saber_y_beber.data.repository.GameRepository
+import com.endcodev.saber_y_beber.domain.model.CorrectionModel
+import com.endcodev.saber_y_beber.domain.model.ProfileModel
+import com.endcodev.saber_y_beber.domain.model.QuestModel
 import com.endcodev.saber_y_beber.domain.utils.App
 import javax.inject.Inject
 

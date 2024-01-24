@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.endcodev.saber_y_beber.domain.model.ProfileModel
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
+import com.endcodev.saber_y_beber.domain.model.ProfileModel
 import com.endcodev.saber_y_beber.domain.usecases.GetAllFromUidUseCase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val firebase: FirebaseClient,
     private val getAllFromUidUseCase: GetAllFromUidUseCase,
-    ) : ViewModel() {
+) : ViewModel() {
 
     private var _currentUser = MutableLiveData<FirebaseUser>()
     val currentUser: LiveData<FirebaseUser> get() = _currentUser
@@ -38,11 +38,11 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun user(){
+    fun user() {
         _currentUser.value = Firebase.auth.currentUser
     }
 
     fun disconnect() {
-       firebase.auth.signOut()
+        firebase.auth.signOut()
     }
 }

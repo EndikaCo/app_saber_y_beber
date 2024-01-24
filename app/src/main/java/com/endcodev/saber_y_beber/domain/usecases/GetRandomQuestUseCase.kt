@@ -1,7 +1,7 @@
 package com.endcodev.saber_y_beber.domain.usecases
 
-import com.endcodev.saber_y_beber.domain.model.QuestModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
+import com.endcodev.saber_y_beber.domain.model.QuestModel
 import javax.inject.Inject
 
 class GetRandomQuestUseCase @Inject constructor(

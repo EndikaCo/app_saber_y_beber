@@ -2,8 +2,8 @@ package com.endcodev.saber_y_beber.domain.usecases
 
 import android.util.Log
 import com.endcodev.saber_y_beber.data.database.entities.PlayerEntity
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.data.repository.PlayerRepository
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.domain.utils.App
 import javax.inject.Inject
 

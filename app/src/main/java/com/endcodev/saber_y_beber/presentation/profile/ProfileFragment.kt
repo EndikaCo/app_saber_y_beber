@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.ProfileModel
 import com.endcodev.saber_y_beber.databinding.FragmentProfileBinding
+import com.endcodev.saber_y_beber.domain.model.ProfileModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,16 +40,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun initObservers() {
 
-        viewModel.isLoading.observe(viewLifecycleOwner){
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.profileProgress.isVisible = it
         }
 
-        viewModel.currentUser.observe(viewLifecycleOwner){
+        viewModel.currentUser.observe(viewLifecycleOwner) {
             binding.profileUsername.text = it.displayName
             binding.profileMail.text = it.email
         }
 
-        viewModel.activityList.observe(viewLifecycleOwner){
+        viewModel.activityList.observe(viewLifecycleOwner) {
             initAdapter(it)
         }
     }

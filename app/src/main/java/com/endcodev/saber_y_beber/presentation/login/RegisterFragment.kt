@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.ERROR_CREATING_ACC
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_SENT_ERROR
 import com.endcodev.saber_y_beber.data.network.AuthenticationService.Companion.MAIL_SENT_SUCCESS
 import com.endcodev.saber_y_beber.databinding.FragmentRegisterBinding
+import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.domain.utils.App
 import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
 import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_CAP

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.model.CorrectionModel
 import com.endcodev.saber_y_beber.domain.model.CorrectorModel
 import com.endcodev.saber_y_beber.domain.model.EditTextErrorModel
-import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.usecases.GetCorrectionsUseCase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -32,7 +32,7 @@ class CreateViewModel @Inject constructor(
     private val _notification = MutableLiveData<String>()
     val notification: LiveData<String> get() = _notification
 
-    private val _difficulty = MutableLiveData(0)
+    private val _difficulty = MutableLiveData(1)
     val difficulty: LiveData<Int> get() = _difficulty
 
     private var _questError = MutableLiveData<EditTextErrorModel>()
@@ -48,7 +48,7 @@ class CreateViewModel @Inject constructor(
             val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
             database = FirebaseDatabase.getInstance().reference.child(path)
             database.setValue(correctionModel).addOnSuccessListener {
-                _notification.postValue("Subido correctamente")
+                _notification.postValue("Subido correctamente") //todo
             }.addOnFailureListener {
                 _notification.postValue("Algo ha ido mal")
             }

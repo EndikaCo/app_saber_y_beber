@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val firebase : FirebaseClient
+    private val firebase: FirebaseClient
 ) : ViewModel() {
 
     var isReady: Boolean = false

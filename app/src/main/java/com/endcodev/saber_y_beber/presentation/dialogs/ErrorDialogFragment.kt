@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
-import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.databinding.DialogFragmentErrorBinding
+import com.endcodev.saber_y_beber.domain.model.ErrorModel
 
 class ErrorDialogFragment(
     private val onAcceptClickLister: (Boolean) -> Unit,
@@ -56,10 +56,9 @@ class ErrorDialogFragment(
 
         binding.errorAccept.text = error.acceptButton
 
-        if (error.cancelButton == "")
-        {
+        if (error.cancelButton == "") {
             binding.errorCancel.visibility = View.GONE
-        }else
+        } else
             binding.errorCancel.text = error.cancelButton
     }
 

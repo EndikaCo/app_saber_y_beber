@@ -183,8 +183,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/report"
         android:fontFamily="@font/prata"
+        android:text="@string/report"
 
         app:drawableTint="@color/black"
         app:drawableTopCompat="@drawable/ic_report"
@@ -196,7 +196,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/difficulty_0"
+        android:background="@drawable/d1"
         android:contentDescription="TODO"
         android:scaleX="0.8"
         android:scaleY="0.8"

@@ -33,11 +33,11 @@
 
     <ImageView
         android:id="@+id/create_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
 
         android:layout_marginBottom="2dp"
-        android:background="@drawable/difficulty_0"
+        android:background="@drawable/d1"
         android:contentDescription="@string/create_difficulty"
         app:layout_constraintBottom_toTopOf="@+id/create_quest"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,8 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColorHint="#EDE7F6" />
+            android:textColor="@color/light_black"
+            android:textColorHint="@color/light_black" />
 
         <EditText
             android:id="@+id/create_option2"

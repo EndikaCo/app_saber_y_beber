@@ -52,7 +52,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
      * Initialize the Observers.
      */
     private fun initObservers() {
-        createViewModel.difficulty.observe(viewLifecycleOwner){
+        createViewModel.difficulty.observe(viewLifecycleOwner) {
             setDifficulty(it)
         }
 
@@ -61,17 +61,19 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
-            if( it.questError == QUEST_EMPTY)
+            if (it.questError == QUEST_EMPTY)
                 binding.createQuest.error = resources.getString(R.string.create_error_quest)
-            if(it.correctError == A_EMPTY)
+            if (it.correctError == A_EMPTY)
                 binding.createCorrect.error = resources.getString(R.string.create_error_quest)
-            if(it.option2Error == B_EMPTY)
+            if (it.option2Error == B_EMPTY)
                 binding.createOption2.error = resources.getString(R.string.create_error_quest)
-            if(it.option3Error == C_EMPTY)
+            if (it.option3Error == C_EMPTY)
                 binding.createOption3.error = resources.getString(R.string.create_error_quest)
-            if(it.difficultyError == DIF_EMPTY)
-                Toast.makeText(context, resources.getString(R.string.create_error_dif),
-                    Toast.LENGTH_LONG).show()
+            if (it.difficultyError == DIF_EMPTY)
+                Toast.makeText(
+                    context, resources.getString(R.string.create_error_dif),
+                    Toast.LENGTH_LONG
+                ).show()
         }
     }
 
@@ -101,16 +103,15 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         val optionB = binding.createOption2.text.toString()
         val optionC = binding.createOption3.text.toString()
 
-        createViewModel.checkValues(quest, optionA, optionB,
-            optionC)
+        createViewModel.checkValues(quest, optionA, optionB, optionC)
+        findNavController().navigate(R.id.homeFragment)
     }
 
     private fun setDifficulty(difficulty: Int) { //todo repeated in correct
         when (difficulty) {
-            0 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_0)
-            1 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_1)
-            2 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_2)
-            3 -> binding.createDifficulty.setBackgroundResource(R.drawable.difficulty_3)
+            1 -> binding.createDifficulty.setBackgroundResource(R.drawable.d1)
+            2 -> binding.createDifficulty.setBackgroundResource(R.drawable.d2)
+            3 -> binding.createDifficulty.setBackgroundResource(R.drawable.d3)
         }
     }
 

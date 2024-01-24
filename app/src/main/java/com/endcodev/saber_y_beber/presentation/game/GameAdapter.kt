@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.ItemListRankingBinding
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 
 class GameAdapter(
     private var playerList: List<PlayersModel>,

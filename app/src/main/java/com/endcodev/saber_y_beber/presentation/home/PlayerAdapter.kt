@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.endcodev.saber_y_beber.R
-import com.endcodev.saber_y_beber.domain.model.PlayersModel
 import com.endcodev.saber_y_beber.databinding.PlayerHolderBinding
+import com.endcodev.saber_y_beber.domain.model.PlayersModel
 
 class PlayerAdapter(
     private var mList: List<PlayersModel>,
