@@ -27,10 +27,12 @@ class CreateViewModel @Inject constructor(
         const val B_EMPTY = 104
         const val C_EMPTY = 105
         const val DIF_EMPTY = 106
+        const val SOME_WRONG = 107
+        const val OK = 0
     }
 
-    private val _notification = MutableLiveData<String>()
-    val notification: LiveData<String> get() = _notification
+    private val _notification = MutableLiveData<Int>()
+    val notification: LiveData<Int> get() = _notification
 
     private val _difficulty = MutableLiveData(1)
     val difficulty: LiveData<Int> get() = _difficulty
@@ -48,9 +50,9 @@ class CreateViewModel @Inject constructor(
             val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
             database = FirebaseDatabase.getInstance().reference.child(path)
             database.setValue(correctionModel).addOnSuccessListener {
-                _notification.postValue("Subido correctamente") //todo
+                _notification.postValue(OK)
             }.addOnFailureListener {
-                _notification.postValue("Algo ha ido mal")
+                _notification.postValue(SOME_WRONG)
             }
         }
     }
@@ -100,10 +102,7 @@ class CreateViewModel @Inject constructor(
         return if (quest == "") {
             _questError.value?.questError = QUEST_EMPTY
             false
-        }// else if (!quest.contains('?')) {
-        //    _questError.value?.questError = QUEST_SIGN
-        //    false }
-        else {
+        } else {
             _questError.value?.questError = 0
             true
         }

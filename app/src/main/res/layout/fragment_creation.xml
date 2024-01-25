@@ -7,6 +7,39 @@
     android:background="@drawable/gradient_background"
     tools:context=".presentation.creation.CreateFragment">
 
+    <TextView
+        android:id="@+id/create_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/prata"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="casual"
+        android:text="@string/create_desc"
+        android:textAlignment="center"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/light_black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/create_title"
+        app:layout_constraintStart_toStartOf="@+id/create_title"
+        app:layout_constraintTop_toBottomOf="@+id/create_title" />
+
     <include
         android:id="@+id/view_header"
         layout="@layout/view_header"
@@ -20,7 +53,7 @@
         android:id="@+id/create_tv_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="@string/create_difficulty"
@@ -29,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/create_difficulty"
@@ -49,7 +82,9 @@
         style="@style/circledEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:hint="@string/create_question"

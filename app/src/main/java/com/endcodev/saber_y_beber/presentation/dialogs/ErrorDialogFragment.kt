@@ -11,7 +11,12 @@ import com.endcodev.saber_y_beber.domain.model.ErrorModel
 
 class ErrorDialogFragment(
     private val onAcceptClickLister: (Boolean) -> Unit,
-    private val error: ErrorModel,
+    private val error: ErrorModel = ErrorModel(
+        title = "Error",
+        description = "Ha ocurrido un error",
+        acceptButton = "Aceptar",
+        cancelButton = ""
+    )
 ) : DialogFragment() {
 
     private var _binding: DialogFragmentErrorBinding? = null

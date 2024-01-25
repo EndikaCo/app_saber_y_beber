@@ -15,6 +15,7 @@ import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companio
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.B_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.C_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.DIF_EMPTY
+import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.OK
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.QUEST_EMPTY
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,7 +58,13 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         createViewModel.notification.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            if (it == OK) {
+                Toast.makeText(requireContext(), "Question correctly created", Toast.LENGTH_SHORT)
+                    .show() //todo to string res
+                findNavController().navigate(R.id.homeFragment)
+            } else
+                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
+
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
@@ -102,9 +109,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         val optionA = binding.createCorrect.text.toString()
         val optionB = binding.createOption2.text.toString()
         val optionC = binding.createOption3.text.toString()
-
         createViewModel.checkValues(quest, optionA, optionB, optionC)
-        findNavController().navigate(R.id.homeFragment)
     }
 
     private fun setDifficulty(difficulty: Int) { //todo repeated in correct

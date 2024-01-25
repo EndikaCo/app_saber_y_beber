@@ -16,11 +16,11 @@ import com.endcodev.saber_y_beber.databinding.FragmentRegisterBinding
 import com.endcodev.saber_y_beber.domain.model.ErrorModel
 import com.endcodev.saber_y_beber.domain.utils.App
 import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
-import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_CAP
-import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_DIGIT
-import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_MINUS
-import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_SHORT
-import com.endcodev.saber_y_beber.presentation.login.RegisterViewModel.Companion.PASS_SPECIAL
+import com.endcodev.saber_y_beber.presentation.login.LoginViewModel.Companion.PASS_CAP
+import com.endcodev.saber_y_beber.presentation.login.LoginViewModel.Companion.PASS_DIGIT
+import com.endcodev.saber_y_beber.presentation.login.LoginViewModel.Companion.PASS_MINUS
+import com.endcodev.saber_y_beber.presentation.login.LoginViewModel.Companion.PASS_SHORT
+import com.endcodev.saber_y_beber.presentation.login.LoginViewModel.Companion.PASS_SPECIAL
 import com.endcodev.saber_y_beber.presentation.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +29,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: RegisterViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

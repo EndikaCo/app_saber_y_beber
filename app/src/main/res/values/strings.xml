@@ -152,5 +152,10 @@
     <string name="o">o</string>
     <string name="log_in">INICIAR SESION</string>
     <string name="spam">En ocasiones el mail puede llegar a la carpeta de SPAM</string>
+    <string name="create_desc">Crea una pregunta para otros usuarios</string>
+    <string name="delete_acc">Eliminar \n cuenta</string>
+    <string name="change_username">Cambiar nombre de usuario</string>
+    <string name="new_username">Introduce el nuevo nombre</string>
+    <string name="change_username_title">Cambio de nombre de Usuario</string>
 
 </resources>

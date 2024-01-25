@@ -17,7 +17,7 @@ class ForgotPassFragment : Fragment(R.layout.fragment_forgot_pass) {
 
     private var _binding: FragmentForgotPassBinding? = null
     private val binding: FragmentForgotPassBinding get() = _binding!!
-    private val viewModel: ForgotViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

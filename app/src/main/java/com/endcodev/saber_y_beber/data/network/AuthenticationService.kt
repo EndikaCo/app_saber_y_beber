@@ -1,7 +1,10 @@
 package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
+import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.domain.utils.App
+import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -43,7 +46,7 @@ class AuthenticationService @Inject constructor(
         }
     }
 
-    private fun putUserName(name: String) {
+    fun putUserName(name: String) {
 
         val profileUpdates = userProfileChangeRequest { displayName = name }
         Firebase.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
@@ -82,6 +85,17 @@ class AuthenticationService @Inject constructor(
                 } else if (task.isCanceled || task.isComplete) {
                     completionHandler(ERROR_MAIL_OR_PASS)
                     Log.v(App.tag, "Login failed")
+                }
+            }
+    }
+
+    fun deleteAccount(onComplete: (Boolean) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.delete()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onComplete(true)
+                } else {
+                    onComplete(false)
                 }
             }
     }
