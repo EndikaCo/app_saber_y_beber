@@ -79,7 +79,6 @@
 
     <EditText
         android:id="@+id/create_quest"
-        style="@style/circledEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -90,6 +89,8 @@
         android:hint="@string/create_question"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:textColor="@color/light_black"
+        android:textColorHint="@color/light_black"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

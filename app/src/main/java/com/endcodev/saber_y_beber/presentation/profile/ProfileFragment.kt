@@ -98,7 +98,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-    fun deleteAccount() {
+    private fun deleteAccount() {
         viewModel.deleteAccount(onComplete = {
             if (it) {
                 findNavController().navigate(R.id.homeFragment)

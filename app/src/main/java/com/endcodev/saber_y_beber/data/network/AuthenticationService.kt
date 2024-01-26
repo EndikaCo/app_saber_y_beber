@@ -1,9 +1,7 @@
 package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
-import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.domain.utils.App
-import com.endcodev.saber_y_beber.presentation.dialogs.ErrorDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -13,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthenticationService @Inject constructor(
-    private val firebase: FirebaseClient,
+    private val client: FirebaseClient,
 ) {
     companion object {
         const val NO_ERROR = 0
@@ -30,15 +28,13 @@ class AuthenticationService @Inject constructor(
         userName: String,
         completionHandler: (Int) -> Unit
     ) {
-        val auth = firebase.auth
-
-        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
+        client.auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
             if (it.isSuccessful) {
                 putUserName(userName)
                 sendMailVerification { mError ->
                     completionHandler(mError)
                 }
-                Log.v(App.tag, "OK: createUserWithEmail:success ${auth.currentUser?.toString()}")
+                Log.v(App.tag, "OK: createUserWithEmail:success ${client.auth.currentUser?.toString()}")
             } else {
                 Log.e(App.tag, "Error: createUserWithEmail:failure")
                 completionHandler(ERROR_CREATING_ACC)
@@ -49,7 +45,7 @@ class AuthenticationService @Inject constructor(
     fun putUserName(name: String) {
 
         val profileUpdates = userProfileChangeRequest { displayName = name }
-        Firebase.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+        client.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if (task.isSuccessful)
                 Log.v(App.tag, "OK: User profile updated correctly.")
             else
@@ -59,7 +55,7 @@ class AuthenticationService @Inject constructor(
 
     private fun sendMailVerification(completionHandler: (Int) -> Unit) {
 
-        Firebase.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+        client.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.v(App.tag, "OK: sendEmailVerification:Success")
                 completionHandler(MAIL_SENT_SUCCESS)
@@ -71,7 +67,7 @@ class AuthenticationService @Inject constructor(
     }
 
     fun mailPassLogin(loginMail: String, loginPass: String, completionHandler: (Int) -> Unit) {
-        Firebase.auth.signInWithEmailAndPassword(loginMail, loginPass)
+        client.auth.signInWithEmailAndPassword(loginMail, loginPass)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (!Firebase.auth.currentUser?.isEmailVerified!!) {
@@ -90,7 +86,7 @@ class AuthenticationService @Inject constructor(
     }
 
     fun deleteAccount(onComplete: (Boolean) -> Unit) {
-        FirebaseAuth.getInstance().currentUser?.delete()
+        client.auth.currentUser?.delete()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onComplete(true)
@@ -99,4 +95,6 @@ class AuthenticationService @Inject constructor(
                 }
             }
     }
+
+
 }
