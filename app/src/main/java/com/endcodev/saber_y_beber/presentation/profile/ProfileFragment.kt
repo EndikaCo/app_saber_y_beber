@@ -89,10 +89,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         deleteAccount()
                 },
                 ErrorModel(
-                    title = "Eliminar cuenta",
-                    description = "¿Estás seguro de que quieres eliminar tu cuenta?",
-                    acceptButton = "Sí",
-                    cancelButton = "No"
+                    title = getString(R.string.delete_acc2),
+                    description = getString(R.string.delete_acc_verif),
+                    acceptButton = getString(R.string.yes),
+                    cancelButton = getString(R.string.no),
                 )
             ).show(parentFragmentManager, "dialog")
         }
@@ -104,7 +104,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 findNavController().navigate(R.id.homeFragment)
                 Toast.makeText(
                     requireContext(),
-                    "Cuenta eliminada correctamente", //todo
+                    getString(R.string.acc_deleted),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -112,9 +112,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     onAcceptClickLister = {
                     },
                     ErrorModel(
-                        title = "Error",
-                        description = "No se ha podido eliminar la cuenta",
-                        acceptButton = "OK",
+                        title = getString(R.string.error),
+                        description = getString(R.string.error_delete_acc),
+                        acceptButton = getString(R.string.ok),
                         ""
                     )
                 ).show(parentFragmentManager, "dialog")

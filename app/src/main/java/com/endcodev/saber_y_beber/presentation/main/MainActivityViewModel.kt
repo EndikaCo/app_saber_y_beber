@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.utils.App
+import com.google.errorprone.annotations.Keep
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -16,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -44,8 +46,7 @@ class MainActivityViewModel @Inject constructor(
             override fun onDataChange(snapshot: DataSnapshot) {
                 val connected = snapshot.getValue(Boolean::class.java) ?: false
                 if (connected) {
-                    Log.d(App.tag, "firebase connected")
-                    checkVersion()
+                    //checkVersion()
                 } else {
                     Log.d(App.tag, "firebase not connected")
                 }
@@ -56,21 +57,17 @@ class MainActivityViewModel @Inject constructor(
             }
         })
     }
-
-    /**
-     * Checks the version of the app in Firebase
-     */
-    private fun checkVersion() {
+    @Keep
+    /** Checks the version of the app in Firebase*/
+    private fun checkVersion() { //todo
 
         val myRef = firebase.dataBase.getReference("/version")
-        // Read from the database
+
         myRef.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val needVersion = snapshot.getValue<String>()
 
+                val needVersion = snapshot.getValue<String>()
                 if (needVersion == null) {
                     Log.e(App.tag, "need versions is null")
                 } else {

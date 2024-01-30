@@ -15,11 +15,9 @@ class GetQuestUseCase @Inject constructor(
         var questList: List<QuestModel>? = null
 
         try {
-            // Attempt to get all quests from the API
             questList = repository.getAllQuestFromApi()
         } catch (e: Exception) {
             Log.e(App.tag, "No reply from quest retrofit API $e")
-            // Retrieve all quests from the database instead
             repository.getAllQuestFromDB()
         }
 

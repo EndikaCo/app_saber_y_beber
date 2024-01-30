@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
+import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.DialogFragmentNameBinding
 
 class NameDialogFragment(
@@ -33,7 +34,7 @@ class NameDialogFragment(
                     onAccept.invoke(it)
                     dismiss()
                 }
-                binding.nameDescription.error = "El nombre no puede estar vacío"
+                binding.nameDescription.error = getString(R.string.empty_name)
             }
 
         }

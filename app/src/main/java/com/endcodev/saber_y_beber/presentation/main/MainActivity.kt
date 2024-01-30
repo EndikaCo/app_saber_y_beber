@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.cancel)
             )
 
-        if (needVersion.toInt() != getVersion(this)) {
+        if (needVersion.toInt() > getVersion(this)) {
             val dialog = ErrorDialogFragment(onAcceptClickLister = {
                 if (it) {
                     openPlayStore(this, appPackageName)

@@ -8,6 +8,7 @@ Saber y Beber
 Simple app to draw random names previously added to a list.
 
 ### Tech stack
+
 [![Android](https://img.shields.io/badge/Android-grey?style=&logo=android&logoColor=green)](https://www.android.com/)
 [![KOTLIN](https://img.shields.io/badge/Kotlin-grey?style=none&logo=Kotlin&logoColor=-5C2D91)](https://kotlinlang.org/)
 ![XML](https://img.shields.io/badge/</>%20xml-blue.svg?style=&logo=xml&logoColor=white)
@@ -17,5 +18,5 @@ Simple app to draw random names previously added to a list.
 [![MVVM](https://img.shields.io/badge/MVVM-orange?style=&logo=)]()
 [![Live Data](https://img.shields.io/badge/Live_Data-grey?style=&logo=)]()
 
-| ![img.png](images/1.png)| ![img.png](images/2.png) |
-|-------------------------|--------------------------|
+| ![img.png](images/1.png) | ![img.png](images/2.png) |
+|--------------------------|--------------------------|

@@ -203,16 +203,10 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    private fun openDialogRanking() {
-        //findNavController().navigate(R.id.rankingDialogFragment)
-    }
-
     /** initializes the adapter with [value]*/
     private fun initAdapter(value: List<PlayersModel>?) {
         value?.let {
-            adapter = GameAdapter(it, onClickListener = {
-                openDialogRanking()
-            })
+            adapter = GameAdapter(it, onClickListener = {})
             binding.gameRank.layoutManager = LinearLayoutManager(this.activity)
             binding.gameRank.adapter = adapter
         }

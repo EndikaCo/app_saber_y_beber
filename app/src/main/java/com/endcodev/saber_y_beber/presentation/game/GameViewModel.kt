@@ -224,9 +224,7 @@ class GameViewModel @Inject constructor(
     }
 
     private fun isFinalRound(playerList: MutableList<PlayersModel>): Boolean {
-        if (_actualPlayer == playerList.size - 1)
-            return true
-        return false
+        return _actualPlayer == playerList.size - 1
     }
 }
 

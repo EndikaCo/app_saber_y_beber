@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#-keep class com.endcodev.saber_y_beber.data.database* { *; }
+#-keep class com.endcodev.saber_y_beber.domain.* { *; }
+
+#-keep class com.endcodev.saber_y_beber.** { *; }

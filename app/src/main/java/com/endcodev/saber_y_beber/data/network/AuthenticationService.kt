@@ -2,7 +2,6 @@ package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
 import com.endcodev.saber_y_beber.domain.utils.App
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -28,13 +27,12 @@ class AuthenticationService @Inject constructor(
         userName: String,
         completionHandler: (Int) -> Unit
     ) {
-        client.auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
+        client.auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
                 putUserName(userName)
                 sendMailVerification { mError ->
                     completionHandler(mError)
                 }
-                Log.v(App.tag, "OK: createUserWithEmail:success ${client.auth.currentUser?.toString()}")
             } else {
                 Log.e(App.tag, "Error: createUserWithEmail:failure")
                 completionHandler(ERROR_CREATING_ACC)
@@ -57,7 +55,6 @@ class AuthenticationService @Inject constructor(
 
         client.auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
             if (it.isSuccessful) {
-                Log.v(App.tag, "OK: sendEmailVerification:Success")
                 completionHandler(MAIL_SENT_SUCCESS)
             } else {
                 Log.e(App.tag, "Error: sendEmailVerification:fail")
@@ -95,6 +92,4 @@ class AuthenticationService @Inject constructor(
                 }
             }
     }
-
-
 }

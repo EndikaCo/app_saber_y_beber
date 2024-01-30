@@ -29,7 +29,7 @@ class GetRandomChallengeUseCase @Inject constructor(
         return ChallengeModel(
             resources.getString(R.string.game_start_round_title),
             resources.getString(R.string.game_start_round_text),
-            resources.getString(R.string.anonyme),
+            resources.getString(R.string.anonymous),
             1
         )
     }
@@ -38,7 +38,7 @@ class GetRandomChallengeUseCase @Inject constructor(
         return ChallengeModel(
             resources.getString(R.string.fin_ronda, round),
             resources.getString(R.string.final_ranking_lead, player),
-            resources.getString(R.string.anonyme),
+            resources.getString(R.string.anonymous),
             3
         )
     }

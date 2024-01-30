@@ -16,12 +16,10 @@ class GetPlayersUseCase @Inject constructor(
 
         try {
             playerList = repository.getAllPlayersFromDB()
-            Log.v(App.tag, "players found $playerList")
         } catch (e: Exception) {
             Log.e(App.tag, "No players found, $e")
         }
         if (playerList.isNullOrEmpty()) {
-            Log.v(App.tag, "null $playerList")
             repository.insertAllPlayers(examplePlayers())
             playerList = repository.getAllPlayersFromDB()
         }
@@ -32,7 +30,7 @@ class GetPlayersUseCase @Inject constructor(
         return arrayListOf(
             PlayerEntity(1, 0, "Player 1", 0),
             PlayerEntity(2, 1, "Player 2", 0),
-            PlayerEntity(3, 2, "Horse Luis", 0)
+            PlayerEntity(3, 2, "Player 3", 0)
         )
     }
 

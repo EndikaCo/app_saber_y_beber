@@ -39,7 +39,7 @@
     <string name="login_not_verified">El Email no ha sido verificado aún. Accede a tu cuenta de correo electronico y pincha en el enlace de verificación. (Mira tambien en la bandeja de SPAM)</string>
     <string name="login_failed">El Email o la contraseña no son correctos</string>
     <string name="login_error">Introduce tu mail y contraseña</string>
-    <string name="something_went_wrong">algo ha salido mal</string>
+    <string name="something_went_wrong">Algo ha salido mal</string>
     <string name="logged_as">Sesión iniciada como %s\n</string>
     <string name="log_out">Cerrar sesión</string>
 
@@ -145,17 +145,27 @@
     <string name="create_error_quest">No puede estar vacio</string>
     <string name="create_error_quest2">Has olvidado el signo ?</string>
     <string name="create_error_dif">Tienes que selecionar una dificultad</string>
-    <string name="anonyme">anónimo</string>
+    <string name="anonymous">Anónimo</string>
     <string name="error_description">Ha ocurrido un error inesperado</string>
     <string name="error_title">ERROR GRAVE</string>
     <string name="continua_con_google">Continua con Google</string>
     <string name="o">o</string>
-    <string name="log_in">INICIAR SESION</string>
+    <string name="log_in">INICIAR SESIÓN</string>
     <string name="spam">En ocasiones el mail puede llegar a la carpeta de SPAM</string>
     <string name="create_desc">Crea una pregunta para otros usuarios</string>
     <string name="delete_acc">Eliminar \n cuenta</string>
+    <string name="delete_acc2">Eliminar \n cuenta</string>
     <string name="change_username">Cambiar nombre de usuario</string>
     <string name="new_username">Introduce el nuevo nombre</string>
     <string name="change_username_title">Cambio de nombre de Usuario</string>
+    <string name="question_correctly_created">Pregunta creada correctamente</string>
+    <string name="player_image">Imagen del jugador</string>
+    <string name="empty_name">El nombre no puede estar vacío</string>
+    <string name="delete_acc_verif">¿Estás seguro de que quieres eliminar tu cuenta?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="acc_deleted">Cuenta eliminada correctamente</string>
+    <string name="error">Error</string>
+    <string name="error_delete_acc">No se ha podido eliminar la cuenta</string>
 
 </resources>

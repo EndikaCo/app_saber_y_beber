@@ -49,9 +49,6 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         onBackPressed()
     }
 
-    /**
-     * Initialize the Observers.
-     */
     private fun initObservers() {
         createViewModel.difficulty.observe(viewLifecycleOwner) {
             setDifficulty(it)
@@ -59,12 +56,13 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
 
         createViewModel.notification.observe(viewLifecycleOwner) {
             if (it == OK) {
-                Toast.makeText(requireContext(), "Question correctly created", Toast.LENGTH_SHORT)
-                    .show() //todo to string res
+                Toast.makeText(
+                    requireContext(), getString(R.string.question_correctly_created),
+                    Toast.LENGTH_SHORT
+                ).show()
                 findNavController().navigate(R.id.homeFragment)
             } else
-                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(requireContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
@@ -112,7 +110,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         createViewModel.checkValues(quest, optionA, optionB, optionC)
     }
 
-    private fun setDifficulty(difficulty: Int) { //todo repeated in correct
+    private fun setDifficulty(difficulty: Int) {
         when (difficulty) {
             1 -> binding.createDifficulty.setBackgroundResource(R.drawable.d1)
             2 -> binding.createDifficulty.setBackgroundResource(R.drawable.d2)
