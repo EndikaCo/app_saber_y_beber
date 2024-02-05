@@ -2,8 +2,8 @@ package com.endcodev.saber_y_beber.data.network
 
 import android.util.Log
 import com.endcodev.saber_y_beber.domain.utils.App
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -42,13 +42,14 @@ class AuthenticationService @Inject constructor(
 
     fun putUserName(name: String) {
 
-        val profileUpdates = userProfileChangeRequest { displayName = name }
-        client.auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
-            if (task.isSuccessful)
-                Log.v(App.tag, "OK: User profile updated correctly.")
-            else
-                Log.e(App.tag, "Error: User profile update error")
-        }
+        client.auth.currentUser?.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build())
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.v(App.tag, "OK: User profile updated correctly.")
+                } else {
+                    Log.e(App.tag, "Error: User profile update error")
+                }
+            }
     }
 
     private fun sendMailVerification(completionHandler: (Int) -> Unit) {

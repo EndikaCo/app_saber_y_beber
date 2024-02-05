@@ -20,7 +20,7 @@ class ProfileViewModel @Inject constructor(
     private val firebase: FirebaseClient,
     private val getAllFromUidUseCase: GetAllFromUidUseCase,
     private val authenticationService: AuthenticationService,
-    ) : ViewModel() {
+) : ViewModel() {
 
     private var _currentUser = MutableLiveData<FirebaseUser>()
     val currentUser: LiveData<FirebaseUser> get() = _currentUser
@@ -48,11 +48,11 @@ class ProfileViewModel @Inject constructor(
         firebase.auth.signOut()
     }
 
-    fun changeUserName(name : String){
+    fun changeUserName(name: String) {
         authenticationService.putUserName(name)
     }
 
-    fun deleteAccount( onComplete : (Boolean) -> Unit){
+    fun deleteAccount(onComplete: (Boolean) -> Unit) {
         authenticationService.deleteAccount(onComplete)
     }
 }

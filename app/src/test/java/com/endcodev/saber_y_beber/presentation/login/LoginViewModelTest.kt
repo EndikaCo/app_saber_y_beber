@@ -1,17 +1,5 @@
 package com.endcodev.saber_y_beber.presentation.login
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.endcodev.saber_y_beber.data.network.AuthenticationService
-import com.endcodev.saber_y_beber.data.network.FirebaseClient
-import com.endcodev.saber_y_beber.presentation.login.LoginViewModel
-import com.endcodev.saber_y_beber.presentation.utils.ResourcesProvider
-import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
-
 /*
 class LoginViewModelTest {
 

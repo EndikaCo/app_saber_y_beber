@@ -1,9 +1,12 @@
 package com.endcodev.saber_y_beber.presentation.home
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -118,8 +121,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /** change to [HomeFragment]*/
     private fun startGame() {
         if (homeViewModel.playerList.value?.size!! > 2) {
-            //MediaPlayer.create(context, R.raw.opening_bottle).start() //opening bottle sound
-            findNavController().navigate(R.id.gameFragment)
+
+            binding.bubbles?.visibility = View.VISIBLE
+
+            val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.bubble_anim)
+            binding.bubbles?.startAnimation(anim)
+
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {
+                    MediaPlayer.create(context, R.raw.open).start() //opening bottle sound
+                }
+                override fun onAnimationRepeat(p0: Animation?) {}
+                override fun onAnimationEnd(p0: Animation?) {
+                    binding.bubbles?.visibility = View.INVISIBLE
+                    findNavController().navigate(R.id.gameFragment)
+                }
+            })
+
         } else
             Toast.makeText(
                 context,

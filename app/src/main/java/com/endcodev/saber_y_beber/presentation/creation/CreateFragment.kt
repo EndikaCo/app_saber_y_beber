@@ -1,6 +1,7 @@
 package com.endcodev.saber_y_beber.presentation.creation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endcodev.saber_y_beber.R
 import com.endcodev.saber_y_beber.databinding.FragmentCreationBinding
+import com.endcodev.saber_y_beber.domain.utils.App
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.A_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.B_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.C_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.DIF_EMPTY
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.OK
 import com.endcodev.saber_y_beber.presentation.creation.CreateViewModel.Companion.QUEST_EMPTY
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +31,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
     private var _binding: FragmentCreationBinding? = null
     private val binding: FragmentCreationBinding get() = _binding!!
     private val createViewModel: CreateViewModel by viewModels()
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +69,11 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
                 ).show()
                 findNavController().navigate(R.id.homeFragment)
             } else
-                Toast.makeText(requireContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.something_went_wrong),
+                    Toast.LENGTH_SHORT
+                ).show()
         }
 
         createViewModel.questError.observe(viewLifecycleOwner) {
@@ -82,6 +93,26 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
     }
 
+    private fun initAdmob() {
+        val adRequest: AdRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(App.tag, adError.toString())
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d(App.tag, "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
+    }
+
     /**
      * Initialize the listeners.
      */
@@ -95,13 +126,12 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         binding.createOk.setOnClickListener {
+            initAdmob()
             postData()
         }
     }
 
-    /**
-     * post to server
-     */
+    /** post to server*/
     private fun postData() {
         val quest = binding.createQuest.text.toString()
         val optionA = binding.createCorrect.text.toString()

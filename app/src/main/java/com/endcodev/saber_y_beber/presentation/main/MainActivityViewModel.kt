@@ -11,7 +11,6 @@ import com.google.errorprone.annotations.Keep
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,6 +56,7 @@ class MainActivityViewModel @Inject constructor(
             }
         })
     }
+
     @Keep
     /** Checks the version of the app in Firebase*/
     private fun checkVersion() { //todo
@@ -67,7 +67,7 @@ class MainActivityViewModel @Inject constructor(
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                val needVersion = snapshot.getValue<String>()
+                val needVersion = snapshot.value as? String
                 if (needVersion == null) {
                     Log.e(App.tag, "need versions is null")
                 } else {

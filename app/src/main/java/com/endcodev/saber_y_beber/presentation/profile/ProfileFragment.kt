@@ -90,7 +90,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 },
                 ErrorModel(
                     title = getString(R.string.delete_acc2),
-                    description = getString(R.string.delete_acc_verif),
+                    description = getString(R.string.delete_acc_v),
                     acceptButton = getString(R.string.yes),
                     cancelButton = getString(R.string.no),
                 )

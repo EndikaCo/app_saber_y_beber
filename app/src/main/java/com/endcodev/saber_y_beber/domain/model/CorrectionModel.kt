@@ -9,3 +9,8 @@ data class CorrectionModel(
     val difficulty: Int,
     val correctors: ArrayList<CorrectorModel>
 )
+
+data class CorrectorModel(
+    val id: String,
+    val ok: Boolean,
+)

@@ -17,28 +17,13 @@
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/light_black"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:fontFamily="casual"
-        android:text="@string/create_desc"
-        android:textAlignment="center"
-        android:textColor="@color/dark_grey"
-        android:textColorHint="@color/light_black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/create_title"
-        app:layout_constraintStart_toStartOf="@+id/create_title"
-        app:layout_constraintTop_toBottomOf="@+id/create_title" />
+        app:layout_constraintTop_toTopOf="@+id/view_header" />
 
     <include
         android:id="@+id/view_header"
@@ -54,22 +39,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
         android:text="@string/create_difficulty"
         android:textColor="@color/light_black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/create_difficulty"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/create_difficulty"
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
 
     <ImageView
         android:id="@+id/create_difficulty"
-        android:layout_width="135dp"
-        android:layout_height="50dp"
-
-        android:layout_marginBottom="2dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/d1"
         android:contentDescription="@string/create_difficulty"
         app:layout_constraintBottom_toTopOf="@+id/create_quest"
@@ -79,12 +63,12 @@
 
     <EditText
         android:id="@+id/create_quest"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="casual"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
         android:hint="@string/create_question"
         android:importantForAutofill="no"
@@ -92,6 +76,7 @@
         android:textColor="@color/light_black"
         android:textColorHint="@color/light_black"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/game_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
@@ -101,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         android:paddingStart="40dp"
 
@@ -116,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/answer_option_correct"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_correct_option"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -132,13 +117,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/answer_option"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_option_wrong"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColor="@color/light_black"
+            android:textColor="@color/light_grey"
             android:textColorHint="@color/light_black" />
 
 
@@ -149,13 +134,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/answer_option"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_option_wrong2"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center"
-            android:textColor="@color/light_black"
+            android:textColor="@color/light_grey"
             android:textColorHint="@color/light_black" />
 
     </LinearLayout>
