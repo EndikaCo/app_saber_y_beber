@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endcodev.saber_y_beber.R
+import com.endcodev.saber_y_beber.data.network.FirebaseClient
 import com.endcodev.saber_y_beber.domain.model.ChallengeModel
 import com.endcodev.saber_y_beber.domain.model.GameUiModel
 import com.endcodev.saber_y_beber.domain.model.OptionModel
@@ -27,11 +28,16 @@ class GameViewModel @Inject constructor(
     private val getRandomQuestUseCase: GetRandomQuestUseCase,
     private val getRandomChallengeUseCase: GetRandomChallengeUseCase,
     private val resources: ResourcesProvider,
-    private val playersUseCase: GetPlayersUseCase
+    private val playersUseCase: GetPlayersUseCase,
+    private val client: FirebaseClient
 
 ) : ViewModel() {
 
-    val isLoading = MutableLiveData<Boolean>()
+    private val _enableReport = MutableLiveData(false)
+    val enableReport: LiveData<Boolean> get() = _enableReport
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     private val _gameModel = MutableLiveData<GameUiModel?>()
     val gameModel: LiveData<GameUiModel?> get() = _gameModel
@@ -49,11 +55,17 @@ class GameViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            isLoading.postValue(true)
+            _isLoading.postValue(true)
             _playerList.value = playersUseCase.invoke().toMutableList()
             loadData()
-            isLoading.postValue(false)
+            isRegistered()
+            _isLoading.postValue(false)
         }
+    }
+
+    private fun isRegistered() {
+        val auth = client.auth.currentUser
+        _enableReport.value = auth != null && auth.isEmailVerified
     }
 
     private suspend fun loadData() {
@@ -100,14 +112,14 @@ class GameViewModel @Inject constructor(
 
     private fun randomQuest() {
         viewModelScope.launch {
-            isLoading.postValue(true)
+            _isLoading.postValue(true)
 
             val quest = questToGame(getRandomQuestUseCase.nextQuest())
             if (quest != null)
                 _gameModel.value = quest
             else
                 _error.value = true
-            isLoading.postValue(false)
+            _isLoading.postValue(false)
         }
     }
 
@@ -226,5 +238,6 @@ class GameViewModel @Inject constructor(
     private fun isFinalRound(playerList: MutableList<PlayersModel>): Boolean {
         return _actualPlayer == playerList.size - 1
     }
+
 }
 

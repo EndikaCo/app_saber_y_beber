@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -49,6 +50,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
     private fun initViews() {
         binding.options.visibility = View.GONE
+
     }
 
     private fun initListeners() {
@@ -61,15 +63,29 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
             //OnClick report button
             report.setOnClickListener {
-                //reportQuest(gameVM.gameModel.value!!)
+
+                if(gameVM.enableReport.value == true)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.invalid_option),
+                    Toast.LENGTH_SHORT
+                ).show()
+                else
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.need_login),
+                        Toast.LENGTH_SHORT
+                    ).show()
             }
 
             //OnClick option button in Radio group
             options.setOnCheckedChangeListener { _, checkedId ->
                 gameVM.checkedOption(checkedId)
             }
+
         }
     }
+
 
     /**
      * Initialize the observers.
@@ -91,6 +107,13 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         gameVM.error.observe(viewLifecycleOwner) {
             showError()
+        }
+
+        gameVM.enableReport.observe(viewLifecycleOwner) {
+            if (it == false) {
+                binding.report.alpha = 0.5f
+            } else
+                binding.report.alpha = 1f
         }
     }
 

@@ -24,6 +24,7 @@ class NameDialogFragment(
             AlertDialog.Builder(this).apply {
                 setView(binding.root)
             }.create()
+
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
@@ -36,7 +37,6 @@ class NameDialogFragment(
                 }
                 binding.nameDescription.error = getString(R.string.empty_name)
             }
-
         }
 
         binding.nameCancel.setOnClickListener {

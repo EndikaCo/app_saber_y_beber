@@ -56,7 +56,7 @@ class GetAllFromUidUseCase @Inject constructor(
             }
 
         } catch (e: Exception) {
-            Log.e(App.tag, "No reply from  quest retrofit API")
+            Log.e(App.tag, "No reply from quest retrofit API")
         }
         return filteredCorrectionList
     }

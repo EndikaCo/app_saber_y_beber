@@ -9,10 +9,12 @@ import com.endcodev.saber_y_beber.domain.model.CorrectionModel
 import com.endcodev.saber_y_beber.domain.model.CorrectorModel
 import com.endcodev.saber_y_beber.domain.model.EditTextErrorModel
 import com.endcodev.saber_y_beber.domain.usecases.GetCorrectionsUseCase
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,6 +33,9 @@ class CreateViewModel @Inject constructor(
         const val OK = 0
     }
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     private val _notification = MutableLiveData<Int>()
     val notification: LiveData<Int> get() = _notification
 
@@ -46,13 +51,22 @@ class CreateViewModel @Inject constructor(
 
     private fun postCorrection(correctionModel: CorrectionModel) {
         viewModelScope.launch {
-            lateinit var database: DatabaseReference
-            val path = "corrections/${getCorrectionsUseCase()?.size.toString()}"
-            database = FirebaseDatabase.getInstance().reference.child(path)
-            database.setValue(correctionModel).addOnSuccessListener {
-                _notification.postValue(OK)
-            }.addOnFailureListener {
-                _notification.postValue(SOME_WRONG)
+            _isLoading.postValue(true)
+
+            //get reference key of last item
+            val a = firebase.dataBase.reference.child("corrections/").child("${getCorrectionsUseCase()?.size}")
+            val path = "corrections/${a.key}"
+
+            val database = FirebaseDatabase.getInstance().reference.child(path)
+            withContext(Dispatchers.IO) {
+                try {
+                    database.setValue(correctionModel).await()
+                    _notification.postValue(OK)
+                } catch (e: Exception) {
+                    _notification.postValue(SOME_WRONG)
+                } finally {
+                    _isLoading.postValue(false)
+                }
             }
         }
     }

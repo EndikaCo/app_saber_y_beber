@@ -57,6 +57,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         loginViewModel.isConnected.observe(viewLifecycleOwner) {
             if (it)
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            binding.progress.visibility = View.GONE
         }
     }
 
@@ -68,6 +69,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         //Google login button
         binding.viewSignIn.registerGoogle.setOnClickListener {
+            binding.progress.visibility = View.VISIBLE
             googleLogin()
         }
 

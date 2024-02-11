@@ -169,6 +169,8 @@
     <string name="error">Error</string>
     <string name="error_delete_acc">The account could not be deleted</string>
     <string name="default_web_client_id">871921398399-p21i4ocitr7mq9sq3bl35b8no01cl1op.apps.googleusercontent.com</string>
+    <string name="invalid_option">Disabled temporally</string>
+    <string name="creation_correctors">The question will be corrected by another user or moderator. You will be able to see the process in profile screen.</string>
 
 </resources>
 

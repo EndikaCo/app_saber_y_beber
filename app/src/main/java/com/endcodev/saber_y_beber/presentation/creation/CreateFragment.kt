@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -54,6 +55,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         initListeners()
         initObservers()
         onBackPressed()
+        initAdmob()
     }
 
     private fun initObservers() {
@@ -67,6 +69,7 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
                     requireContext(), getString(R.string.question_correctly_created),
                     Toast.LENGTH_SHORT
                 ).show()
+                mInterstitialAd?.show(requireActivity())
                 findNavController().navigate(R.id.homeFragment)
             } else
                 Toast.makeText(
@@ -90,6 +93,11 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
                     context, resources.getString(R.string.create_error_dif),
                     Toast.LENGTH_LONG
                 ).show()
+        }
+
+        //ProgressBar visibility
+        createViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progress.isVisible = it
         }
     }
 
@@ -126,7 +134,6 @@ class CreateFragment : Fragment(R.layout.fragment_creation) {
         }
 
         binding.createOk.setOnClickListener {
-            initAdmob()
             postData()
         }
     }

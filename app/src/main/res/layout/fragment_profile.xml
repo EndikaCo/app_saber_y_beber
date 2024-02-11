@@ -28,13 +28,15 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/profile_logout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_rv_title"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/profile_holder" />
 
     <TextView
@@ -74,16 +76,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_back" />
 
-    <ProgressBar
-        android:id="@+id/profile_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/profile_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_rv" />
-
     <TextView
         android:id="@+id/profile_rv_title"
         android:layout_width="wrap_content"
@@ -95,7 +87,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/profile_rv"
         app:layout_constraintStart_toStartOf="@+id/profile_rv"
-        app:layout_constraintTop_toBottomOf="@+id/profile_change_username" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_mail" />
 
     <Button
         android:id="@+id/profile_logout"
@@ -111,18 +103,6 @@
         app:layout_constraintStart_toEndOf="@+id/profile_delete_acc" />
 
     <Button
-        android:id="@+id/profile_change_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:background="@drawable/button_background"
-        android:text="@string/change_username"
-        android:textColor="@color/dark_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_mail" />
-
-    <Button
         android:id="@+id/profile_delete_acc"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -134,6 +114,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/profile_logout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_logout" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_rv"
+        app:layout_constraintEnd_toEndOf="@+id/profile_rv"
+        app:layout_constraintStart_toStartOf="@+id/profile_rv"
+        app:layout_constraintTop_toTopOf="@+id/profile_rv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

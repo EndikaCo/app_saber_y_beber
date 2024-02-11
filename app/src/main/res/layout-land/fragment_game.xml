@@ -40,7 +40,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_difficulty_2"
         tools:listitem="@layout/item_list_ranking" />
 
     <TextView
@@ -86,25 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_round"
         tools:text="Author" />
-
-    <RadioGroup
-        android:id="@+id/difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2" />
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/options"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/options"
@@ -174,23 +155,34 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/dosis"
         android:text="@string/report"
-        app:drawableTint="@color/black"
+        android:textColor="@color/dark_grey"
+        app:drawableTint="@color/dark_grey"
         app:drawableTopCompat="@drawable/ic_report"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/game_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/d1"
         android:contentDescription="@string/game_difficulty"
         android:scaleX="0.8"
         android:scaleY="0.8"
-        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

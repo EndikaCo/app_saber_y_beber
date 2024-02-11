@@ -169,5 +169,7 @@
     <string name="error">Error</string>
     <string name="error_delete_acc">No se ha podido eliminar la cuenta</string>
     <string name="default_web_client_id">871921398399-p21i4ocitr7mq9sq3bl35b8no01cl1op.apps.googleusercontent.com</string>
+    <string name="invalid_option">Temporalmente deshabilitado</string>
+    <string name="creation_correctors">La pregunta será corregida por otro usuario o un moderador. Podras ver el progreso en la pantalla de tu perfil</string>
 
 </resources>

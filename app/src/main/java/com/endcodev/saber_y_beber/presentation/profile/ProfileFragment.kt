@@ -45,7 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun initObservers() {
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.profileProgress.isVisible = it
+            binding.progress.isVisible = it
         }
 
         viewModel.currentUser.observe(viewLifecycleOwner) {
@@ -56,10 +56,20 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.activityList.observe(viewLifecycleOwner) {
             initAdapter(it)
         }
+
     }
 
     private fun initViews() {
         viewModel.user()
+    }
+
+    private fun showDialog(){
+        NameDialogFragment(
+            onAccept = {
+                viewModel.changeUserName(it)
+                findNavController().navigate(R.id.homeFragment)
+            }
+        ).show(parentFragmentManager, "dialog")
     }
 
     private fun initListeners() {
@@ -72,16 +82,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController().navigate(R.id.homeFragment)
         }
 
-        binding.profileChangeUsername?.setOnClickListener { //todo
-            NameDialogFragment(
-                onAccept = {
-                    viewModel.changeUserName(it)
-                    findNavController().navigate(R.id.homeFragment)
-                }
-            ).show(parentFragmentManager, "dialog")
+        binding.profileImage.setOnClickListener {
+            showDialog()
+        }
+        binding.profileUsername.setOnClickListener {
+            showDialog()
+        }
+        binding.profileMail.setOnClickListener {
+            showDialog()
         }
 
-        binding.profileDeleteAcc?.setOnClickListener {
+        binding.profileDeleteAcc.setOnClickListener {
 
             ErrorDialogFragment(
                 onAcceptClickLister = {

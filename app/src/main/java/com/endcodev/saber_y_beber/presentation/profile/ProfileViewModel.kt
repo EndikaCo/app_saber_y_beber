@@ -55,4 +55,5 @@ class ProfileViewModel @Inject constructor(
     fun deleteAccount(onComplete: (Boolean) -> Unit) {
         authenticationService.deleteAccount(onComplete)
     }
+
 }
