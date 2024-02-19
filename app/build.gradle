@@ -28,11 +28,33 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    def localProperties = new Properties()
+    def localPropertiesFile = rootProject.file('local.properties')
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.withInputStream { stream ->
+            localProperties.load(stream)
+        }
+    }
+
+    signingConfigs {
+        release {
+            signingConfigs {
+                release {
+                    keyAlias = localProperties['KEY_ALIAS'] ?: ''
+                    keyPassword = localProperties['KEY_PASSWORD'] ?: ''
+                    storePassword = localProperties['STORE_PASSWORD'] ?: ''
+                    storeFile file(localProperties['STORE_FILE'])
+                }
+            }
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false //todo
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -79,7 +101,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.3.0'
     implementation platform('com.google.firebase:firebase-bom:32.7.2')
     implementation 'com.google.firebase:firebase-database:20.3.0'
-    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
     //crashlytics

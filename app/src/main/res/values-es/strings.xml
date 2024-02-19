@@ -73,7 +73,8 @@
 
     <!-- forgot pass fragment-->
     <string name="forgot_title">Recuperar contraseña</string>
-    <string name="forgot_text">Te enviaremos un mail para que puedas cambiar la contraseña.\n\n*En ocasiones el mail puede llegar a la carpeta de SPAM*</string>
+    <string name="forgot_text">Te enviaremos un mail para que puedas cambiar la contraseña.</string>
+    <string name="forgot_text2">*En ocasiones el mail puede llegar a la carpeta de SPAM*</string>
     <string name="forgot_change">Recuperar contraseña</string>
     <string name="forgot_back_button">Botón atrás</string>
     <string name="forgot_mail_sent">Enviado correctamente, revisa tu Email (revisa también la carpeta de SPAM)</string>

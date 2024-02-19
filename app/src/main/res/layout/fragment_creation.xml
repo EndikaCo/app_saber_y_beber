@@ -17,7 +17,7 @@
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/light_black"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view_header"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +45,8 @@
         android:textColor="@color/light_black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/create_difficulty"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/create_difficulty"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/game_options" />
 
     <ImageView
         android:id="@+id/create_difficulty"
@@ -56,7 +55,6 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/d1"
         android:contentDescription="@string/create_difficulty"
-        app:layout_constraintBottom_toTopOf="@+id/create_quest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty" />
@@ -65,9 +63,9 @@
         android:id="@+id/create_quest"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:fontFamily="@font/dosis"
         android:gravity="center"
         android:hint="@string/create_question"
@@ -75,11 +73,11 @@
         android:inputType="textMultiLine"
         android:textColor="@color/light_black"
         android:textColorHint="@color/light_black"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/game_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
+        app:layout_constraintTop_toBottomOf="@+id/view_header" />
 
     <LinearLayout
         android:id="@+id/game_options"
@@ -163,15 +161,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="45dp"
         android:fontFamily="@font/dosis"
         android:gravity="center"
         android:text="@string/creation_correctors"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/create_ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+        app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
 
     <ProgressBar
         android:id="@+id/progress"

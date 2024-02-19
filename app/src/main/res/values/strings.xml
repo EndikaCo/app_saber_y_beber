@@ -73,7 +73,8 @@
 
     <!-- forgot pass fragment-->
     <string name="forgot_title">Recover password</string>
-    <string name="forgot_text">We will send you an email so you can change the password.\n\n*Sometimes the mail can go to the SPAM folder*</string>
+    <string name="forgot_text">We will send you an email so you can change the password.</string>
+    <string name="forgot_text2">*Sometimes the mail can go to the SPAM folder*</string>
     <string name="forgot_change">Recover password</string>
     <string name="forgot_back_button">Back button</string>
     <string name="forgot_mail_sent">Sent correctly, check your Email (also check the SPAM folder)</string>
