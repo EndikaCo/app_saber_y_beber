@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presenter.dialogs.ErrorDialogFragment">
+    tools:context=".presentation.dialogs.ErrorDialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/id_card"
@@ -25,6 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue1"
+            android:fontFamily="@font/dosis"
             android:text="@string/player_title"
             android:textAlignment="center"
             android:textSize="22sp"
@@ -67,6 +68,7 @@
             android:background="@null"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:fontFamily="@font/dosis"
             android:hint="@string/player_name"
             android:inputType="textPersonName"
             android:maxLength="15"
@@ -93,6 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/dosis"
             android:text="@string/player_genre"
             app:layout_constraintBottom_toBottomOf="@+id/id_2"
             app:layout_constraintEnd_toEndOf="@+id/id_date"
@@ -115,6 +118,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/dosis"
             android:text="@string/player_date"
             app:layout_constraintBottom_toBottomOf="@+id/id_3"
             app:layout_constraintStart_toEndOf="@+id/id_3"
@@ -127,6 +131,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/dosis"
             android:text="@string/player_id_num"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/player_cancelar"
+        android:text="@string/player_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/id_continue"
         app:layout_constraintStart_toStartOf="@+id/id_card"

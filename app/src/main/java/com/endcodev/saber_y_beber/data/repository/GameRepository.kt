@@ -5,9 +5,9 @@ import com.endcodev.saber_y_beber.data.database.dao.QuestDao
 import com.endcodev.saber_y_beber.data.database.entities.ChallengeEntity
 import com.endcodev.saber_y_beber.data.database.entities.QuestEntity
 import com.endcodev.saber_y_beber.data.retrofit.FirebaseService
-import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.QuestModel
-import com.endcodev.saber_y_beber.data.model.toDomain
+import com.endcodev.saber_y_beber.domain.model.ChallengeModel
+import com.endcodev.saber_y_beber.domain.model.QuestModel
+import com.endcodev.saber_y_beber.domain.model.toDomain
 import javax.inject.Inject
 
 class GameRepository @Inject constructor(
@@ -15,7 +15,6 @@ class GameRepository @Inject constructor(
     private val questDao: QuestDao,
     private val challengeDao: ChallengeDao,
 ) {
-
     suspend fun getAllQuestFromApi(): List<QuestModel> {
         val response: List<QuestModel> = api.getQuests()
         return response.map { it.toDomain() }

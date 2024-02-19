@@ -1,10 +1,9 @@
 package com.endcodev.saber_y_beber.domain
 
 import com.endcodev.saber_y_beber.data.database.entities.toDB
-import com.endcodev.saber_y_beber.data.model.QuestModel
 import com.endcodev.saber_y_beber.data.repository.GameRepository
-import org.junit.jupiter.api.Assertions.*
-
+import com.endcodev.saber_y_beber.domain.model.QuestModel
+import com.endcodev.saber_y_beber.domain.usecases.GetQuestUseCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -21,8 +20,26 @@ class GetQuestUseCaseTest {
 
     private lateinit var getQuestUseCase: GetQuestUseCase
 
-    private val challenge = QuestModel(challenge = "Challenge", author = "author", difficulty = 1, option1 = "option1", option2 = "option2", option3 = "option3", post = true)
-    private val challenge2 = QuestModel(challenge = "Challenge2", author = "author2", difficulty = 2, option1 = "2option1", option2 = "2option2", option3 = "3option3", post = true)
+    private val challenge = QuestModel(
+        quest = "Challenge",
+        author = "author",
+        difficulty = 1,
+        option1 = "option1",
+        option2 = "option2",
+        option3 = "option3",
+        post = true,
+        correctors = ArrayList()
+    )
+    private val challenge2 = QuestModel(
+        quest = "Challenge2",
+        author = "author2",
+        difficulty = 2,
+        option1 = "2option1",
+        option2 = "2option2",
+        option3 = "3option3",
+        post = true,
+        correctors = ArrayList()
+    )
 
     @Before
     fun setup() {

@@ -6,19 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".presenter.game.GameFragment">
+    tools:context=".presentation.game.GameFragment">
 
     <TextView
-
         android:id="@+id/tv_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:text="@string/game_start_round_title"
         android:textColor="@color/dark_grey"
         android:textSize="15sp"
-        android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="@+id/report"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:text="@string/game_difficulty"
         android:textColor="@color/dark_grey"
         app:layout_constraintEnd_toEndOf="@+id/game_difficulty"
@@ -45,19 +42,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2"
         tools:listitem="@layout/item_list_ranking" />
 
-    <!--app:layout_constraintTop_toTopOf="@+id/space"-->
-
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="casual"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
-
-        android:textColor="@color/dark_grey"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:textColor="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_challenge"
         app:layout_constraintEnd_toEndOf="@+id/tv_challenge"
         app:layout_constraintStart_toStartOf="@+id/tv_challenge"
         app:layout_constraintTop_toBottomOf="@+id/game_rank" />
@@ -67,12 +61,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
         android:minHeight="80dp"
         android:textColor="@color/dark_grey"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,21 +78,93 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:textColor="@color/dark_grey"
         android:textSize="15sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_round"
         tools:text="Author" />
 
     <RadioGroup
-        android:id="@+id/difficulty"
+        android:id="@+id/options"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tv_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+        <RadioButton
+            android:id="@+id/bt_option1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corners"
+            android:button="@null"
+            android:fontFamily="@font/dosis"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/bt_option2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corners"
+            android:button="@null"
+            android:fontFamily="@font/dosis"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/bt_option3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_corners"
+            android:button="@null"
+            android:fontFamily="@font/dosis"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/dosis"
+        android:text="@string/report"
+        app:drawableTint="@color/dark_grey"
+        android:textColor="@color/dark_grey"
+        app:drawableTopCompat="@drawable/ic_report"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/game_difficulty"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:orientation="horizontal"
+        android:background="@drawable/d1"
+        android:contentDescription="@string/game_difficulty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2" />
 
@@ -110,88 +177,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/options"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center|center_horizontal|center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_challenge">
-
-        <RadioButton
-            android:id="@+id/bt_option1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/answer_option"
-            android:button="@null"
-            android:fontFamily="casual"
-            android:minWidth="300dp"
-            android:minHeight="48dp"
-            android:textAlignment="center"
-            android:textColor="@color/dark_grey"
-            android:textSize="20sp"
-            android:visibility="invisible" />
-
-        <RadioButton
-            android:id="@+id/bt_option2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/answer_option"
-            android:button="@null"
-            android:fontFamily="casual"
-            android:minWidth="300dp"
-            android:minHeight="48dp"
-            android:textAlignment="center"
-            android:textColor="@color/dark_grey"
-            android:textSize="20sp"
-            android:visibility="invisible" />
-
-        <RadioButton
-            android:id="@+id/bt_option3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/answer_option"
-            android:button="@null"
-            android:fontFamily="casual"
-            android:minWidth="300dp"
-            android:minHeight="48dp"
-            android:textAlignment="center"
-            android:textColor="@color/dark_grey"
-            android:textSize="20sp"
-            android:visibility="invisible" />
-
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/report"
-        app:drawableTint="@color/black"
-        app:drawableTopCompat="@drawable/ic_report"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/game_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/difficulty_0"
-        android:contentDescription="@string/game_difficulty"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_difficulty_2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

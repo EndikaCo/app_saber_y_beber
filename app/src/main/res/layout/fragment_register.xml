@@ -7,7 +7,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
 
-    tools:context=".presenter.register.RegisterFragment">
+    tools:context=".presentation.login.RegisterFragment">
+
+    <View
+        android:id="@+id/separator2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="24dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/login_create_link2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/view_header"
@@ -22,42 +33,42 @@
     <TextView
         android:id="@+id/register_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="casual"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/dosis"
+        android:gravity="center"
         android:text="@string/register_subtitle"
         android:textAlignment="center"
         android:textColor="@color/mid_grey"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+        app:layout_constraintTop_toBottomOf="@+id/register_title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/view_sign_in"
+        android:paddingTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_text"
-        app:layout_constraintVertical_bias="0.19999999">
+        app:layout_constraintTop_toBottomOf="@+id/register_text">
 
         <EditText
             android:id="@+id/register_mail_et"
+            style="@style/circledEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:autofillHints="emailAddress"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_mail"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_email"
             android:inputType="textEmailAddress"
-            style="@style/circledEditText"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,14 +78,16 @@
             android:id="@+id/register_pass_et"
             style="@style/circledEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_pass"
+
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,17 +95,19 @@
 
         <EditText
             android:id="@+id/repeat_pass_et"
+            style="@style/circledEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:autofillHints="password"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_lock"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_repeat_pass"
+
             android:inputType="textPassword"
-            style="@style/circledEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,17 +115,19 @@
 
         <EditText
             android:id="@+id/register_user_et"
+            style="@style/circledEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:autofillHints="username"
             android:background="@drawable/et_stroke"
             android:drawableStart="@drawable/ic_login"
+            android:fontFamily="@font/dosis"
             android:hint="@string/register_username"
+
             android:inputType="textPersonName"
-            style="@style/circledEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,8 +139,8 @@
         layout="@layout/view_external_sign_in"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_create_link2"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/separator2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -134,11 +151,25 @@
         android:layout_marginBottom="24dp"
         android:text="@string/register_account"
         android:textAlignment="center"
-        android:textColor="@color/blue2"
+        android:fontFamily="@font/dosis"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/register_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/prata"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_header" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

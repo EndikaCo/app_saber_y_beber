@@ -1,8 +1,8 @@
 package com.endcodev.saber_y_beber.data.retrofit
 
-import com.endcodev.saber_y_beber.data.model.ChallengeModel
-import com.endcodev.saber_y_beber.data.model.CorrectionModel
-import com.endcodev.saber_y_beber.data.model.QuestModel
+import com.endcodev.saber_y_beber.domain.model.ChallengeModel
+import com.endcodev.saber_y_beber.domain.model.CorrectionModel
+import com.endcodev.saber_y_beber.domain.model.QuestModel
 import retrofit2.http.GET
 
 interface FirebaseApiClient {

@@ -5,7 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".presenter.creation.CreateFragment">
+    tools:context=".presentation.creation.CreateFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/dosis"
+        android:gravity="center"
+        android:text="@string/creation_correctors"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_ok" />
 
     <include
         android:id="@+id/view_header"
@@ -17,31 +33,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/create_title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/prata"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_header" />
+
+    <TextView
         android:id="@+id/create_tv_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:fontFamily="casual"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
         android:text="@string/create_difficulty"
         android:textColor="@color/light_black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/create_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
 
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/difficulty_0"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/d1"
         android:contentDescription="@string/create_difficulty"
-        app:layout_constraintBottom_toTopOf="@+id/create_quest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/create_tv_difficulty"
+        app:layout_constraintStart_toStartOf="@+id/create_tv_difficulty"
         app:layout_constraintTop_toBottomOf="@+id/create_tv_difficulty" />
 
     <EditText
@@ -49,71 +81,89 @@
         style="@style/circledEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/dosis"
         android:gravity="center"
         android:hint="@string/create_question"
         android:importantForAutofill="no"
         android:inputType="text"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/game_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_difficulty" />
 
     <LinearLayout
         android:id="@+id/game_options"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/create_ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_quest">
 
         <EditText
             android:id="@+id/create_correct"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/answer_option_correct"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_correct_option"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:textAlignment="center"
-            android:textColorHint="#EDE7F6" />
+            android:textColor="@color/light_black"
+            android:textColorHint="@color/light_black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp" />
 
         <EditText
             android:id="@+id/create_option2"
             style="@style/circledEditText"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/answer_option"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_option_wrong"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:textAlignment="center"
             android:textColor="@color/light_black"
             android:textColorHint="@color/light_black" />
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp" />
+
         <EditText
             android:id="@+id/create_option3"
             style="@style/circledEditText"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/answer_option"
-            android:fontFamily="casual"
+            android:fontFamily="@font/dosis"
             android:hint="@string/create_option_wrong2"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:textAlignment="center"
             android:textColor="@color/light_black"
             android:textColorHint="@color/light_black" />
@@ -122,15 +172,25 @@
 
     <Button
         android:id="@+id/create_ok"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
         android:text="@string/ok"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_options" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

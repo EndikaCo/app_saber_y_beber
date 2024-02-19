@@ -5,7 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".presenter.profile.ProfileFragment">
+    tools:context=".presentation.profile.ProfileFragment">
+
+    <Button
+        android:id="@+id/profile_delete_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/button_background"
+        android:text="@string/delete_acc"
+        android:textColor="@color/dark_grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_logout" />
 
     <ImageButton
         android:id="@+id/profile_back"
@@ -27,9 +40,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/profile_logout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,25 +87,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_back" />
 
-    <ProgressBar
-        android:id="@+id/profile_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/profile_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_rv" />
-
     <TextView
         android:id="@+id/profile_rv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/dosis"
         android:text="@string/list_of_created_questions"
         android:textColor="@color/dark_grey"
         android:textSize="20sp"
-
         app:layout_constraintEnd_toEndOf="@+id/profile_rv"
         app:layout_constraintStart_toStartOf="@+id/profile_rv"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -108,6 +111,16 @@
         android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/profile_delete_acc" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_rv"
+        app:layout_constraintEnd_toEndOf="@+id/profile_rv"
+        app:layout_constraintStart_toStartOf="@+id/profile_rv"
+        app:layout_constraintTop_toTopOf="@+id/profile_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

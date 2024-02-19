@@ -1,155 +1,177 @@
 <resources>
 
     <!--GENERAL PURPOSE-->
-    <string name="ok">OK</string>
+    <string name="ok">Accept</string>
     <string name="app_name">Saber y beber</string>
+    <string name="app_name_land">Saber y\nbeber</string>
     <string name="action_settings">Settings</string>
 
     <!-- home fragment-->
-    <string name="home_login_button_desc">botón de inicio de sesión</string>
-    <string name="home_app_logo">logo de la app</string>
-    <string name="home_creation_description">Pulsa para crear una pregunta</string>
-    <string name="home_player_add_button"> Añadir\njugador</string>
-    <string name="home_click_to_play">↓ Pulsa para jugar ↓</string>
-    <string name="home_start_game_button">Iniciar juego</string>
-    <string name="add_player">Añadir</string>
+    <string name="home_login_button_desc">login button</string>
+    <string name="home_app_logo">app logo</string>
+    <string name="home_creation_description">Press to create a question</string>
+    <string name="home_player_add_button">ADD</string>
+    <string name="home_click_to_play">↓ Press to play ↓</string>
+    <string name="home_start_game_button">Start game</string>
+    <string name="add_player">Add</string>
 
     <!-- game fragment-->
-    <string name="game_start_round_title"><b>Ronda 1</b></string>
-    <string name="game_start_round_text">\"El juego comienza, todos bebeis 1 trago\"</string>
+    <string name="game_start_round_title"><b>Round 1</b></string>
+    <string name="game_start_round_text">The game begins, everyone drinks 1 shot</string>
     <string name="game_start_round_author">Developer</string>
-    <string name="fin_ronda">Fin de la ronda %d</string>
-    <string name="round_n">Ronda %d</string>
-    <string name="final_ranking_lead">%s va en cabeza y reparte 3 tragos</string>
-    <string name="need_login">Primero tienes que iniciar sesión con una cuenta verificada</string>
-    <string name="game_feedback_correct">Correcto, reparte %x tragos</string>
-    <string name="game_feedback_incorrect">Incorrecto, Bebe %x tragos</string>
+    <string name="fin_ronda">End of round %d</string>
+    <string name="round_n">Round %d</string>
+    <string name="final_ranking_lead">%s is leading and distributes 3 shots</string>
+    <string name="need_login">First you have to log in with a verified account</string>
+    <string name="game_feedback_correct">Correct, distribute %x shots</string>
+    <string name="game_feedback_incorrect">Incorrect, Drink %x shots</string>
 
     <!-- login fragment-->
-    <string name="login_back_button">botón atras</string>
-    <string name="login_title">Iniciar sesión</string>
-    <string name="login_welcome">Me alegro de volver a verte, maldito alcohólico</string>
+    <string name="login_back_button">back button</string>
+    <string name="login_title">Log in</string>
+    <string name="login_welcome">Log in to be able to create questions that other players will have to answer</string>
     <string name="login_mail">Email</string>
-    <string name="login_password">Contraseña</string>
-    <string name="login_forgot_pass"><b> <u><font color="@colors/light_black">He olvidado la contraseña</font></u></b></string>
-    <string name="login_bt">Iniciar sesión</string>
-    <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/light_black">Crear cuenta</font></u></b></string>
+    <string name="login_password">Password</string>
+    <string name="login_forgot_pass"> <u>Recover password</u></string>
+    <string name="login_bt">Log in</string>
+    <string name="login_create_account"><font color="@colors/light_black">do not have an account?</font> <b> <u><font color="@colors/light_black">Create account</font></u></b></string>
     <string name="login_facebook">Login with facebook</string>
-    <string name="login_google">Iniciar sesión con Google</string>
-    <string name="login_not_verified">El Email no ha sido verificado aún. Accede a tu cuenta de correo electronico y pincha en el enlace de verificación. (Mira tambien en la bandeja de SPAM)</string>
-    <string name="login_failed">El Email o la contraseña no son correctos</string>
-    <string name="login_error">Introduce tu mail y contraseña</string>
-    <string name="something_went_wrong">algo ha salido mal</string>
-    <string name="logged_as">Sesión iniciada como %s\n</string>
-    <string name="log_out">Cerrar sesión</string>
-
-
-    <!-- facebook login -->
-    <string name="facebook_app_id">1234</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="login_google">Log in with Google</string>
+    <string name="login_not_verified">The Email has not been verified yet. Access your email account and click on the verification link. (Also check in the SPAM tray)</string>
+    <string name="login_failed">The Email or password are not correct</string>
+    <string name="login_error">Enter your email and password</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="logged_as">Logged in as %s\n</string>
+    <string name="log_out">Log out</string>
 
     <!-- register fragment-->
-    <string name="register_account_title">Crear cuenta</string>
-    <string name="register_back_button">Botón atrás</string>
-    <string name="register_subtitle">Necesitamos tus datos para poder crear tu perfil alcohólico</string>
+    <string name="register_account_title">Create account</string>
+    <string name="register_back_button">Back button</string>
+    <string name="register_subtitle">Enter your data to register.\nWe will send you an email to verify the account.</string>
     <string name="register_email">Email</string>
-    <string name="register_username">Nombre de usuario</string>
-    <string name="register_pass">Contraseña</string>
-    <string name="register_repeat_pass">Repite la contraseña</string>
-    <string name="register_bt">Crear cuenta</string>
-    <string name="register_alternative_tv">o crea una cuenta con</string>
-    <string name="register_facebook">Crear cuenta con facebook</string>
-    <string name="register_google">Crear cuenta con Google</string>
-    <string name="login_alternative">o inicia sesión con</string>
+    <string name="register_username">Username</string>
+    <string name="register_pass">Password</string>
+    <string name="register_repeat_pass">Repeat the password</string>
+    <string name="register_bt">Create account</string>
+    <string name="register_alternative_tv">or create an account with</string>
+    <string name="register_facebook">Create account with facebook</string>
+    <string name="register_google">Create account with Google</string>
+    <string name="login_alternative">or log in with</string>
 
     <!-- register fragment errors-->
-    <string name="register_error_pass">La contraseña necesita al menos 6 caracteres</string>
-    <string name="register_error_pass2">La contraseña debe tener al menos 1 número</string>
-    <string name="register_error_pass_uppercase">La contraseña debe tener al menos 1 mayúscula</string>
-    <string name="register_error_pass_lowercase">La contraseña debe tener al menos 1 carácter en minúscula</string>
-    <string name="register_error_pass_special">La contraseña necesita al menos un carácter especial</string>
-    <string name="register_error_repeat_match">las contraseñas no concuerdan</string>
-    <string name="register_error_mail_valid">Email no valido</string>
-    <string name="register_error_user">El nombre de usuario debe tener al menos 3 caracteres</string>
-    <string name="register_success">Cuenta creada correctamente</string>
-    <string name="register_check_mail">Compruebe el correo electrónico para la verificación de la cuenta. Compruebe también su carpeta de spam.</string>
-    <string name="register_account"><font color="@colors/light_black">¿Tienes ya una cuenta?</font> <b> <u><font color="@colors/light_black">Inicia Sesión</font></u></b></string>
+    <string name="register_error_pass">The password needs at least 6 characters</string>
+    <string name="register_error_pass2">The password must have at least 1 number</string>
+    <string name="register_error_pass_uppercase">The password must have at least 1 uppercase</string>
+    <string name="register_error_pass_lowercase">The password must have at least 1 lowercase character</string>
+    <string name="register_error_pass_special">The password needs at least one special character</string>
+    <string name="register_error_repeat_match">the passwords do not match</string>
+    <string name="register_error_mail_valid">Invalid Email</string>
+    <string name="register_error_user">The username must have at least 3 characters</string>
+    <string name="register_success">Account created successfully</string>
+    <string name="register_check_mail">Check the email for account verification. Also check your spam folder.</string>
+    <string name="register_account"><font color="@colors/light_black">Do you already have an account?</font> <b> <u><font color="@colors/light_black">Log in</font></u></b></string>
 
     <!-- forgot pass fragment-->
-    <string name="forgot_title">Recuperar contraseña</string>
-    <string name="forgot_text">Te enviaremos un mail para que puedas cambiar la contraseña </string>
-    <string name="forgot_change">Enviar</string>
-    <string name="forgot_back_button">Botón atrás</string>
-    <string name="forgot_mail_sent">Enviado correctamente, revisa tu Email (revisa tambien la carpeta de SPAM)</string>
-    <string name="forgot_error_send">Error en el Envio</string>
-    <string name="login_google_sucess">Sesión iniciada como ${auth.currentUser.toString()</string>
+    <string name="forgot_title">Recover password</string>
+    <string name="forgot_text">We will send you an email so you can change the password.</string>
+    <string name="forgot_text2">*Sometimes the mail can go to the SPAM folder*</string>
+    <string name="forgot_change">Recover password</string>
+    <string name="forgot_back_button">Back button</string>
+    <string name="forgot_mail_sent">Sent correctly, check your Email (also check the SPAM folder)</string>
+    <string name="forgot_error_send">Error in Sending</string>
+    <string name="login_google_sucess">Logged in as ${auth.currentUser.toString()</string>
 
     <!-- Add player ID dialog-->
     <string name="delete_player">Delete player</string>
-    <string name="player_title">ALCOHÓLICOS ANÓNIMOS</string>
+    <string name="player_title">Player ID</string>
     <string name="player_genre">M</string>
     <string name="player_date">27/01/2025</string>
     <string name="player_id_num">HKF21FG675OP</string>
     <string name="player_1">1.</string>
     <string name="player_2">2.</string>
-    <string name="player_name">Escribe aquí tu nombre</string>
-    <string name="player_accept">ACEPTAR</string>
-    <string name="player_cancelar">CANCELAR</string>
+    <string name="player_name">Write your name here</string>
+    <string name="player_accept">Accept</string>
+    <string name="player_cancel">Cancel</string>
     <string name="player_3">3.</string>
     <string name="player_genre_selector">Genre selector</string>
 
     <!--CREATE FRAGMENT-->
-    <string name="create_question">Escribe aquí tu pregunta</string>
-    <string name="create_correct_option">Escribe aquí la respuesta correcta</string>
-    <string name="create_fail_feedback">Respuesta incorrecta.</string>
-    <string name="create_option_wrong">Escribe aquí la respuesta incorrecta</string>
-    <string name="create_option_wrong2">Escribe aquí otra respuesta incorrecta</string>
-    <string name="create_difficulty">Dificultad</string>
-    <string name="create_title">Crear Pregunta</string>
-    <string name="create_feedback_on_fail">Comentario al fallar:</string>
-    <string name="create_alternative_to_drink">Alternativa a beber</string>
-    <string name="or_do_a_flip">o haz una voltereta</string>
-    <string name="drink_0">Bebe 0 tragos</string>
-    <string name="tutorial_button">Botón tutorial</string>
-    <string name="back_button">Botón atras</string>
+    <string name="create_question">Write your question here</string>
+    <string name="create_correct_option">Write the correct answer here</string>
+    <string name="create_fail_feedback">Incorrect answer.</string>
+    <string name="create_option_wrong">Write the incorrect answer here</string>
+    <string name="create_option_wrong2">Write another incorrect answer here</string>
+    <string name="create_difficulty">Change the difficulty</string>
+    <string name="create_title">Create Question</string>
+    <string name="create_feedback_on_fail">Comment when failing:</string>
+    <string name="create_alternative_to_drink">Alternative to drinking</string>
+    <string name="or_do_a_flip">or do a flip</string>
+    <string name="drink_0">Drink 0 shots</string>
+    <string name="tutorial_button">Tutorial button</string>
+    <string name="back_button">Back button</string>
 
     <!--CORRECT FRAGMENT-->
-    <string name="correction_question">Marcar la casilla si la pregunta tiene sentido y está bien redactada</string>
-    <string name="correction_answer">Marcar la casilla si responde correctamente la pregunta anterior</string>
-    <string name="correction_wrong_option_2">Marcar la casilla si la respuesta es incorrecta y está bien redactada </string>
-    <string name="correction_fail_reply">Marcar la casilla si humilla correctamente a la persona que ha fallado la respuesta</string>
-    <string name="correction_title">Pregunta de %s Corregidas %d/2 </string>
-    <string name="correction_title_default">Correción de preguntas </string>
-    <string name="correction_back_button">Botón atrás</string>
-    <string name="correct_info_bt">Botón info</string>
-    <string name="correct_difficulty">Marcar la casilla si la dificultad es adecuada a la pregunta</string>
-    <string name="correct_no_correction_available">Puedes crear una pregunta directamente</string>
-    <string name="correct_no_correction_available_title">No hay correciones disponibles en este momento</string>
+    <string name="correction_question">Check the box if the question makes sense and is well written</string>
+    <string name="correction_answer">Check the box if it correctly answers the previous question</string>
+    <string name="correction_wrong_option_2">Check the box if the answer is incorrect and is well written</string>
+    <string name="correction_fail_reply">Check the box if it correctly humiliates the person who has failed the answer</string>
+    <string name="correction_title">Question from %s Corrected %d/2 </string>
+    <string name="correction_title_default">Question correction </string>
+    <string name="correction_back_button">Back button</string>
+    <string name="correct_info_bt">Info button</string>
+    <string name="correct_difficulty">Check the box if the difficulty is appropriate to the question</string>
+    <string name="correct_no_correction_available">You can create a question directly</string>
+    <string name="correct_no_correction_available_title">No corrections available at this time</string>
     <string name="correction_state">state of the quest correction</string>
 
     <!--UPDATE DIALOG-->
     <string name="require_update">Update required</string>
     <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
-    <string name="cancel">Cancelar</string>
-    <string name="update">Actualizar</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_title">Log in as</string>
-    <string name="game_difficulty">Dificultad</string>
-    <string name="error_no_players">Error: No hay suficientes jugadores para comenzar la partida</string>
-    <string name="report">Reportar</string>
+    <string name="game_difficulty">Difficulty</string>
+    <string name="error_no_players">Error: There are not enough players to start the game</string>
+    <string name="report">Report</string>
     <string name="login_success">Login success</string>
-    <string name="drinks">bebes %d tragos</string>
-    <string name="drink">bebes 1 trago</string>
+    <string name="drinks">you drink %d shots</string>
+    <string name="drink">you drink 1 shot</string>
     <string name="button_to_add_new_player">button to add new player</string>
-    <string name="list_of_created_questions">Lista de preguntas creadas por ti</string>
-    <string name="login_icon">Icono de inicio de sesion</string>
-    <string name="no_quest_available">no hay más preguntas disponibles</string>
-    <string name="game_reset">El juego se reiniciará</string>
-    <string name="register_error_creating_acc">Ha ocurrido un error creando la cuenta</string>
-    <string name="error_sending_mail">Ha ocurrido un error al enviar el mail</string>
-    <string name="create_error_quest">No puede estar vacio</string>
-    <string name="create_error_quest2">Has olvidado el signo ?</string>
-    <string name="create_error_dif">Tienes que selecionar una dificultad</string>
+    <string name="list_of_created_questions">List of questions created by you</string>
+    <string name="login_icon">Login icon</string>
+    <string name="no_quest_available">there are no more questions available</string>
+    <string name="game_reset">The game will restart</string>
+    <string name="register_error_creating_acc">An error occurred creating the account</string>
+    <string name="error_sending_mail">An error occurred sending the mail</string>
+    <string name="create_error_quest">It cannot be empty</string>
+    <string name="create_error_quest2">You forgot the sign ?</string>
+    <string name="create_error_dif">You have to select a difficulty</string>
+    <string name="anonymous">Anonymous</string>
+    <string name="error_description">An unexpected error occurred</string>
+    <string name="error_title">SERIOUS ERROR</string>
+    <string name="continua_con_google">Continue with Google</string>
+    <string name="o">or</string>
+    <string name="log_in">LOG IN</string>
+    <string name="spam">Sometimes the mail can go to the SPAM folder</string>
+    <string name="create_desc">Create a question,</string>
+    <string name="delete_acc">Delete \n account</string>
+    <string name="delete_acc2">Delete \n account</string>
+    <string name="change_username">Change username</string>
+    <string name="new_username">Enter the new name</string>
+    <string name="change_username_title">Username Change</string>
+    <string name="question_correctly_created">Question created correctly</string>
+    <string name="player_image">Player image</string>
+    <string name="empty_name">The name cannot be empty</string>
+    <string name="delete_acc_v">Are you sure you want to delete your account?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="acc_deleted">Account deleted successfully</string>
+    <string name="error">Error</string>
+    <string name="error_delete_acc">The account could not be deleted</string>
+    <string name="default_web_client_id">871921398399-p21i4ocitr7mq9sq3bl35b8no01cl1op.apps.googleusercontent.com</string>
+    <string name="invalid_option">Disabled temporally</string>
+    <string name="creation_correctors">The question will be corrected by another user or moderator. You will be able to see the process in profile screen.</string>
 
 </resources>
+

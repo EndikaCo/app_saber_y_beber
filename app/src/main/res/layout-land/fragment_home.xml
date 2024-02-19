@@ -7,23 +7,23 @@
     android:id="@+id/home_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.home.HomeFragment"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    tools:context=".presentation.home.HomeFragment">
 
-    <ImageView
+    <TextView
         android:id="@+id/home_logo"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/home_app_logo"
-        android:scaleType="fitCenter"
-        android:src="@drawable/saber_y_beber_logo"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/prata"
+        android:text="@string/app_name_land"
+        android:textAlignment="center"
+        android:textColor="@color/light_black"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/light_black"
-        android:background="@color/transparent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -66,18 +66,21 @@
         android:drawableLeft="@drawable/ic_person_add"
         android:drawableTint="@color/light_black"
         android:focusable="true"
+        android:fontFamily="@font/dosis"
         android:text="@string/home_player_add_button"
-        android:textColor="@color/light_black"
-        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:textColor="@color/light_grey"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/home_start_bt"
         app:layout_constraintEnd_toStartOf="@+id/home_rv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/home_start_bt" />
+        app:layout_constraintTop_toTopOf="@+id/home_start_bt"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_rv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
