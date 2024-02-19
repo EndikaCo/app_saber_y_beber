@@ -5,7 +5,9 @@ Saber y Beber
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/EndikaCo/app_saber_y_beber/LICENSE)
 ![Github Actions](https://github.com/EndikaCo/app_saber_y_beber/actions/workflows/testing.yml/badge.svg)
 
-Simple app to draw random names previously added to a list.
+Juego de preguntas y respuestas de cultura general diseñado para competir con tus amigos en un ambiente festivo.
+Los jugadores tendrán que responder a preguntas creadas por otros usuarios online.
+También podrán crear sus propias preguntas y compartirlas con la comunidad.
 
 ### Tech stack
 
@@ -18,5 +20,5 @@ Simple app to draw random names previously added to a list.
 [![MVVM](https://img.shields.io/badge/MVVM-orange?style=&logo=)]()
 [![Live Data](https://img.shields.io/badge/Live_Data-grey?style=&logo=)]()
 
-| ![img.png](images/1.png) | ![img.png](images/2.png) |
-|--------------------------|--------------------------|
+| ![img.png](images/1.png) | ![img.png](images/2.png) | ![img.png](images/4.png) |
+|--------------------------|--------------------------|--------------------------|
