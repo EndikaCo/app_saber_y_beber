@@ -30,8 +30,8 @@
     <string name="login_back_button">botón atras</string>
     <string name="login_title">Iniciar sesión</string>
     <string name="login_welcome">Inicia sesión para poder crear preguntas que otros jugadores tendrán que responder</string>
-    <string name="login_mail">Email</string>
-    <string name="login_password">Contraseña</string>
+    <string name="login_mail">Introduce tu Email</string>
+    <string name="login_password">Introduce tu contraseña</string>
     <string name="login_forgot_pass"> <u>Recuperar contraseña</u></string>
     <string name="login_bt">Iniciar sesión</string>
     <string name="login_create_account"><font color="@colors/light_black">¿No tienes una cuenta?</font> <b> <u><font color="@colors/light_black">Crear cuenta</font></u></b></string>

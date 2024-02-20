@@ -55,9 +55,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         loginViewModel.isConnected.observe(viewLifecycleOwner) {
-            if (it)
+            if (it) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-            binding.progress.visibility = View.GONE
+                binding.progress.visibility = View.GONE
+            } else
+                binding.progress.visibility = View.GONE
         }
     }
 
@@ -117,6 +119,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             }
         }
+        binding.progress.visibility = View.GONE
+
     }
 
     private fun gLogin(account: GoogleSignInAccount) {
@@ -131,14 +135,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         Toast.LENGTH_SHORT
                     ).show()
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                } else
+                } else {
                     Toast.makeText(
                         requireContext(),
                         getString(R.string.something_went_wrong),
                         Toast.LENGTH_SHORT
                     ).show()
+                }
             }
-
     }
 
     private fun mailPassLogin() {
